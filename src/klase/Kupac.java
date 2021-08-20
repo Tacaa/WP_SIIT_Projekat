@@ -34,11 +34,6 @@ public class Kupac extends Korisnik {
 	}
 	
 	public Kupac(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, 
-			LocalDate datumRodjenja, AktivnostKorisnika aktivnost) {
-		super(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, aktivnost);
-	}
-	
-	public Kupac(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, 
 			LocalDate datumRodjenja, AktivnostKorisnika aktivnost, double brojBodova, 
 			ArrayList<Karta> sveKarte, TipKupca tip) {
 		super(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, aktivnost);

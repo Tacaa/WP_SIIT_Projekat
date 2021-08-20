@@ -18,11 +18,6 @@ public class Prodavac extends Korisnik {
 		super();
 	}
 	
-	public Prodavac(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, 
-			LocalDate datumRodjenja, AktivnostKorisnika aktivnost) {
-		super(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, aktivnost);
-	}
-	
 	public Prodavac(ArrayList<Manifestacija> manifestacije) {
 		super();
 		this.manifestacije = manifestacije;
