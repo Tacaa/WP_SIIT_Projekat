@@ -3,5 +3,11 @@ package klase;
 public enum ImeTipaKupca {
 	ZLATNI,
 	SREBRNI,
-	BRONZANI
+	BRONZANI;
+	
+	private String[] opis = {"Zlatni", "Srebrni", "Bronzani"};
+	@Override
+	public String toString() {
+		return opis[this.ordinal()];
+	}
 }

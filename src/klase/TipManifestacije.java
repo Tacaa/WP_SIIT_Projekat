@@ -12,5 +12,13 @@ public enum TipManifestacije {
 	SAJAM,
 	MUZEJSKO_VECE,
 	KNJIZEVNO_VECE,
-	DRUGA_KATEGORIJA
+	DRUGA_KATEGORIJA;
+	
+	private String[] opis = {"Koncert", "Festival", "Pozorisna predstava", "Bioskopska projekcija",
+			"Sportska nadmetanja", "Plesni nastup", "Standup nastup", "Nastup cirkusa",
+			"Sajam", "Muzejsko vece", "Knjizevno vece", "Druga kategorija"};
+	@Override
+	public String toString() {
+		return opis[this.ordinal()];
+	}
 }
