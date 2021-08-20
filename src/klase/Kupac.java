@@ -1,5 +1,6 @@
 package klase;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Kupac extends Korisnik {
@@ -30,6 +31,20 @@ public class Kupac extends Korisnik {
 	
 	public Kupac() {
 		super();
+	}
+	
+	public Kupac(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, 
+			LocalDate datumRodjenja, AktivnostKorisnika aktivnost) {
+		super(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, aktivnost);
+	}
+	
+	public Kupac(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, 
+			LocalDate datumRodjenja, AktivnostKorisnika aktivnost, double brojBodova, 
+			ArrayList<Karta> sveKarte, TipKupca tip) {
+		super(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, aktivnost);
+		this.brojBodova = brojBodova;
+		this.sveKarte = sveKarte;
+		this.tip = tip;
 	}
 	
 	public Kupac(double brojBodova, ArrayList<Karta> sveKarte, TipKupca tip) {

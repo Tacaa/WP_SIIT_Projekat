@@ -64,8 +64,8 @@ public class Korisnik {
 		super();
 	}
 	
-	public Korisnik(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, LocalDate datumRodjenja,
-			AktivnostKorisnika aktivnost) {
+	public Korisnik(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, 
+			LocalDate datumRodjenja, AktivnostKorisnika aktivnost) {
 		super();
 		this.korisnickoIme = korisnickoIme;
 		this.lozinka = lozinka;
