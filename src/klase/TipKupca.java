@@ -2,7 +2,7 @@ package klase;
 
 public class TipKupca {
 	private ImeTipaKupca ime;
-	private double popust;		// 1 ili 0.97 ili 0.95
+	private double popust;		// 1 ili 0.97 ili 0.95 ili 0 ako nema
 	private int potrebihBodova;		// 0 ili 3000 ili 5000
 	
 	public ImeTipaKupca getIme() {
