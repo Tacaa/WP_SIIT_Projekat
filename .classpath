@@ -7,7 +7,7 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Taca/Documents/SIIT3-2/JESEN/WEB/PROJEKAT/WP_SIIT_Projekat/WebContent/WEB-INF/lib/jackson-annotations-2.9.0.jar">
+	<classpathentry kind="lib" path="C:/Users/Taca/Documents/SIIT3-2/JESEN/WEB/PROJEKAT/WP_SIIT_Projekat/WebContent/WEB-INF/lib/jackson-annotations-2.9.10.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
@@ -17,7 +17,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Taca/Documents/SIIT3-2/JESEN/WEB/PROJEKAT/WP_SIIT_Projekat/WebContent/WEB-INF/lib/jackson-databind-2.9.10.jar">
+	<classpathentry kind="lib" path="C:/Users/Taca/Documents/SIIT3-2/JESEN/WEB/PROJEKAT/WP_SIIT_Projekat/WebContent/WEB-INF/lib/jackson-databind-2.9.10.3.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

@@ -23,8 +23,8 @@
  
  	//KLIK NA DUGME "REGISTRUJTE SE"
  	$('form#forma').submit(function(event){
- 		//event.preventDefault();
  		
+ 		event.preventDefault();
  		//UZMI SVE PODATKE
  		let ime = $('input[name="ime"]').val();
  		let prezime = $('input[name="prezime"]').val();
@@ -34,7 +34,7 @@
  		let lozinka = $('input[name="lozinka"]').val();
  		let potvrdaLozinke = $('input[name="potrda_lozinke"]').val();
  		
- 		
+ 		/*
  		console.log(ime); 
  		console.log(prezime);
  		console.log(datumRodjenja); //2020-07-21
@@ -42,7 +42,7 @@
  		console.log(korisnickoIme);
  		console.log(lozinka);
  		console.log(potvrdaLozinke);
- 		
+ 		*/
  		
  		
  		//PROVJERE
@@ -51,7 +51,7 @@
  			$('#greska_unosa').text('Popunite sva polja :)');
  			$('#greska_unosa').css("color", "#fbc2c0");
  			$("#greska_unosa").show().delay(4000).fadeOut();
- 			
+ 			//event.preventDefault();
  			return;
  		}
  		
@@ -61,26 +61,32 @@
  			$('#greska_unosa').text('Lozinke se moraju poklapati :)');
  			$('#greska_unosa').css("color", "#fbc2c0");
  			$("#greska_unosa").show().delay(4000).fadeOut();
- 			
+ 			//event.preventDefault();
  			return;
  		}
  		
  		
  		
- 		
- 		
- 		
- 		//SVE U REDU --> SALJI NA SERVER
- 		$.post({
-			url: 'rest/kupci/registrujKupca',
+ 		$.ajax({
+			url: "rest/kupci/registrujKupca",
+			type:"POST",
 			data: JSON.stringify({korisnickoIme: korisnickoIme, lozinka: lozinka, ime: ime, prezime: prezime, pol:pol, datumRodjenja:datumRodjenja, aktivnost:"AKTIVAN"}),
-			contentType: 'application/json',
-			success: function(product) {
-				//OVDJEEEEEEE NASTAVAK STA TREBA DA RADIII!!!!!!!!!!!!
-				$('#greska_unosa').text('USPJELOOOO!!!! :)');
+			contentType:"application/json",
+			dataType:"json",
+			complete: function(data) {
+				console.log("uspjelo");
+				//komenatr
+				$('#greska_unosa').text('USPJELOOO iiii!!!! :)');
+				$("#greska_unosa").show().delay(4000).fadeOut();
+				
+				event.preventDefault();
 			}
 		});
- 	});
+		
+ 		
+ 		
+ 		
+ 		 	});
  
  
  })
