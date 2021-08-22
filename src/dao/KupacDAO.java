@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.google.gson.Gson;
@@ -16,17 +15,16 @@ import com.google.gson.reflect.TypeToken;
 import klase.Kupac;
 
 public class KupacDAO {
-	private HashMap<String, Kupac> kupci;
+	private static HashMap<String, Kupac> kupci = new  HashMap<String, Kupac>();
 	
 	public KupacDAO() {
-		kupci = new  HashMap<String, Kupac>();
-		
+		/*
 		try {
 			ucitajKupce();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}		*/
 	}
 	
 	
@@ -47,19 +45,23 @@ public class KupacDAO {
 		fw.close();
 	}
 	
+	private static boolean zauzetoKorisnickoIme(String novoKorIme) {
+		for (Kupac k : kupci.values()) if (k.getKorisnickoIme().equals(novoKorIme)) return true;
+		return false;
+	}
 	
-	public Kupac dodajKupca(Kupac kupac) {
-		System.out.println("TACA");
-		System.out.println("Uslo u dodajKupca, sad treba upisati!");
+	
+	public static Kupac dodajKupca(Kupac kupac) {
+		if (zauzetoKorisnickoIme(kupac.getKorisnickoIme())) return null;
 		int noviId = kupci.size();
 		kupci.put(String.valueOf(noviId), kupac);
 		
-		try {
+		/*try {
 			this.upisiKupce();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		return kupac;
 	}
 	

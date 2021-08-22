@@ -34,16 +34,6 @@
  		let lozinka = $('input[name="lozinka"]').val();
  		let potvrdaLozinke = $('input[name="potrda_lozinke"]').val();
  		
- 		/*
- 		console.log(ime); 
- 		console.log(prezime);
- 		console.log(datumRodjenja); //2020-07-21
- 		console.log(pol); //muskarac
- 		console.log(korisnickoIme);
- 		console.log(lozinka);
- 		console.log(potvrdaLozinke);
- 		*/
- 		
  		
  		//PROVJERE
  		//1. SVE MORA BITI UNESENO
@@ -51,7 +41,6 @@
  			$('#greska_unosa').text('Popunite sva polja :)');
  			$('#greska_unosa').css("color", "#fbc2c0");
  			$("#greska_unosa").show().delay(4000).fadeOut();
- 			//event.preventDefault();
  			return;
  		}
  		
@@ -61,7 +50,6 @@
  			$('#greska_unosa').text('Lozinke se moraju poklapati :)');
  			$('#greska_unosa').css("color", "#fbc2c0");
  			$("#greska_unosa").show().delay(4000).fadeOut();
- 			//event.preventDefault();
  			return;
  		}
  		
@@ -73,14 +61,14 @@
 			data: JSON.stringify({korisnickoIme: korisnickoIme, lozinka: lozinka, ime: ime, prezime: prezime, pol:pol, datumRodjenja:datumRodjenja, aktivnost:"AKTIVAN"}),
 			contentType:"application/json",
 			dataType:"json",
-			complete: function(data) {
-				console.log("uspjelo");
-				//komenatr
-				$('#greska_unosa').text('USPJELOOO iiii!!!! :)');
-				$("#greska_unosa").show().delay(4000).fadeOut();
+			complete: function(data, uspelo) {
+				if (uspelo == "success") $('#greska_unosa').text('Uspesno registrovanje korisnika!!!! :)');
+				else $('#greska_unosa').text('Korisnicko ime je vec zauzeto :( Probajte da unesete neko drugo :)');
 				
-				event.preventDefault();
+				$('#greska_unosa').css("color", "#fbc2c0");
+				$("#greska_unosa").show().delay(4000).fadeOut();
 			}
+							
 		});
 		
  		

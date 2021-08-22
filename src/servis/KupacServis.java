@@ -21,24 +21,17 @@ import klase.TipKupca;
 
 @Path("/kupci")
 public class KupacServis {
-
-	
-	public static KupacDAO sviKupci = new KupacDAO();
-	
-	
-	
 	
 	@POST
 	@Path("/registrujKupca")
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
-	public String registrujKupca(Korisnik noviKorisnik) {
+	@Produces(MediaType.APPLICATION_JSON)
+	public Kupac registrujKupca(Korisnik noviKorisnik) {
 		TipKupca tipKupca = new TipKupca(ImeTipaKupca.NEMA, 0, 0);
 		Kupac noviKupac = new Kupac(noviKorisnik.getKorisnickoIme(), noviKorisnik.getLozinka(), noviKorisnik.getIme(), 
 				noviKorisnik.getPrezime(), noviKorisnik.getPol(), noviKorisnik.getDatumRodjenja(), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), tipKupca);
 		
-		return noviKupac.toString();
-		
+		return KupacDAO.dodajKupca(noviKupac);
 		
 	}
 	
