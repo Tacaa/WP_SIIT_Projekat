@@ -2,13 +2,14 @@ $(document).ready(function() {
             // pomocno od ovoga
     let objekat = {ime: "Imenko", 
         prezime: "Prezimic",
-        korisnickoIme: "imenk0",
-        datumRodjenja: "2017-17-17",
-        pol: "MUSKI",
+        korisnickoIme: "pera",
+        datumRodjenja: "2017-07-17",
+        pol: "ZENSKI",
         brojBodova: 17,
         tip: "BRONZANI",
         komentari: [],
-        karte: []
+        karte: [],
+        lozinka: "Nanana"
     };
     window.sessionStorage.setItem("trenutniKupac", 
         JSON.stringify(objekat));
@@ -24,5 +25,8 @@ $(document).ready(function() {
     $("#datum_rodjenja").text(korisnik.datumRodjenja);
     $("#bodovi").text(korisnik.brojBodova);
 
-
+    $("#izmena_podataka").submit(function(event) {
+		event.preventDefault();
+    	window.location.href = "http://localhost:8080/Projekat/izmena_podataka.html";
+    }); 
 });

@@ -13,6 +13,15 @@ public class Administrator extends Korisnik {
 			LocalDate datumRodjenja, AktivnostKorisnika aktivnost) {
 		super(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, aktivnost);
 	}
+
+
+	@Override
+	public String toString() {
+		return "{ime: \""+ this.getIme() +"\", prezime: \""+ this.getPrezime() +
+				"\", korisnickoIme: \""+ this.getKorisnickoIme() + "\", pol: \""+ this.getPol() +
+				"\", lozinka: \""+ this.getLozinka() +"\", datumRodjenja: \""
+				+ this.getDatumRodjenja() + "\"}";
+	}
 	
 	
 	
