@@ -1,10 +1,10 @@
 package klase;
 
 public enum Pol {
-	MUSKI,
-	ZENSKI;
+	muskarac,
+	zena;
 	
-	private String[] opis = {"Muski", "Zenski"};
+	private String[] opis = {"muskarac", "zena"};
 	@Override
 	public String toString() {
 		return opis[this.ordinal()];

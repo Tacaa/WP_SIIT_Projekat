@@ -3,7 +3,23 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-13.0.2">
 		<attributes>
+			<attribute name="module" value="true"/>
 			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Taca/Documents/SIIT3-2/JESEN/WEB/PROJEKAT/WP_SIIT_Projekat/WebContent/WEB-INF/lib/jackson-annotations-2.9.10.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Taca/Documents/SIIT3-2/JESEN/WEB/PROJEKAT/WP_SIIT_Projekat/WebContent/WEB-INF/lib/jackson-core-2.9.10.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Taca/Documents/SIIT3-2/JESEN/WEB/PROJEKAT/WP_SIIT_Projekat/WebContent/WEB-INF/lib/jackson-databind-2.9.10.3.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.5">

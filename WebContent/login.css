@@ -1,0 +1,154 @@
+@charset "ISO-8859-1";
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	list-style: none;
+	font-family: fantasy, sans-serif;
+	font-size: 100%;
+}
+
+body{
+	background: #84889c;
+}
+
+.centriran_div{
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.div_za_registraciju{
+	background: #545871;
+	padding: 25px;
+	border-radius: 5px;
+	width: 400px;
+}
+
+.div_za_registraciju .div_za_naslov{
+	text-align: center;
+	font-size: 20px;
+	text-transform: uppercase;
+	color: #ebd0ce;
+	letter-spacing: 5px;
+	font-weight: 700;
+}
+
+.formin_div{
+	margin-top: 35px;
+}
+
+.formin_div .div_input{
+	margin-bottom: 15px;
+}
+
+.formin_div .div_input:last-child{
+	margin-bottom: 0;
+}
+
+.formin_div .div_input label{
+	display: block;
+	margin-bottom: 3px;
+	color: #9597a6;
+}
+
+.formin_div .div_ime_prezime{
+	display: flex;
+	justify-content: space-between;
+}
+
+.formin_div .div_ime_prezime  input[type="text"]{
+	width: 165px;
+}
+
+.formin_div  input[type="text"]{
+	width: 100%;
+	border-radius: 3px;
+	border: 1px solid #9597a6;
+	padding: 10px;
+	outline: none;
+}
+
+.formin_div  input[type="text"]:focus{
+	border-color: #ebd0ce;
+}
+
+
+.formin_div  input[type="date"]{
+	width: 100%;
+	border-radius: 3px;
+	border: 1px solid #9597a6;
+	padding: 10px;
+	outline: none;
+}
+
+.formin_div  input[type="date"]:focus{
+	border-color: #ebd0ce;
+}
+
+.formin_div  input[type="password"]{
+	width: 100%;
+	border-radius: 3px;
+	border: 1px solid #9597a6;
+	padding: 10px;
+	outline: none;
+}
+
+.formin_div  input[type="password"]:focus{
+	border-color: #ebd0ce;
+}
+
+.formin_div ul{
+	background: #fff;
+	padding: 8px 10px;
+	border-radius: 3px;
+	display: flex;
+	justify-content: center;
+}
+
+.formin_div ul li:first-child{
+	margin-right: 15px;
+}
+
+.formin_div ul .labela_za_pol{
+	position: relative;
+	margin-bottom: 0;
+}
+
+.formin_div ul .labela_za_pol .input_pol{
+	position: absolute;
+	top: 0;
+	right: 0;
+	opacity: 0;
+}
+
+.formin_div ul .labela_za_pol span{
+	display: inline-block;
+	font-size: 14px;
+	padding: 3px 20px;
+	border-radius: 3px;
+	color: #545871;
+}
+
+.formin_div .input_pol:checked ~ span{
+	background: #ebd0ce;
+}
+
+.formin_div .submit_dugme{
+	width: 70%;
+	background: #ebd0ce;
+	padding: 10px;
+	border: 0;
+	border-radius: 3px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	cursor: pointer;
+	
+	margin-left: 47px;
+}
+
+.formin_div .submit_dugme:hover{
+	background: #ffd5d2;
+}
