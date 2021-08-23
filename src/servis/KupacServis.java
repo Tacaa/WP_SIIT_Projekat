@@ -1,5 +1,6 @@
 package servis;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -26,11 +27,14 @@ public class KupacServis {
 	@Path("/registrujKupca")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Kupac registrujKupca(Korisnik noviKorisnik) {
+	public Kupac registrujKupca(Korisnik noviKorisnik){
 		TipKupca tipKupca = new TipKupca(ImeTipaKupca.NEMA, 0, 0);
 		Kupac noviKupac = new Kupac(noviKorisnik.getKorisnickoIme(), noviKorisnik.getLozinka(), noviKorisnik.getIme(), 
 				noviKorisnik.getPrezime(), noviKorisnik.getPol(), noviKorisnik.getDatumRodjenja(), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), tipKupca);
 		
+		if(KupacDAO.kupci.size() == 0) {
+			KupacDAO.ucitajKupce();
+		}
 		return KupacDAO.dodajKupca(noviKupac);
 		
 	}
