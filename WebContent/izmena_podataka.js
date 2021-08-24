@@ -86,7 +86,6 @@ $(document).ready(function(){
 	           contentType:"application/json",
 	           dataType:"json",
 	           complete: function(data, uspelo) {
-	                alert(data.responseText);
 					console.log(data.responseText);
 					window.sessionStorage.setItem("trenutniKupac", data.responseText);
 	               $('#greska_unosa').text('Uspesno cuvanje izmena!!!! :)');
@@ -102,7 +101,6 @@ $(document).ready(function(){
 	           contentType:"application/json",
 	           dataType:"json",
 	           complete: function(data, uspelo) {
-	                alert(data.response);
 					console.log(data.responseText);
 					window.sessionStorage.setItem("trenutniProdavac", data.responseText);
 	               $('#greska_unosa').text('Uspesno cuvanje izmena!!!! :)');
