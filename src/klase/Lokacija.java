@@ -59,8 +59,10 @@ public class Lokacija {
 	
 	@Override
 	public String toString() {
-		return "Lokacija [geografskaDuzina=" + geografskaDuzina + ", geografskaSirina=" + geografskaSirina
-				+ ", ulicaBroj=" + ulicaBroj + ", grad=" + grad + ", postanskiBroj=" + postanskiBroj + "]";
+		return "{\"geografskaDuzina\": \"" + this.geografskaDuzina + 
+				"\", \"geografskaSirina\": \""+ this.geografskaSirina +
+				"\", \"ulicaBroj\": \""+ this.ulicaBroj + "\", \"grad\": \""+ this.grad +
+				"\", \"postanskiBroj\": \""+ this.postanskiBroj  + "\"}";
 	}
 	
 }

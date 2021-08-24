@@ -31,10 +31,10 @@ public class Prodavac extends Korisnik {
 	}
 	@Override
 	public String toString() {
-		return "{ime: \""+ this.getIme() +"\", prezime: \""+ this.getPrezime() +
-				"\", korisnickoIme: \""+ this.getKorisnickoIme() + "\", pol: \""+ this.getPol() +
-				"\", lozinka: \""+ this.getLozinka() +"\", datumRodjenja: \""+ this.getDatumRodjenja() +
-				"\", manifestacije: \""+ this.getManifestacije() + "\"}";
+		return "{\"ime\": \""+ this.getIme() +"\", \"prezime\": \""+ this.getPrezime() +
+				"\", \"korisnickoIme\": \""+ this.getKorisnickoIme() + "\", \"pol\": \""+ this.getPol() +
+				"\", \"lozinka\": \""+ this.getLozinka() +"\", \"datumRodjenja\": \""+ this.getDatumRodjenja() +
+				"\", \"manifestacije\": "+ this.manifestacije + "}";
 	}
 	
 }

@@ -130,8 +130,10 @@ public class Manifestacija {
 	
 	@Override
 	public String toString() {
-		return "Manifestacija [naziv=" + naziv + ", tip=" + tip + ", brojMesta=" + brojMesta + ", vreme=" + vreme
-				+ ", cena=" + cena + ", status=" + status + ", lokacija=" + lokacija + ", poster=" + poster + "]";
+		return "{\"naziv\": \"" + this.naziv + "\", \"tip\": \""+ this.tip + "\", \"brojMesta\": \"" + 
+				this.brojMesta + "\", \"vreme\": \""+ this.vreme + "\", \"cena\": \""+ this.cena + 
+				"\", \"status\": \""+ this.status + "\", \"lokacija\": "+ this.lokacija + 
+				", \"poster\": \""+ this.poster + "\"}";
 	}
 	
 	
