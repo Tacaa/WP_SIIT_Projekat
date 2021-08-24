@@ -56,7 +56,7 @@ $(document).ready(function(){
         let ime = imeElem.val();
         let prezime = prezimeElem.val();
         let datumRodjenja = datumRodjenjaElem.val();
-        let pol = $('input[name="pol"]').val();
+        let pol = $('input[name="pol"]:checked').val();
         let lozinka = lozinkaElem.val();
         let potvrdaLozinke = potvrdaLozinkeElem.val();
         
@@ -87,14 +87,14 @@ $(document).ready(function(){
 	           dataType:"json",
 	           complete: function(data, uspelo) {
 	                alert(data.responseText);
+					console.log(data.responseText);
 					window.sessionStorage.setItem("trenutniKupac", data.responseText);
 	               $('#greska_unosa').text('Uspesno cuvanje izmena!!!! :)');
 	               $('#greska_unosa').css("color", "#fbc2c0");
 	               $("#greska_unosa").show().delay(4000).fadeOut();
-	           }
-	                           
+	           }          
 	       });
-			else if (vrsta == "prodavac")
+		else if (vrsta == "prodavac")
 	        $.ajax({
 	           url: "rest/prodavci/izmeniProdavca",
 	           type:"POST",
@@ -102,13 +102,13 @@ $(document).ready(function(){
 	           contentType:"application/json",
 	           dataType:"json",
 	           complete: function(data, uspelo) {
-	                alert(data.responseText);
+	                alert(data.response);
+					console.log(data.responseText);
 					window.sessionStorage.setItem("trenutniProdavac", data.responseText);
 	               $('#greska_unosa').text('Uspesno cuvanje izmena!!!! :)');
 	               $('#greska_unosa').css("color", "#fbc2c0");
 	               $("#greska_unosa").show().delay(4000).fadeOut();
-	           }
-	                           
+	           }               
 	       });
 		else
 	        $.ajax({
@@ -118,13 +118,12 @@ $(document).ready(function(){
 	           contentType:"application/json",
 	           dataType:"json",
 	           complete: function(data, uspelo) {
-	                alert(data.responseText);
+					console.log(data.responseText);
 					window.sessionStorage.setItem("trenutniAdministrator", data.responseText);
 	               $('#greska_unosa').text('Uspesno cuvanje izmena!!!! :)');
 	               $('#greska_unosa').css("color", "#fbc2c0");
 	               $("#greska_unosa").show().delay(4000).fadeOut();
-	           }
-	                           
+	           }       
 	       });
     });
 

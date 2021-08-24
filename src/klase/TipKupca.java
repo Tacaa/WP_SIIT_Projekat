@@ -39,6 +39,7 @@ public class TipKupca {
 	
 	@Override
 	public String toString() {
-		return "TipKupca [ime=" + ime + ", popust=" + popust + ", potrebihBodova=" + potrebihBodova + "]";
+		return "{\"ime\" : \"" + this.ime + "\", \"popust\": \"" + this.popust 
+				+ "\", \"potrebnihBodova\": \"" + this.potrebihBodova + "\"}";
 	}
 }

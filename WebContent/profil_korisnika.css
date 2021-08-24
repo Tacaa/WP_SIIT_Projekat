@@ -16,21 +16,21 @@ body {
 
 .div_za_tabelu{
 	background: #545871;
-	padding: 17px;
+	padding: 25px;
 	border-radius: 5px;
-	width: 200px;
+	width: 400px;
 }
 
 
 span#korisnicko_ime {
 	color: #9597a6;
-    font-size: 15px;
+    font-size: 35px;
  }
 
 p#informacije {
 	color: #9597a6;
-   font-size: 10px;
-   width: 90%;
+   font-size: 25px;
+   width: 100%;
 }
 
 .dugmici{
@@ -44,8 +44,8 @@ p#informacije {
 	letter-spacing: 1px;
 	cursor: pointer;
 	margin-right: 47px;
-    margin-left: 7px;
-    font-size: 10px;
+    margin-left: 17px;
+    font-size: 15px;
 }
 
 .dugmici:hover {

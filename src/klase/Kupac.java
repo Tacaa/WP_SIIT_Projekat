@@ -51,11 +51,11 @@ public class Kupac extends Korisnik {
 	
 	@Override
 	public String toString() {
-		return "{ime: \""+ this.getIme() +"\", prezime: \""+ this.getPrezime() +
-				"\", korisnickoIme: \""+ this.getKorisnickoIme() + "\", pol: \""+ this.getPol() +
-				"\", lozinka: \""+ this.getLozinka() +"\", datumRodjenja: \""+ this.getDatumRodjenja() +
-				"\", brojBodova: \""+ this.getBrojBodova() +"\", sveKarte: \""+ this.getSveKarte() +
-				"\", tip: \""+ this.getTip() +"\"}";
+		return "{\"ime\": \""+ this.getIme() +"\", \"prezime\": \""+ this.getPrezime() +
+				"\", \"korisnickoIme\": \""+ this.getKorisnickoIme() + "\", \"pol\": \""+ this.getPol() +
+				"\", \"lozinka\": \""+ this.getLozinka() +"\", \"datumRodjenja\": \""+ this.getDatumRodjenja() +
+				"\", \"brojBodova\": \""+ this.brojBodova +"\", \"sveKarte\": \""+ this.sveKarte +
+				"\", \"tip\": "+ this.tip + "}";
 	}
 	
 }
