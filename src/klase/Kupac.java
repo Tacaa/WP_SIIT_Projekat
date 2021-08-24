@@ -51,8 +51,11 @@ public class Kupac extends Korisnik {
 	
 	@Override
 	public String toString() {
-		//pravi json string
-		return "Kupac [brojBodova=" + brojBodova + ", sveKarte=" + sveKarte + ", tip=" + tip + "]";
+		return "{\"ime\": \""+ this.getIme() +"\", \"prezime\": \""+ this.getPrezime() +
+				"\", \"korisnickoIme\": \""+ this.getKorisnickoIme() + "\", \"pol\": \""+ this.getPol() +
+				"\", \"lozinka\": \""+ this.getLozinka() +"\", \"datumRodjenja\": \""+ this.getDatumRodjenja() +
+				"\", \"brojBodova\": \""+ this.brojBodova +"\", \"sveKarte\": \""+ this.sveKarte +
+				"\", \"tip\": "+ this.tip + "}";
 	}
 	
 }
