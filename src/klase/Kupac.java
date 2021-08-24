@@ -51,6 +51,7 @@ public class Kupac extends Korisnik {
 	
 	@Override
 	public String toString() {
+		//pravi json string
 		return "Kupac [brojBodova=" + brojBodova + ", sveKarte=" + sveKarte + ", tip=" + tip + "]";
 	}
 	
