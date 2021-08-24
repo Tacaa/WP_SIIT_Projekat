@@ -57,8 +57,9 @@ public class Komentar {
 	
 	@Override
 	public String toString() {
-		return "Komentar [kupac=" + kupac + ", manifestacija=" + manifestacija + ", tekst=" + tekst + ", ocena=" + ocena
-				+ ", status=" + status + "]";
+		return "{\"kupca\": "+ this.kupac + ", \"manifestacija\": "+ this.manifestacija 
+				+ ", \"tekst\": \""+ this.tekst + "\", \"ocena\": \""+ this.ocena
+				+ "\", \"status\": \""+ this.status +"\"}";
 	}
 	
 	

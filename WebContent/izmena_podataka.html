@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>LOGIN</title>
+		<title>IZMENA PODATAKA</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="login.css">
+		<link rel="stylesheet" type="text/css" href="login.css">
 		<script src="jquery.min.js"></script>
-		<script src="login.js"></script>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="izmena_podataka.js"></script>
 	</head>
 	
 	
@@ -15,25 +14,30 @@
 		<div class="centriran_div">
 			
 			<div class="div_za_registraciju">
-				<div class="div_za_naslov"> REGISTRACIJA </div>
+				<div class="div_za_naslov"> IZMENA LICNIH PODATAKA </div>
 				
-				<form class="forma" id="forma">
+				<form class="forma" id="forma" action="#" method="post">
 					<div class="formin_div">
 					
+						<div class="div_input">
+							<label>KORISNICKO IME</label>
+							<label id="korisnicko_ime"></label>
+						</div>
+
 						<div class="div_ime_prezime">
 							<div class="div_input">
 								<label>VASE IME</label>
-								<input type="text" name="ime">
+								<input type="text" name="ime"/>
 							</div>
 							<div class="div_input">
 								<label>VASE PREZIME</label>
-								<input type="text" name="prezime">
+								<input type="text" name="prezime"/>
 							</div>
 						</div>						
 
 						<div class="div_input">
 								<label>DATUM RODJENJA</label>
-								<input type="date" name="datum_rodjenja" id="datum_rodjenja" min="1940-01-01">
+								<input type="date" name="datum_rodjenja" id="datum_rodjenja" min="1940-01-01"/>
 						</div>
 
 						<div class="div_input">
@@ -41,33 +45,27 @@
 							<ul>
 								<li>
 									<label class="labela_za_pol">
-										<input type="radio" name="pol" value="muski" class="input_pol" checked>
+										<input type="radio" name="pol" id="polM" value="MUSKI" class="input_pol"/>
 										<span>MUSKI</span>
 									</label>
 								</li>
 								<li>
 									<label class="labela_za_pol">
-										<input type="radio" name="pol" value="zenski" class="input_pol">
+										<input type="radio" name="pol" id="polZ" value="ZENSKI" class="input_pol"/>
 										<span>ZENSKI</span>
 									</label>
 								</li>
 							</ul>
 						</div>
 						
-						
-						<div class="div_input">
-							<label>KORISNICKO IME</label>
-							<input type="text" name="korisnicko_ime">
-						</div>
-						
 						<div class="div_input">
 							<label>LOZINKA</label>
-							<input type="password" name="lozinka">
+							<input type="password" name="lozinka"/>
 						</div>
 						
 						<div class="div_input">
 							<label>POTVRDA LOZINKE</label>
-							<input type="password" name="potrda_lozinke">
+							<input type="password" name="potrda_lozinke"/>
 						</div>
 						
 						<br>
@@ -76,7 +74,7 @@
 						
 						
 						<div class="div_input">
-							<input type="submit" value="REGISTRUJTE SE" class="submit_dugme">
+							<input type="submit" value="SACUVAJ IZMENE" class="submit_dugme"/>
 						</div>
 
 					</div>

@@ -67,8 +67,9 @@ public class Karta {
 
 	@Override
 	public String toString() {
-		return "Karta [id=" + id + ", manifestacija=" + manifestacija + ", kupac=" + kupac + ", status=" + status
-				+ ", tip=" + tip + ", konacnaCena=" + konacnaCena + "]";
+		return "{\"id\": \""+ this.id + "\", \"manifestacija\": "+ this.manifestacija  +
+				", \"kupac\": "+ this.kupac + ", \"status\": \""+ this.status +
+				"\", \"tip\": \""+ this.tip + "\", \"konacnaCena\": \""+ this.konacnaCena  +"\"}";
 	}
 
 }

@@ -78,8 +78,10 @@ public class Korisnik {
 	
 	@Override
 	public String toString() {
-		return "Korisnik [korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka + ", ime=" + ime + ", prezime="
-				+ prezime + ", pol=" + pol + ", datumRodjenja=" + datumRodjenja + ", aktivnost=" + aktivnost + "]";
+		return "{\"ime\": \""+ this.ime +"\", \"prezime\": \""+ this.prezime +
+				"\", \"korisnickoIme\": \""+ this.korisnickoIme + "\", \"pol\": \""+ this.pol +
+				"\", \"lozinka\": \""+ this.lozinka +"\", \"datumRodjenja\": \""+ this.datumRodjenja +
+				"\"}";
 	}
 	
 	

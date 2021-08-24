@@ -6,7 +6,7 @@ public enum ImeTipaKupca {
 	SREBRNI,
 	BRONZANI;
 	
-	private String[] opis = {"Nema", "Zlatni", "Srebrni", "Bronzani"};
+	private String[] opis = {"NEMA", "ZLATNI", "SREBRNI", "BRONZANI"};
 	@Override
 	public String toString() {
 		return opis[this.ordinal()];

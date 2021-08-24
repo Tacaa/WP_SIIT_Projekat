@@ -1,21 +1,17 @@
 package dao;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import klase.AktivnostKorisnika;
 import klase.ImeTipaKupca;
 import klase.Karta;
+import klase.Korisnik;
 import klase.Kupac;
 import klase.Pol;
 import klase.TipKupca;
@@ -44,11 +40,11 @@ public class KupacDAO {
 		*/
 		
 		TipKupca tipKupca = new TipKupca(ImeTipaKupca.NEMA, 0, 0);
-		Kupac kupac1 = new Kupac("pera", "pera", "Pera", "Peric", Pol.muskarac, LocalDate.of(2000, 1, 12), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), tipKupca);
-		Kupac kupac2 = new Kupac("mika", "mika", "Mika", "Mikic", Pol.muskarac, LocalDate.of(1998, 4, 13), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), tipKupca);
-		Kupac kupac3 = new Kupac("ana", "ana", "Ana", "Anic", Pol.zena, LocalDate.of(1999, 6, 6), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), tipKupca);
-		Kupac kupac4 = new Kupac("ema", "ema", "Ema", "Emic", Pol.zena, LocalDate.of(2000, 9, 10), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), tipKupca);
-		Kupac kupac5 = new Kupac("ilma", "ilma", "Ilma", "Ilmic", Pol.zena, LocalDate.of(2001, 3, 19), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), tipKupca);
+		Kupac kupac1 = new Kupac("pera", "pera", "Pera", "Peric", Pol.MUSKI, LocalDate.of(2000, 1, 12), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), tipKupca);
+		Kupac kupac2 = new Kupac("mika", "mika", "Mika", "Mikic", Pol.MUSKI, LocalDate.of(1998, 4, 13), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), tipKupca);
+		Kupac kupac3 = new Kupac("ana", "ana", "Ana", "Anic", Pol.ZENSKI, LocalDate.of(1999, 6, 6), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), tipKupca);
+		Kupac kupac4 = new Kupac("ema", "ema", "Ema", "Emic", Pol.ZENSKI, LocalDate.of(2000, 9, 10), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), tipKupca);
+		Kupac kupac5 = new Kupac("ilma", "ilma", "Ilma", "Ilmic", Pol.ZENSKI, LocalDate.of(2001, 3, 19), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), tipKupca);
 		
 		kupci.put(kupac1.getKorisnickoIme(), kupac1);
 		kupci.put(kupac2.getKorisnickoIme(), kupac2);
@@ -72,6 +68,11 @@ public class KupacDAO {
 		for (Kupac k : kupci.values()) if (k.getKorisnickoIme().equals(novoKorIme)) return true;
 		return false;
 	}
+
+	private static Kupac getKupca(String korisnickoIme) {
+		for (Kupac k : kupci.values()) if (k.getKorisnickoIme().equals(korisnickoIme)) return k;
+		return null;
+	}
 	
 	
 	public static Kupac dodajKupca(Kupac kupac) {
@@ -86,6 +87,23 @@ public class KupacDAO {
 			e.printStackTrace();
 		}*/
 		return kupac;
+	}
+
+	public static Kupac izmeniKupca(Korisnik kupac) {
+		Kupac izabrani = getKupca(kupac.getKorisnickoIme());
+		if (izabrani == null) return null;
+		izabrani.setIme(kupac.getIme());
+		izabrani.setPrezime(kupac.getPrezime());
+		izabrani.setPol(kupac.getPol());
+		izabrani.setDatumRodjenja(kupac.getDatumRodjenja());
+		izabrani.setLozinka(kupac.getLozinka());
+		/*try {
+			this.upisiKupce();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		return izabrani;
 	}
 	
 	
