@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+		<link rel="stylesheet" type ="text/css" href="pregled_karata.css"/>
+		<script src="jquery.min.js"></script>
+		<script src="pregled_karata.js"></script>
+        <title>Sve karte</title>
+    </head>
+    <body>
+        <button id="filter">Filter</button>
+
+        <div id="modal_filtera" class="modal">
+
+	        <div class="modal-content">
+	            <span class="close">&times;</span>
+	            <form id="filter_karte" action="#" method="get">
+		            <table>
+		            	<tr>
+		            		<td colspan='4'>Naziv manifestacije</td>
+		            	</tr>
+		            	<tr>
+		            		<td colspan="4">
+		            			<input type="text" id="naziv_man" size="80"/>
+		            		</td>
+		            	</tr>
+		            	
+		            	<tr>
+		            		<td colspan='4'>Cena karte</td>
+		            	</tr>
+		            	<tr>
+		            		<td>&ensp;Od:&ensp;</td>
+		            		<td><input type="number" min=0 id="cena_min"/>
+		            		<td>&ensp;do:&ensp;</td>
+		            		<td><input type="number" min=0 id="cena_max"/>
+		            	</tr>
+		            	
+		            	<tr>
+		            		<td colspan='4'>Datum manifestacije</td>
+		            	</tr>
+		            	<tr>
+		            		<td>&ensp;Od:&ensp;</td>
+		            		<td><input type="date" id="datum_min"/>
+		            		<td>&ensp;do:&ensp;</td>
+		            		<td><input type="date" id="datum_max"/>
+		            	</tr>
+		            	
+		            	<tr>
+		            		<td colspan='4'>Tip karte</td>
+		            	</tr>
+		            	<tr>
+		            		<td>
+			            		<label class="labela_status_karte">
+									<input type="radio" name="tip_karte" value="REGULARNA" class="tip_karte" checked>
+									<span>REGULARNA</span>
+								</label>
+		            		</td>
+		            		<td>
+			            		<label class="labela_status_karte">
+									<input type="radio" name="tip_karte" value="VIP" class="tip_karte">
+									<span>VIP</span>
+								</label>
+		            		</td>
+		            		<td>
+			            		<label class="labela_status_karte">
+									<input type="radio" name="tip_karte" value="FAN_PIT" class="tip_karte">
+									<span>FAN PIT</span>
+								</label>
+		            		</td>
+		            		<td></td>
+		            	</tr>
+		            	
+		            	<tr>
+		            		<td colspan='4'>Status karte</td>
+		            	</tr>
+		            	<tr>
+		            	<tr>
+		            		<td>
+			            		<label class="labela_tip_karte">
+									<input type="radio" name="status_karte" value="REZERVISANA" class="status_karte" checked>
+									<span>REZERVISANA</span>
+								</label>
+		            		</td>
+		            		<td>
+			            		<label class="labela_tip_karte">
+									<input type="radio" name="status_karte" value="ODUSTANAK" class="status_karte">
+									<span>OBUSTAVLJENA</span>
+								</label>
+		            		</td>
+		            		<td></td>
+		            		<td></td>
+		            	</tr>
+		            	
+		            	<tr align="center">
+		            		<td colspan="4"><input class="dugmici" type="submit" value="Pretrazi"/></td>
+		            	</tr>
+		            	
+		            </table>
+	            </form>
+	        </div>
+
+        </div>
+        
+    </body>
+</html>
