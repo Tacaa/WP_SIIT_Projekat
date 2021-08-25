@@ -1,17 +1,17 @@
 package klase;
 
 public class Karta {
-	private int id;
+	private String id;
 	private Manifestacija manifestacija;
 	private Kupac kupac;
 	private StatusKarte status;
 	private TipKarte tip;
-	private double konacnaCena;		// u zavisnosti na ImeTipaKupca(x1/0.97/0.95) i TipKarte (x1/2/4)
+	private double konacnaCena;		// u zavisnosti na ImeTipaKupca(x1/0.9/0.8/0.7) i TipKarte (x1/2/4)
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	
@@ -34,6 +34,8 @@ public class Karta {
 	}
 	public void setStatus(StatusKarte status) {
 		this.status = status;
+		double bodovi = this.kupac.getBrojBodova() - this.manifestacija.getCena()/1000 * 133 * 4; 
+		this.kupac.setBrojBodova(bodovi >= 0 ? bodovi : 0);
 	}
 	
 	public TipKarte getTip() {
@@ -50,25 +52,47 @@ public class Karta {
 		this.konacnaCena = konacnaCena;
 	}
 	
-	public Karta() {
-		super();
+	public Karta() {}
+	
+	public Karta(String id, Manifestacija manifestacija, Kupac kupac, StatusKarte status, TipKarte tip) {
+		this.id = id;
+		this.manifestacija = manifestacija;
+		this.kupac = kupac;
+		this.status = status;
+		this.tip = tip;
+		
+		if (this.tip == TipKarte.REGULARNA) this.konacnaCena = 
+				this.manifestacija.getCena() * this.kupac.getTip().getPopust();
+		else if (this.tip == TipKarte.VIP) this.konacnaCena = 
+				2 * this.manifestacija.getCena() * this.kupac.getTip().getPopust();
+		else this.konacnaCena = 
+				4* this.manifestacija.getCena() * this.kupac.getTip().getPopust();
+		
+		double bodovi = this.kupac.getBrojBodova() + this.manifestacija.getCena()/1000 * 133; 
+		this.kupac.setBrojBodova(bodovi);
+		
+		this.kupac.getSveKarte().add(this);
 	}
 	
-	public Karta(int id, Manifestacija manifestacija, Kupac kupac, StatusKarte status, TipKarte tip,
+	public Karta(String id, Manifestacija manifestacija, Kupac kupac, StatusKarte status, TipKarte tip,
 			double konacnaCena) {
-		super();
 		this.id = id;
 		this.manifestacija = manifestacija;
 		this.kupac = kupac;
 		this.status = status;
 		this.tip = tip;
 		this.konacnaCena = konacnaCena;
+		
+		double bodovi = this.kupac.getBrojBodova() + this.manifestacija.getCena()/1000 * 133; 
+		this.kupac.setBrojBodova(bodovi);
+
+		this.kupac.getSveKarte().add(this);
 	}
 
 	@Override
 	public String toString() {
 		return "{\"id\": \""+ this.id + "\", \"manifestacija\": "+ this.manifestacija  +
-				", \"kupac\": "+ this.kupac + ", \"status\": \""+ this.status +
+				", \"kupac\": \""+ this.kupac.getKorisnickoIme()+ "\", \"status\": \""+ this.status +
 				"\", \"tip\": \""+ this.tip + "\", \"konacnaCena\": \""+ this.konacnaCena  +"\"}";
 	}
 

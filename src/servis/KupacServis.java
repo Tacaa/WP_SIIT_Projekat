@@ -24,9 +24,9 @@ public class KupacServis {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Kupac registrujKupca(Korisnik noviKorisnik){
-		TipKupca tipKupca = new TipKupca(ImeTipaKupca.NEMA, 0, 0);
 		Kupac noviKupac = new Kupac(noviKorisnik.getKorisnickoIme(), noviKorisnik.getLozinka(), noviKorisnik.getIme(), 
-				noviKorisnik.getPrezime(), noviKorisnik.getPol(), noviKorisnik.getDatumRodjenja(), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), tipKupca);
+				noviKorisnik.getPrezime(), noviKorisnik.getPol(), noviKorisnik.getDatumRodjenja(), 
+				AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), KupacDAO.obicni);
 		
 		if(KupacDAO.kupci.size() == 0) {
 			KupacDAO.ucitajKupce();

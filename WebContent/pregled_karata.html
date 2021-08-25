@@ -7,14 +7,42 @@
         <title>Sve karte</title>
     </head>
     <body>
-        <button id="filter">Filter</button>
+    	<p style="font-size:7px"></p>
+    	<table>
+    		<tr> 
+        		<td><input type="submit" value="Sortiranje" class="svetli_dugmici"></td>
+        		<td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</td>
+        		<td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</td>
+        		<td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</td>
+        		<td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</td>
+        		<td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</td>
+        		<td><button id="filter" class="svetli_dugmici">Filter</button></td>
+        	</tr>
+        </table>
+    	<p style="font-size:5px"></p>
+    	
+		<table id="tabela_karata">
+			<!-- zaglavlje tabele -->
+			<thead>
+				<tr>
+					<td>ID karte</td>
+					<td>Naziv manifestacije</td>
+					<td>Ime kupca</td>
+					<td>Vreme odrzavanja</td>
+					<td>Cena</td>
+					<td>Status</td>
+					<td>Tip</td>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
 
+	<!-- ****************************** forma ****************************** -->
         <div id="modal_filtera" class="modal">
-
 	        <div class="modal-content">
 	            <span class="close">&times;</span>
 	            <form id="filter_karte" action="#" method="get">
-		            <table>
+		            <table id="tabela_filter">
 		            	<tr>
 		            		<td colspan='4'>Naziv manifestacije</td>
 		            	</tr>
@@ -97,7 +125,6 @@
 		            </table>
 	            </form>
 	        </div>
-
         </div>
         
     </body>

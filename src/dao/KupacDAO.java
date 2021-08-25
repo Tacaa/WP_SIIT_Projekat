@@ -18,6 +18,10 @@ import klase.TipKupca;
 
 public class KupacDAO {
 	public static HashMap<String, Kupac> kupci = new  HashMap<String, Kupac>();
+	public static TipKupca zlatni = new TipKupca(ImeTipaKupca.ZLATNI, 0.7, 5000);
+	public static TipKupca srebrni = new TipKupca(ImeTipaKupca.SREBRNI, 0.8, 3000);
+	public static TipKupca bronzani = new TipKupca(ImeTipaKupca.BRONZANI, 0.9, 1000);
+	public static TipKupca obicni = new TipKupca(ImeTipaKupca.OBICNI, 1, 0);
 	
 	public KupacDAO() {
 		/*
@@ -39,12 +43,11 @@ public class KupacDAO {
 		this.kupci = gson.fromJson(br, token);
 		*/
 		
-		TipKupca tipKupca = new TipKupca(ImeTipaKupca.NEMA, 0, 0);
-		Kupac kupac1 = new Kupac("pera", "pera", "Pera", "Peric", Pol.MUSKI, LocalDate.of(2000, 1, 12), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), tipKupca);
-		Kupac kupac2 = new Kupac("mika", "mika", "Mika", "Mikic", Pol.MUSKI, LocalDate.of(1998, 4, 13), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), tipKupca);
-		Kupac kupac3 = new Kupac("ana", "ana", "Ana", "Anic", Pol.ZENSKI, LocalDate.of(1999, 6, 6), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), tipKupca);
-		Kupac kupac4 = new Kupac("ema", "ema", "Ema", "Emic", Pol.ZENSKI, LocalDate.of(2000, 9, 10), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), tipKupca);
-		Kupac kupac5 = new Kupac("ilma", "ilma", "Ilma", "Ilmic", Pol.ZENSKI, LocalDate.of(2001, 3, 19), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), tipKupca);
+		Kupac kupac1 = new Kupac("pera", "pera", "Pera", "Peric", Pol.MUSKI, LocalDate.of(2000, 1, 12), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), obicni);
+		Kupac kupac2 = new Kupac("mika", "mika", "Mika", "Mikic", Pol.MUSKI, LocalDate.of(1998, 4, 13), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), obicni);
+		Kupac kupac3 = new Kupac("ana", "ana", "Ana", "Anic", Pol.ZENSKI, LocalDate.of(1999, 6, 6), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), obicni);
+		Kupac kupac4 = new Kupac("ema", "ema", "Ema", "Emic", Pol.ZENSKI, LocalDate.of(2000, 9, 10), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), obicni);
+		Kupac kupac5 = new Kupac("ilma", "ilma", "Ilma", "Ilmic", Pol.ZENSKI, LocalDate.of(2001, 3, 19), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), obicni);
 		
 		kupci.put(kupac1.getKorisnickoIme(), kupac1);
 		kupci.put(kupac2.getKorisnickoIme(), kupac2);
@@ -52,6 +55,7 @@ public class KupacDAO {
 		kupci.put(kupac4.getKorisnickoIme(), kupac4);
 		kupci.put(kupac5.getKorisnickoIme(), kupac5);
 		
+		KartaDAO.ucitajKarte();
 	}
 	
 	

@@ -1,6 +1,6 @@
 $(document).ready(function() {
+	console.log(window.sessionStorage.getItem("trenutniKupac"));
     let korisnik = JSON.parse(window.sessionStorage.getItem("trenutniKupac"));
-    
     if (korisnik == null) {window.location.href = "logovanje.html";}
 
     $("#korisnicko_ime").text(korisnik.korisnickoIme);
@@ -12,6 +12,11 @@ $(document).ready(function() {
     $("#izmena_podataka").submit(function(event) {
 		event.preventDefault();
     	window.location.href = "http://localhost:8080/Projekat/izmena_podataka.html";
+    }); 
+
+ 	$("#pregled_karata").submit(function(event) {
+		event.preventDefault();
+    	window.location.href = "http://localhost:8080/Projekat/pregled_karata.html";
     }); 
 
     $("#odjava").submit(function(event) {
