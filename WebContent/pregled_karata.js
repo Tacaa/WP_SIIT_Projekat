@@ -1,9 +1,12 @@
-function popunjavanjeTabele(lista, tabela) {
+function popunjavanjeTabele(lista) {
+	let tabela = $("table#tabela_karata tbody");
 	tabela.children().remove();
 	for (let karta of lista) {
 		let red = $('<tr></tr>');
 		let tdID = $('<td>' + karta.id + '</td>');
 		let tdManifestacija = $('<td>' + karta.manifestacija.naziv + '</td>');
+		let tdAdresa = $('<td>' + karta.manifestacija.lokacija.grad + " " +
+			karta.manifestacija.lokacija.ulicaBroj + '</td>');
 		let tdkupac = $('<td>' + karta.kupac + '</td>');
 		
 		let vreme = karta.manifestacija.vreme.split("T");
@@ -13,7 +16,7 @@ function popunjavanjeTabele(lista, tabela) {
 		let tdCena = $('<td>' + Math.round(karta.konacnaCena * 100) / 100 + '</td>');
 		let tdStatus = $('<td>' + karta.status + '</td>');
 		let tdTip = $('<td>' + karta.tip + '</td>');
-		red.append(tdID).append(tdManifestacija).append(tdkupac).append(tdVreme).append(tdCena)
+		red.append(tdID).append(tdManifestacija).append(tdAdresa).append(tdkupac).append(tdVreme).append(tdCena)
 			.append(tdStatus).append(tdTip);
 		tabela.append(red);
 	}
@@ -24,11 +27,9 @@ $(document).ready(function() {
     if (korisnik == null) {window.location.href = "logovanje.html";}
 
 		//***************************************************************************************
-		// pocetno stanje tabele, sve moguce
-	let tabela = $("table#tabela_karata");
-	let teloTabele = $("table#tabela_karata tbody");
+		// pocetno stanje tabele, sve moguce karte
 	let listaKarata = korisnik.sveKarte;
-	popunjavanjeTabele(listaKarata, teloTabele);
+	popunjavanjeTabele(listaKarata);
 
 		//***************************************************************************************
 		// podesavanje forme
@@ -65,7 +66,6 @@ $(document).ready(function() {
 		// filtriranjee
 	$("form#filter_karte").submit(function(event) {
 		event.preventDefault();			// ovde cemo dobavljati karte za prikaz
-		
 		
 		let fil_cenaMin = $('#cena_min').val();
 		let fil_cenaMax = $('#cena_max').val();
@@ -104,7 +104,7 @@ $(document).ready(function() {
            complete: function(data, uspelo) {
 				console.log(data.responseText);
 				listaKarata = JSON.parse(data.responseText);
-               	popunjavanjeTabele(listaKarata, teloTabele);
+               	popunjavanjeTabele(listaKarata);
            }               
        });
 		
@@ -112,5 +112,75 @@ $(document).ready(function() {
 	
 		//***************************************************************************************
 		// sortiranje
-	$("form#sort_karte").submit(function(event) {alert("okkkk");});
+	$("form#sort_karte").submit(function(event) {
+		event.preventDefault();			// ovde cemo dobavljati karte za prikaz
+		let sort_po_cemu = $('input[name=sta_sortiramo]:checked').val();
+		let vrsta_sorta = $('input[name=vrsta_sorta]:checked').val();
+		let lista = []; let x = 0;
+		let sortiraneKarte = [listaKarata.length]; let y = 0;
+		if (sort_po_cemu == "NAZIV") {
+			for (let k of listaKarata) {lista[x] = k.manifestacija.naziv + "+" + k.id; x = x + 1;}
+			lista.sort();
+			for (let s of lista) {
+				let naz = s.split("+");
+				for (let ka of listaKarata) 
+					if (ka.manifestacija.naziv == naz[0] && ka.id == naz[1]) {
+						if (vrsta_sorta == "true") sortiraneKarte[y] = ka;
+						else sortiraneKarte[x - y - 1] = ka;
+						y = y + 1;
+						break;
+					}
+			}
+		}
+		else if (sort_po_cemu == "VREME") {
+			for (let k of listaKarata) {lista[x] = k.manifestacija.vreme + "+" + k.id; x = x + 1;}
+			lista.sort();
+			for (let s of lista)  {
+				let vr = s.split("+");
+				for (let ka of listaKarata)
+					if (ka.manifestacija.vreme == vr[0] && ka.id == vr[1]) {
+						if (vrsta_sorta == "true") sortiraneKarte[y] = ka;
+						else sortiraneKarte[x - y - 1] = ka;
+						y = y + 1;
+						break;
+					}
+			}
+		}
+		else if (sort_po_cemu == "CENA") {
+			for (let k of listaKarata) {lista[x] = k.konacnaCena + "+" + k.id; x = x + 1;}
+			lista.sort();
+			for (let s of lista)
+				for (let ka of listaKarata) {
+					let cenica = s.split("+");
+					if (ka.konacnaCena == cenica[0] && ka.id == cenica[1]) {
+						if (vrsta_sorta == "true") sortiraneKarte[y] = ka;
+						else sortiraneKarte[x - y - 1] = ka;
+						y = y + 1;
+						break;
+					}
+				}
+					
+		}
+		else if (sort_po_cemu == "LOKACIJA") {
+			for (let k of listaKarata) {
+				lista[x] = k.manifestacija.lokacija.grad + "+" + k.manifestacija.lokacija.ulicaBroj
+					+ "+" + k.id;
+				x = x + 1;
+			}
+			lista.sort();
+			for (let s of lista)
+				for (let ka of listaKarata) {
+					let adr = s.split("+");
+					if (ka.manifestacija.lokacija.grad == adr[0] && 
+							ka.manifestacija.lokacija.ulicaBroj == adr[1] &&
+							ka.id == adr[2]) {
+						if (vrsta_sorta == "true") sortiraneKarte[y] = ka;
+						else sortiraneKarte[x - y - 1] = ka;
+						y = y + 1;
+						break;
+					}
+				}
+		}
+		popunjavanjeTabele(sortiraneKarte);
+	});
 });
