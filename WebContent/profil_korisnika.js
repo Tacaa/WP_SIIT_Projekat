@@ -1,23 +1,7 @@
 $(document).ready(function() {
-            // pomocno od ovoga
-    let objekat = {ime: "Imenko", 
-        prezime: "Prezimic",
-        korisnickoIme: "pera",
-        datumRodjenja: "2017-07-17",
-        pol: "ZENSKI",
-        brojBodova: 17,
-        tip: "BRONZANI",
-        komentari: [],
-        karte: [],
-        lozinka: "Nanana"
-    };
-    window.sessionStorage.setItem("trenutniKupac", 
-        JSON.stringify(objekat));
-            // do ovoga pomocno
-
+	console.log(window.sessionStorage.getItem("trenutniKupac"));
     let korisnik = JSON.parse(window.sessionStorage.getItem("trenutniKupac"));
-    
-    if (korisnik == null) alert("Redirekcija na login");        // redirektuj ako nema
+    if (korisnik == null) {window.location.href = "logovanje.html";}
 
     $("#korisnicko_ime").text(korisnik.korisnickoIme);
     $("#ime_prezime").text(korisnik.ime + " " + korisnik.prezime);
@@ -28,5 +12,16 @@ $(document).ready(function() {
     $("#izmena_podataka").submit(function(event) {
 		event.preventDefault();
     	window.location.href = "http://localhost:8080/Projekat/izmena_podataka.html";
+    }); 
+
+ 	$("#pregled_karata").submit(function(event) {
+		event.preventDefault();
+    	window.location.href = "http://localhost:8080/Projekat/pregled_karata.html";
+    }); 
+
+    $("#odjava").submit(function(event) {
+		event.preventDefault();
+		window.sessionStorage.removeItem("trenutniKupac");
+    	window.location.href = "logovanje.html";
     }); 
 });

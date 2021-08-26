@@ -5,7 +5,7 @@ function redirektujkupca(korisnickoIme) {
 		dataType:"json",
 		complete: function(kupac) {
 			window.sessionStorage.setItem("trenutniKupac", JSON.stringify(kupac.responseJSON));
-			window.location.href = "proba.html";
+			window.location.href = "profil_kupca.html";
 		}
 	});
 }

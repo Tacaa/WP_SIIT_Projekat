@@ -24,6 +24,11 @@ import klase.Prodavac;
 @Path("/login_out")
 public class LogovanjeServis {
 	
+	public static Administrator ulogovaniAdmin = null;
+	public static Kupac ulogovaniKupac = null;
+	public static Prodavac ulogovaniProdavac = null;
+	public static String koJeUlogovan = "niko";
+	
 	@POST
 	@Path("/logovanje")
 	@Produces(MediaType.TEXT_PLAIN)
@@ -40,25 +45,20 @@ public class LogovanjeServis {
 			ProdavacDAO.ucitajProdavce();
 		}
 		
-		//tip uloge 
-		boolean kupacJe = false;
-		boolean administratorJe = false;
-		boolean prodavacJe = false;
-		
 		
 		//provjeriti da li postoji korisnik u nekoj od malih baza i ako postoji saznajemo i koji tip korisnika je
 		if(KupacDAO.kupci.containsKey(korisnik.getKorisnickoIme())) {
-			kupacJe = true;
+			koJeUlogovan = "kupac";
 			if(!KupacDAO.kupci.get(korisnik.getKorisnickoIme()).getLozinka().equals(korisnik.getLozinka())) {
 				return null;
 			}
 		}else if(AdministratorDAO.administratori.containsKey(korisnik.getKorisnickoIme())) {
-			administratorJe = true;
+			koJeUlogovan = "administrator";
 			if(!AdministratorDAO.administratori.get(korisnik.getKorisnickoIme()).getLozinka().equals(korisnik.getLozinka())) {
 				return null;
 			}
 		}else if(ProdavacDAO.prodavci.containsKey(korisnik.getKorisnickoIme())) {
-			prodavacJe = true;
+			koJeUlogovan = "prodavac";
 			if(!ProdavacDAO.prodavci.get(korisnik.getKorisnickoIme()).getLozinka().equals(korisnik.getLozinka())) {
 				return null;
 			}
@@ -68,37 +68,34 @@ public class LogovanjeServis {
 		
 		
 		//u zavisnosti od uloge provjeriti da li je na sesiji
-		if(kupacJe) {
+		if(koJeUlogovan.equals("kupac")) {
+			ulogovaniKupac = KupacDAO.kupci.get(korisnik.getKorisnickoIme());
 			Kupac kupacNaSesiji = null;
 			kupacNaSesiji = (Kupac) zahtjev.getSession().getAttribute("trenutniKupac");
 			if (kupacNaSesiji == null) {
-				zahtjev.getSession().setAttribute("kupacNaSesiji", KupacDAO.kupci.get(korisnik.getKorisnickoIme()));
+				zahtjev.getSession().setAttribute("kupacNaSesiji", ulogovaniKupac);
 				kupacNaSesiji = KupacDAO.kupci.get(korisnik.getKorisnickoIme());
 			}
-			return "kupac";
 		}
-		else if(prodavacJe) {
+		else if(koJeUlogovan.equals("prodavac")) {
+			ulogovaniProdavac = ProdavacDAO.prodavci.get(korisnik.getKorisnickoIme());
 			Prodavac prodavacNaSesiji = null;
 			prodavacNaSesiji = (Prodavac) zahtjev.getSession().getAttribute("trenutniProdavac");
 			if (prodavacNaSesiji == null) {
-				zahtjev.getSession().setAttribute("trenutniProdavac", ProdavacDAO.prodavci.get(korisnik.getKorisnickoIme()));
+				zahtjev.getSession().setAttribute("trenutniProdavac", ulogovaniProdavac);
 				prodavacNaSesiji = ProdavacDAO.prodavci.get(korisnik.getKorisnickoIme());
 			}
-			return "prodavac";
 		}
-		else if(administratorJe) {
+		else if(koJeUlogovan.equals("administrator")) {
+			ulogovaniAdmin = AdministratorDAO.administratori.get(korisnik.getKorisnickoIme());
 			Administrator administratorNaSesiji = null;
 			administratorNaSesiji = (Administrator) zahtjev.getSession().getAttribute("trenutniAdministrator");
 			if (administratorNaSesiji == null) {
-				zahtjev.getSession().setAttribute("trenutniAdministrator", AdministratorDAO.administratori.get(korisnik.getKorisnickoIme()));
+				zahtjev.getSession().setAttribute("trenutniAdministrator", ulogovaniAdmin);
 				administratorNaSesiji = AdministratorDAO.administratori.get(korisnik.getKorisnickoIme());
 			}
-			return "administrator";
 		}
-		
-		//ne bi trebalo doci ovdje nikad
-		return null;
-		
+		return koJeUlogovan;
 	}
 	
 	
@@ -106,17 +103,16 @@ public class LogovanjeServis {
 	
 	@GET
 	@Path("/trenutniKupac/{korisnickoIme}")
-	public Kupac trenutniKupac(@PathParam("korisnickoIme") String korisnickoIme) {
-		return KupacDAO.kupci.get(korisnickoIme);
-		
+	public String trenutniKupac(@PathParam("korisnickoIme") String korisnickoIme) {
+		return KupacDAO.kupci.get(korisnickoIme).toString();
 	}
 	
 	
 
 	@GET
 	@Path("/trenutniProdavac/{korisnickoIme}")
-	public Prodavac trenutniProdavac(@PathParam("korisnickoIme") String korisnickoIme) {
-		return ProdavacDAO.prodavci.get(korisnickoIme);
+	public String trenutniProdavac(@PathParam("korisnickoIme") String korisnickoIme) {
+		return ProdavacDAO.prodavci.get(korisnickoIme).toString();
 		
 	}
 	
@@ -125,8 +121,8 @@ public class LogovanjeServis {
 
 	@GET
 	@Path("/trenutniAdministrator/{korisnickoIme}")
-	public Administrator trenutniAdministrator(@PathParam("korisnickoIme") String korisnickoIme) {
-		return AdministratorDAO.administratori.get(korisnickoIme);
+	public String trenutniAdministrator(@PathParam("korisnickoIme") String korisnickoIme) {
+		return AdministratorDAO.administratori.get(korisnickoIme).toString();
 		
 	}
 	
