@@ -24,15 +24,14 @@
   }
   
   /* dugme za izlaz */
-  .close {
+  .close, .close_sort {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
   }
   
-  .close:hover,
-  .close:focus {
+  .close:hover, .close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
@@ -63,7 +62,7 @@
  
  .svetli_dugmici {
  	color: #545871;
-	width: 80%;
+	width: 20%;
 	background: white;
  }
 
@@ -81,19 +80,22 @@
     background: #545871;
 }
  
- .labela_tip_karte, .labela_status_karte{
+ .labela_tip_karte, .labela_status_karte, 
+ 	.labela_vrsta_sorta, .labela_po_cemu_sort {
 	position: relative;
 	margin-bottom: 0;
 }
 
-.labela_status_karte .status_karte, .labela_tip_karte .tip_karte{
+input.status_karte, input.tip_karte, 
+	input.vrsta_sorta, input.sta_sortiramo {
 	position: absolute;
 	top: 0;
 	right: 0;
 	opacity: 0;
 }
 
-.labela_status_karte span, .labela_tip_karte span {
+.labela_status_karte span, .labela_tip_karte span, 
+	.labela_vrsta_sorta span, .labela_po_cemu_sort span {
 	display: inline-block;
 	font-size: 17px;
 	padding: 3px;
@@ -101,7 +103,8 @@
 	color: #545871;
 }
 
-.status_karte:checked ~ span, .tip_karte:checked ~ span{
+.status_karte:checked ~ span, .tip_karte:checked ~ span, 
+	.vrsta_sorta:checked ~ span, .sta_sortiramo:checked ~ span {
 	background: white;
 }
 

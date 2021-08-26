@@ -15,7 +15,6 @@ public class KartaDAO {
 	public static ArrayList<Karta> karte = new ArrayList<>();
 	
 	public KartaDAO() {
-		ucitajKarte();
 	}
 	
 	public static void ucitajKarte() {
@@ -29,17 +28,17 @@ public class KartaDAO {
 		Karta karta1 = new Karta("1234567891", manifestacije.get(1), kupci.get(0), 
 				StatusKarte.REZERVISANA, TipKarte.REGULARNA);
 		Karta karta2 = new Karta("1111111111", manifestacije.get(0), kupci.get(0), 
-				StatusKarte.ODUSTANAK, TipKarte.VIP);
+				StatusKarte.OBUSTAVLJENA, TipKarte.VIP);
 		Karta karta3 = new Karta("2222222222", manifestacije.get(4), kupci.get(1), 
 				StatusKarte.REZERVISANA, TipKarte.FAN_PIT);
 		Karta karta4 = new Karta("3131313131", manifestacije.get(0), kupci.get(1), 
-				StatusKarte.ODUSTANAK, TipKarte.REGULARNA);
+				StatusKarte.OBUSTAVLJENA, TipKarte.REGULARNA);
 		Karta karta5 = new Karta("1515151515", manifestacije.get(3), kupci.get(2), 
 				StatusKarte.REZERVISANA, TipKarte.REGULARNA);
 		Karta karta6 = new Karta("1112224448", manifestacije.get(2), kupci.get(3), 
 				StatusKarte.REZERVISANA, TipKarte.VIP);
 		Karta karta7 = new Karta("aaa999aaa9", manifestacije.get(4), kupci.get(4), 
-				StatusKarte.ODUSTANAK, TipKarte.VIP);
+				StatusKarte.OBUSTAVLJENA, TipKarte.VIP);
 		Karta karta8 = new Karta("q5q5q5q5q5", manifestacije.get(3), kupci.get(0), 
 				StatusKarte.REZERVISANA, TipKarte.FAN_PIT);
 		Karta karta9 = new Karta("9999988888", manifestacije.get(2), kupci.get(0), 

@@ -52,9 +52,12 @@ public class Karta {
 		this.konacnaCena = konacnaCena;
 	}
 	
-	public Karta() {}
+	public Karta() {
+		super();
+		}
 	
 	public Karta(String id, Manifestacija manifestacija, Kupac kupac, StatusKarte status, TipKarte tip) {
+		super();
 		this.id = id;
 		this.manifestacija = manifestacija;
 		this.kupac = kupac;
@@ -76,6 +79,7 @@ public class Karta {
 	
 	public Karta(String id, Manifestacija manifestacija, Kupac kupac, StatusKarte status, TipKarte tip,
 			double konacnaCena) {
+		super();
 		this.id = id;
 		this.manifestacija = manifestacija;
 		this.kupac = kupac;
