@@ -6,6 +6,14 @@ public class Lokacija {
 	private double geografskaSirina;
 	private String ulicaBroj;	// ulica i broj jer moze biti "Nikole Pasica 12a"
 	private String grad;
+	private String drzava;
+	public String getDrzava() {
+		return drzava;
+	}
+	public void setDrzava(String drzava) {
+		this.drzava = drzava;
+	}
+
 	private int postanskiBroj;
 	
 	public double getGeografskaDuzina() {
@@ -47,16 +55,18 @@ public class Lokacija {
 		super();
 	}
 	
-	public Lokacija(double geografskaDuzina, double geografskaSirina, String ulicaBroj, String grad,
+	
+	
+	public Lokacija(double geografskaDuzina, double geografskaSirina, String ulicaBroj, String grad, String drzava,
 			int postanskiBroj) {
 		super();
 		this.geografskaDuzina = geografskaDuzina;
 		this.geografskaSirina = geografskaSirina;
 		this.ulicaBroj = ulicaBroj;
 		this.grad = grad;
+		this.drzava = drzava;
 		this.postanskiBroj = postanskiBroj;
 	}
-	
 	@Override
 	public String toString() {
 		return "{\"geografskaDuzina\": \"" + this.geografskaDuzina + 
