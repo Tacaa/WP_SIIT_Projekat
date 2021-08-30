@@ -54,5 +54,17 @@ public class KartaDAO {
 		karte.add(karta8);	
 		karte.add(karta9);
 	}
+	
+	private static Karta nadjiPoId(String id) {
+		if (karte.size() == 0) ucitajKarte();
+		for (Karta k : karte) if (k.getId().equals(id)) return k;
+		return null;
+	} 
 
+	public static Karta otkaziKartu(String id) {
+		Karta kartica = nadjiPoId(id);
+		if (kartica == null) return null;
+		kartica.setStatus(StatusKarte.OBUSTAVLJENA);
+		return kartica;
+	}
 }

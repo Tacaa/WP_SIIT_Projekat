@@ -6,8 +6,9 @@ $(document).ready(function() {
     $("#korisnicko_ime").text(korisnik.korisnickoIme);
     $("#ime_prezime").text(korisnik.ime + " " + korisnik.prezime);
     $("#pol").text(korisnik.pol);
-    $("#datum_rodjenja").text(korisnik.datumRodjenja);
-    $("#bodovi").text(korisnik.brojBodova);
+	let datum = korisnik.datumRodjenja.split("-");
+    $("#datum_rodjenja").text(datum[2] + "." + datum[1] + "." + datum[0] + ".");
+    $("#bodovi").text(Math.round(korisnik.brojBodova * 100) / 100);
 
     $("#izmena_podataka").submit(function(event) {
 		event.preventDefault();

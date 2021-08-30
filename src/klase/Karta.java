@@ -34,8 +34,11 @@ public class Karta {
 	}
 	public void setStatus(StatusKarte status) {
 		this.status = status;
+		
 		double bodovi = this.kupac.getBrojBodova() - this.manifestacija.getCena()/1000 * 133 * 4; 
 		this.kupac.setBrojBodova(bodovi >= 0 ? bodovi : 0);
+		
+		this.manifestacija.setBrojMesta(this.manifestacija.getBrojMesta() + 1);
 	}
 	
 	public TipKarte getTip() {

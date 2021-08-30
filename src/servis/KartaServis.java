@@ -8,12 +8,14 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import dao.KartaDAO;
 import klase.FilterObjekat;
 import klase.Karta;
+import klase.StatusKarte;
 
 @Path("/karte")
 public class KartaServis {
@@ -61,6 +63,14 @@ public class KartaServis {
 			odabrane.add(k);
 		}
 		return odabrane.toString();
+	}
+	
+	@GET
+	@Path("/otkaziKartu/{id}")
+	//@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String otkaziKartu(@PathParam ("id") String idKarte){
+		return KartaDAO.otkaziKartu(idKarte).getKupac().toString();
 	}
 
 }
