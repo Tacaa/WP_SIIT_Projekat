@@ -54,11 +54,11 @@ public class ManifestacijaDAO {
 		Manifestacija m9 = new Manifestacija("Odbojka Srbija - Poljska", TipManifestacije.SPORTSKA_NADMETANJA, 10000, LocalDateTime.of(2021, 9, 15, 20, 0), 
 				500, StatusManifestacije.AKTIVNA, new Lokacija(44.8125, 20.4612, "Stark Arena, Bulevar Arsenija Čarnojevica 58,", "Beograd", "Srbija", 10401), "poster", 0, new ArrayList<Komentar>(), 0);
 		Manifestacija m10 = new Manifestacija("Smijeh lijeci sve", TipManifestacije.STANDUP_NASTUP, 50, LocalDateTime.of(2021, 9, 24, 21, 0), 
-				300, StatusManifestacije.AKTIVNA, new Lokacija(44.8125, 20.4612, "Braće Krsmanovic 6", "Beograd", "Srbija", 21000), "poster", 0, new ArrayList<Komentar>(), 0);
+				300, StatusManifestacije.AKTIVNA, new Lokacija(44.8125, 20.4612, "Brace Krsmanovic 6", "Beograd", "Srbija", 21000), "poster", 0, new ArrayList<Komentar>(), 0);
 		Manifestacija m11 = new Manifestacija("Sajam knjiga u Beogradu", TipManifestacije.SAJAM, 100000, LocalDateTime.of(2021, 9, 19, 20, 0), 
-				0, StatusManifestacije.AKTIVNA, new Lokacija(44.8125, 20.4612, "", "Beograd", "Srbija", 21000), "poster", 0, new ArrayList<Komentar>(), 0);
+				0, StatusManifestacije.AKTIVNA, new Lokacija(44.8125, 20.4612, "neka adresa", "Beograd", "Srbija", 21000), "poster", 0, new ArrayList<Komentar>(), 0);
 		Manifestacija m12 = new Manifestacija("ARSENAL", TipManifestacije.FESTIVAL, 30000, LocalDateTime.of(2022, 6, 23, 20, 0), 
-				3000, StatusManifestacije.AKTIVNA, new Lokacija(45.2889, 45.2889, "", "Kragujevac", "Srbija", 34000), "poster", 0, new ArrayList<Komentar>(), 0);
+				3000, StatusManifestacije.AKTIVNA, new Lokacija(45.2889, 45.2889, "neka adresa", "Kragujevac", "Srbija", 34000), "poster", 0, new ArrayList<Komentar>(), 0);
 		
 		
 		manifestacije.add(m1);
