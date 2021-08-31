@@ -1,6 +1,3 @@
-
-//FUNKCIJE ....
-
 function popuniSadrzaj(manifestacije) {
 
 	//console.log(manifestacije);
@@ -20,8 +17,7 @@ function popuniSadrzaj(manifestacije) {
 			divZaSliku.setAttributeNode(klasaDivaZaSliku);
 
 
-
-			//tu cemo smjestiti slike u zavisnosti od tipa dogadjaja
+	//tu cemo smjestiti slike u zavisnosti od tipa dogadjaja
 			if(manifestacija.tip == "KONCERT"){
 				let slika = document.createElement("img");
 				let putanjaSlike = document.createAttribute("src");
@@ -169,7 +165,6 @@ function popuniSadrzaj(manifestacije) {
 			}
 			
 			
-	
 
 			//pravimo div za text
 			let divZaTekst = document.createElement("div");
@@ -261,8 +256,6 @@ function popuniSadrzaj(manifestacije) {
 			divZaTekst.appendChild(divic3);
 			divZaTekst.appendChild(divic4);
 			
-			
-			
 			//dodavanje svega
 			noviDiv.appendChild(divZaSliku);
 			noviDiv.appendChild(divZaTekst);
@@ -281,31 +274,13 @@ function popuniSadrzaj(manifestacije) {
 
 
 
-
 //MAIN
 $(document).ready(function(){
-
-	if(JSON.parse(window.sessionStorage.getItem("manifestacije")) == null){
-		$.ajax({
-		url: "rest/manifestacije/aktivne",
-		type:"GET",
-		dataType:"json",
-		complete: function(manifestacije_lista) {
-			manifestacije = JSON.parse(JSON.stringify(manifestacije_lista.responseJSON));
-			popuniSadrzaj(manifestacije);
-			window.sessionStorage.setItem("manifestacije", JSON.stringify(manifestacije_lista.responseJSON));
-		}
-	});
-	}else{
-		popuniSadrzaj(JSON.parse(window.sessionStorage.getItem("manifestacije")));
-		window.sessionStorage.setItem("manifestacije", JSON.stringify(manifestacije_lista.responseJSON));
-	}
+	const objekat = JSON.parse(window.sessionStorage.getItem("pretrazene_manifestacije"));
+	console.log("OBJEKAT");
+	console.log(objekat);
 	
 	
-	
-	
-	$('button#pretrazi').click(function() {
-		window.location.href = "pretraga_manifestacija.html";
-	});
+	popuniSadrzaj(objekat);
 
 })
