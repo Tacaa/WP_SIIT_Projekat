@@ -1,6 +1,6 @@
 function popuniSadrzaj(manifestacije) {
 	for(let manifestacija of manifestacije){
-			let div = document.getElementById("sadrzaj_rezervacija");
+			let div = document.getElementById("sadrzaj_komentarisanja");
 		
 			//napravljen novi div za smjestanje elementa sa class="element_sadrzaja"
 			let noviDiv = document.createElement("div");
@@ -41,8 +41,8 @@ function popuniSadrzaj(manifestacije) {
 			let cena = document.createTextNode("Cena: " + manifestacija.cena);
 			
 			let rezervisiDugme = document.createElement("button");
-			rezervisiDugme.appendChild(document.createTextNode("Rezervisi"));
-			rezervisiDugme.setAttribute("id", manifestacija.naziv + "+" + manifestacija.vreme + "+rez");
+			rezervisiDugme.appendChild(document.createTextNode("Komentarisi"));
+			rezervisiDugme.setAttribute("id", manifestacija.naziv + "+" + manifestacija.vreme + "+kom");
 			rezervisiDugme.setAttribute("class", "rezervisi_dugmici");
 			
 			//dodali smo tekst u div
@@ -95,13 +95,13 @@ function popuniSadrzaj(manifestacije) {
 			div.appendChild(divPrazan);
 			
 			// ***********************************************************************
-			var modal = document.getElementById("modal_rezer");
-		    var rezervisiDugme = document.getElementById(manifestacija.naziv + "+" + manifestacija.vreme + "+rez");
+			var modal = document.getElementById("modal_kom");
+		    var rezervisiDugme = document.getElementById(manifestacija.naziv + "+" + manifestacija.vreme + "+kom");
 			var x_rezervisi = document.getElementsByClassName("close")[0];
 		
 		    rezervisiDugme.onclick = function(event) {
-		    	modal.style.display = "block";		// prikazujem formu za rezervaciju
-				window.sessionStorage.setItem("rezervisiZa", event.currentTarget.id.split("+rez")[0]);
+		    	modal.style.display = "block";		// prikazujem formu za komentar
+				window.sessionStorage.setItem("rezervisiZa", event.currentTarget.id.split("+kom")[0]);
 		    }
 		    x_rezervisi.onclick = function() {
 		    	modal.style.display = "none";		// sakrij formu kad klikne na x
@@ -121,50 +121,22 @@ $(document).ready(function(){
 	let korisnik = JSON.parse(window.sessionStorage.getItem("trenutniKupac"));
     if (korisnik == null) {window.location.href = "logovanje.html";}
 
-	let manifestacije = window.sessionStorage.getItem("manifestacije");
-	if (manifestacije == null)
-		$.ajax({
-			url: "rest/manifestacije/aktivne",
-			type:"GET",
-			dataType:"json",
-			complete: function(manifestacije_lista) {
-				manifestacije = JSON.parse(JSON.stringify(manifestacije_lista.responseJSON));
-				popuniSadrzaj(manifestacije);
-				window.sessionStorage.setItem("manifestacije", JSON.stringify(manifestacije_lista.responseJSON));
-			}
-		});
-	else popuniSadrzaj(JSON.parse(manifestacije));
+	$.ajax({
+		url: "rest/manifestacije/zaKomentarisanje",
+		type:"GET",
+		dataType:"json",
+		complete: function(data) {
+			let manifestacije = JSON.parse(data.responseText);
+			popuniSadrzaj(manifestacije);
+		}
+	});
 	
 	//***************************************************************************************
-		// rezervacije
-	$("form#rezerv_karte").submit(function(event) {
+		// komentarisanje
+	$("form#komentari").submit(function(event) {
 		event.preventDefault();
-		let tipKarte = $('input[name=vrsta_kartice]:checked').val();
-			// rezervisiZa == imeManifestacije+vremeManifestacije
-		let nazivDatumManifestacije = window.sessionStorage.getItem("rezervisiZa");
-			// parametri == imeManifestacije+vremeManifestacije+tipKarte
-		let parametri = nazivDatumManifestacije + "+" + tipKarte;
-		$.ajax({
-			url: "rest/karte/rezervisiKartu",
-			type:"POST",
-			data: parametri,
-			complete: function(data, uspesno) {
-				if (uspesno== "success") {
-					$("#uspesna_rezervacija").text("Uspesno ste rezervisali kartu! :D");
-					$("#uspesna_rezervacija").css("color", "#545871");
-	            	$("#uspesna_rezervacija").show().delay(4000).fadeOut();
-					let kupac = JSON.parse(window.sessionStorage.getItem("trenutniKupac"));
-					let karta = JSON.parse(data.responseText);
-					kupac.sveKarte[kupac.sveKarte.length] = karta;
-					window.sessionStorage.setItem("trenutniKupac", JSON.stringify(kupac));
-				}
-				else {
-					$("#uspesna_rezervacija").text("Rezervacija nije uspela :( nesto je poslo po zlu");
-					$("#uspesna_rezervacija").css("color", "#545871");
-	            	$("#uspesna_rezervacija").show().delay(4000).fadeOut();
-				}
-			}
-		});
+		let ocena = $('input[name=ocena]:checked').val();
+		alert("ulaaa");
 	});
 
 });

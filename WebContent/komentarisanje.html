@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Komentarisanje</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="rezervacija_karte.css">
+		<script src="jquery.min.js"></script>
+		<script src="komentarisanje.js"></script>
+	</head>
+	<body>
+    	<div id="sadrzaj_komentarisanja" class="sadrzaj"></div>
+    	
+    	
+        	<!-- ****************************** forma rezervacija ****************************** -->
+        <div id="modal_kom" class="modal">
+	        <div class="modal-content">
+	            <span class="close">&times;</span>
+	            <form id="komentari" action="#" method="get">
+		            <table id="tabela_kom">
+		            	<tr>
+		            		<td colspan='5'>Ocena</td>
+		            	</tr>
+		            	<tr>
+		            		<td>
+			            		<label class="labela_ocena">
+									<input type="radio" name="ocena" value="1" class="ocena" checked>
+									<span>1</span>
+								</label>
+		            		</td>
+		            		<td>
+			            		<label class="labela_ocena">
+									<input type="radio" name="ocena" value="2" class="ocena">
+									<span>2</span>
+								</label>
+		            		</td>
+		            		<td>
+			            		<label class="labela_ocena">
+									<input type="radio" name="ocena" value="3" class="ocena">
+									<span>3</span>
+								</label>
+		            		</td>
+		            		<td>
+			            		<label class="labela_ocena">
+									<input type="radio" name="ocena" value="4" class="ocena">
+									<span>4</span>
+								</label>
+		            		</td>
+		            		<td>
+			            		<label class="labela_ocena">
+									<input type="radio" name="ocena" value="5" class="ocena">
+									<span>5</span>
+								</label>
+		            		</td>
+		            	</tr>
+		            	<tr>
+		            		<td colspan="5"><input type="text" class="unos_komentara" size="74%"/></td>
+		            	</tr>
+		            	<tr align="center">
+		            		<td colspan="5"><input class="dugmici" type="submit" value="Sacuvaj"/></td>
+		            	</tr>
+		            	
+		            </table>
+	            </form>
+	        </div>
+        </div>
+	</body>
+</html>
