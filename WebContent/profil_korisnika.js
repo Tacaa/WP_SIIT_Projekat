@@ -20,6 +20,11 @@ $(document).ready(function() {
     	window.location.href = "http://localhost:8080/Projekat/pregled_karata.html";
     }); 
 
+ 	$("#rezervacija").submit(function(event) {
+		event.preventDefault();
+    	window.location.href = "http://localhost:8080/Projekat/rezervacija_karte.html";
+    }); 
+
     $("#odjava").submit(function(event) {
 		event.preventDefault();
 		window.sessionStorage.removeItem("trenutniKupac");

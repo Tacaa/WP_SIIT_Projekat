@@ -21,26 +21,15 @@ public class Kupac extends Korisnik {
 		TipKupca srebrni = KupacDAO.srebrni;
 		TipKupca zlatni = KupacDAO.zlatni;
 		
-			// obicni + vise od 1000 => bronzani
-		if (this.tip.getIme() == ImeTipaKupca.OBICNI) 
-			if (this.brojBodova >= bronzani.getPotrebihBodova()) this.tip = bronzani;
-		
-			// bronzani + vise od 3000 => srebrni
-			// bronzani + manje od 1000 => obicni
-		else if (this.tip.getIme() == ImeTipaKupca.BRONZANI) {
-			if (this.brojBodova >= srebrni.getPotrebihBodova()) this.tip = srebrni;
-			else if (this.brojBodova < bronzani.getPotrebihBodova()) this.tip = obicni;
-		}
-		
-			// srebrni + vise od 5000 => zlatni
-			// srebrni + manje od 3000 => bronzani
-		else if (this.tip.getIme() == ImeTipaKupca.SREBRNI) {
-			if (this.brojBodova >= zlatni.getPotrebihBodova()) this.tip = zlatni;
-			else if (this.brojBodova < srebrni.getPotrebihBodova()) this.tip = bronzani;
-		}
-
-			// zlatni + manje od 5000 => srebrni
-		else { if (this.brojBodova < zlatni.getPotrebihBodova()) this.tip = srebrni; }
+		if (this.brojBodova < bronzani.getPotrebihBodova()) this.tip = obicni;
+			// vise od 1000 i manje od 3000 => bronzani
+		else if (this.brojBodova >= bronzani.getPotrebihBodova() && 
+				this.brojBodova < srebrni.getPotrebihBodova()) this.tip = bronzani;
+			// vise od 3000 manje od 5000 => srebrni
+		else if (this.brojBodova >= srebrni.getPotrebihBodova()&& 
+				this.brojBodova < zlatni.getPotrebihBodova()) this.tip = srebrni;
+			// vise od 5000 => zlatni
+		else if (this.brojBodova >= zlatni.getPotrebihBodova()) this.tip = zlatni;
 	}
 	
 	public ArrayList<Karta> getSveKarte() {

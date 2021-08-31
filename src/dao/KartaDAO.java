@@ -3,6 +3,7 @@ package dao;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Random;
 
 import klase.Karta;
 import klase.Kupac;
@@ -66,5 +67,24 @@ public class KartaDAO {
 		if (kartica == null) return null;
 		kartica.setStatus(StatusKarte.OBUSTAVLJENA);
 		return kartica;
+	}
+	
+	public static String generisiId() {
+		boolean provera = true;
+		String povratnaVr = "";
+	    while (provera) {
+	    	int slovoA = 97; 				// od slova 'a'
+		    int slovoZ = 122; 				// do slova 'z'
+		    int duzina = 10;				// duzina mora biti 10
+		    Random random = new Random();
+		    StringBuilder zaString = new StringBuilder(duzina);
+		    for (int i = 0; i < duzina; i++) {
+		        int randomBroj = slovoA + (int) (random.nextFloat() * (slovoZ - slovoA + 1));
+		        zaString.append((char) randomBroj);
+		    }
+		    povratnaVr = zaString.toString();
+		    provera = nadjiPoId(povratnaVr) != null;		// true da bi nastavilo, kada je zauzeto ime
+	    }
+	    return povratnaVr;
 	}
 }

@@ -69,7 +69,7 @@ public class Karta {
 		
 		if (this.tip == TipKarte.REGULARNA) this.konacnaCena = 
 				this.manifestacija.getCena() * this.kupac.getTip().getPopust();
-		else if (this.tip == TipKarte.VIP) this.konacnaCena = 
+		else if (this.tip == TipKarte.FAN_PIT) this.konacnaCena = 
 				2 * this.manifestacija.getCena() * this.kupac.getTip().getPopust();
 		else this.konacnaCena = 
 				4* this.manifestacija.getCena() * this.kupac.getTip().getPopust();

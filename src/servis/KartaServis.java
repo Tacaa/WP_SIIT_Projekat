@@ -13,9 +13,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import dao.KartaDAO;
+import dao.ManifestacijaDAO;
 import klase.FilterObjekat;
 import klase.Karta;
+import klase.Kupac;
+import klase.Manifestacija;
 import klase.StatusKarte;
+import klase.TipKarte;
 
 @Path("/karte")
 public class KartaServis {
@@ -67,10 +71,33 @@ public class KartaServis {
 	
 	@GET
 	@Path("/otkaziKartu/{id}")
-	//@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public String otkaziKartu(@PathParam ("id") String idKarte){
 		return KartaDAO.otkaziKartu(idKarte).getKupac().toString();
+	}
+	
+	@POST
+	@Path("/rezervisiKartu")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String rezervisanjeKarte(String parametri){
+		// parametri == imeManifestacije+vremeManifestacije+tipKarte
+		String[] splitovaniParametri = parametri.split("\\+");
+		String tipKarte = splitovaniParametri[2];
+		
+		Kupac kupac = LogovanjeServis.ulogovaniKupac;
+		if (kupac == null) return null;				// ne bi trebalo da se desi 
+		Manifestacija manifestacija = 
+			ManifestacijaDAO.nadjiPoNazivuVremenu(splitovaniParametri[0], splitovaniParametri[1]);
+		if (manifestacija == null) return null;		// ne bi trebalo da se desi 
+		
+		TipKarte tip = TipKarte.REGULARNA;
+		if (tipKarte.equals("VIP")) tip = TipKarte.VIP;
+		else if (tipKarte.equals("FAN_PIT")) tip = TipKarte.FAN_PIT;
+		
+		String id = KartaDAO.generisiId();
+		Karta karta = new Karta(id, manifestacija, kupac, StatusKarte.REZERVISANA, tip);
+		KartaDAO.karte.add(karta);
+		return karta.toString();
 	}
 
 }
