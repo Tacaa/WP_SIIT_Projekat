@@ -183,7 +183,7 @@ function popuniSadrzaj(manifestacije) {
 			let datumVrijeme = manifestacija.vreme.split('T');
 			let datum = datumVrijeme[0].split('-');
 			let vrijeme = datumVrijeme[1].split(':');
-			let datumZaUpis = document.createTextNode("DATUM: " + datum[2] + "." + datum[1] + "." + datum[0]);
+			let datumZaUpis = document.createTextNode("DATUM: " + datum[2] + "." + datum[1] + "." + datum[0]  + ".");
 			let vrijemeZaUpis =  document.createTextNode("VRIJEME: " + vrijeme[0] + ":" + vrijeme[1]);
 			let mjestoZaUpis = document.createTextNode("GRAD: " + manifestacija.lokacija.grad);
 			let drzavaZaUpis = document.createTextNode("DRZAVA: " +manifestacija.lokacija.drzava);

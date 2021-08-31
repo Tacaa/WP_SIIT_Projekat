@@ -1,25 +1,41 @@
 function popunjavanjeTabele(lista) {
 	let tabela = $("table#tabela_karata tbody");
 	tabela.children().remove();
+	
+    var danas = new Date();
+    var dan = danas.getDate();
+    var mesec = danas.getMonth()+1; //januar je 0
+    var godina = danas.getFullYear();
+    if(dan<10) dan='0'+dan;
+    if(mesec<10) mesec='0'+mesec;
+    danas = godina + '-' + mesec + '-' + dan;
+    
 	for (let karta of lista) {
 		let red = $('<tr></tr>');
-		let tdID = $('<td>' + karta.id + '</td>');
 		let tdManifestacija = $('<td>' + karta.manifestacija.naziv + '</td>');
-		let tdAdresa = $('<td>' + karta.manifestacija.lokacija.grad + " " +
+		let tdAdresa = $('<td>' + karta.manifestacija.lokacija.drzava + ", " + 
+			karta.manifestacija.lokacija.grad + ", " +
 			karta.manifestacija.lokacija.ulicaBroj + '</td>');
 		let tdkupac = $('<td>' + karta.kupac + '</td>');
 		
 		let vreme = karta.manifestacija.vreme.split("T");
+		let datum = vreme[0].split("-");
 		let splitSati = vreme[1].split(":");
 		
-		let tdVreme = $('<td>' + vreme[0] + "&ensp;" + splitSati[0] + ":" + splitSati[1] + '</td>');
+		let tdVreme = $('<td>' + datum[2] + "." + datum[1] + "." + datum[0] + "."
+			 + "&ensp;" + splitSati[0] + ":" + splitSati[1] + '</td>');
 		let tdCena = $('<td>' + Math.round(karta.konacnaCena * 100) / 100 + '</td>');
 		let tdStatus = $('<td>' + karta.status + '</td>');
 		let tdTip = $('<td>' + karta.tip + '</td>');
-		red.append(tdID).append(tdManifestacija).append(tdAdresa).append(tdkupac).append(tdVreme).append(tdCena)
-			.append(tdStatus).append(tdTip);
+		let tdOtkazi = "<td></td>";
+		if (danas <= vreme && karta.status == "REZERVISANA")  
+			tdOtkazi = '<td><form class="otkazivanje"><input type="submit" id="' + karta.id + 
+				'" value="Otkazi" class="otkazi_dugmici"></form></td>';
+		red.append(tdManifestacija).append(tdAdresa).append(tdkupac).append(tdVreme).append(tdCena)
+			.append(tdStatus).append(tdTip).append(tdOtkazi);
 		tabela.append(red);
 	}
+	
 }
 
 $(document).ready(function() {
@@ -182,5 +198,26 @@ $(document).ready(function() {
 				}
 		}
 		popunjavanjeTabele(sortiraneKarte);
+	});
+	
+	$("form.otkazivanje").submit(function(event) {
+		let elem = event.currentTarget.innerHTML;
+		let splitId = elem.split('id="');
+		let splitvalue = splitId[1].split('" type=');		// splitvalue[0] == id
+		event.preventDefault();
+		
+		$.ajax({
+           url: "rest/karte/otkaziKartu/" + splitvalue[0],
+           type:"GET",
+		   dataType:"json",
+           complete: function(data, uspelo) {
+				console.log(uspelo);
+				window.sessionStorage.setItem("trenutniKupac", data.responseText)
+				for (let k of listaKarata) {
+					if (k.id == splitvalue[0]) k.status = "OBUSTAVLJENA";
+				}
+				popunjavanjeTabele(listaKarata);
+			}
+		});            
 	});
 });

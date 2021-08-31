@@ -34,8 +34,11 @@ public class Karta {
 	}
 	public void setStatus(StatusKarte status) {
 		this.status = status;
+		
 		double bodovi = this.kupac.getBrojBodova() - this.manifestacija.getCena()/1000 * 133 * 4; 
 		this.kupac.setBrojBodova(bodovi >= 0 ? bodovi : 0);
+		
+		this.manifestacija.setBrojMesta(this.manifestacija.getBrojMesta() + 1);
 	}
 	
 	public TipKarte getTip() {
@@ -66,7 +69,7 @@ public class Karta {
 		
 		if (this.tip == TipKarte.REGULARNA) this.konacnaCena = 
 				this.manifestacija.getCena() * this.kupac.getTip().getPopust();
-		else if (this.tip == TipKarte.VIP) this.konacnaCena = 
+		else if (this.tip == TipKarte.FAN_PIT) this.konacnaCena = 
 				2 * this.manifestacija.getCena() * this.kupac.getTip().getPopust();
 		else this.konacnaCena = 
 				4* this.manifestacija.getCena() * this.kupac.getTip().getPopust();

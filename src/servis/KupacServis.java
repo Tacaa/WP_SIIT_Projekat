@@ -40,9 +40,7 @@ public class KupacServis {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public String izmeniKupca(Korisnik kupac){
-		if(KupacDAO.kupci.size() == 0) {
-			KupacDAO.ucitajKupce();
-		}
+		if(KupacDAO.kupci.size() == 0) KupacDAO.ucitajKupce();
 		return KupacDAO.izmeniKupca(kupac).toString();
 	}
 	

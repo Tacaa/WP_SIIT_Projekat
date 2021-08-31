@@ -60,6 +60,16 @@
     font-size: 15px;
  }
  
+ .otkazi_dugmici {
+	border-radius: 3px;
+	border: 0;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+    font-size: 15px;
+    color: #ffd5d2;
+	background: #84889c;
+ }
+ 
  .svetli_dugmici {
  	color: #545871;
 	width: 20%;
@@ -70,13 +80,13 @@
     background: #ffd5d2;
 }
  
- .dugmici{
+ .dugmici {
     color: #ffd5d2;
 	width: 40%;
 	background: #84889c;
 }
 
-.dugmici:hover {
+.dugmici:hover,  .otkazi_dugmic:hover {
     background: #545871;
 }
  

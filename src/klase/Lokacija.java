@@ -70,9 +70,9 @@ public class Lokacija {
 	@Override
 	public String toString() {
 		return "{\"geografskaDuzina\": \"" + this.geografskaDuzina + 
-				"\", \"geografskaSirina\": \""+ this.geografskaSirina +
-				"\", \"ulicaBroj\": \""+ this.ulicaBroj + "\", \"grad\": \""+ this.grad +
-				"\", \"postanskiBroj\": \""+ this.postanskiBroj  + "\"}";
+				"\", \"geografskaSirina\": \""+ this.geografskaSirina + 
+				"\", \"drzava\": \""+ this.drzava + "\", \"ulicaBroj\": \""+ this.ulicaBroj +
+				"\", \"grad\": \""+ this.grad + "\", \"postanskiBroj\": \""+ this.postanskiBroj  + "\"}";
 	}
 	
 }
