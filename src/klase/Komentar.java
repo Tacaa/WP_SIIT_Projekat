@@ -57,9 +57,9 @@ public class Komentar {
 	
 	@Override
 	public String toString() {
-		return "{\"kupca\": "+ this.kupac + ", \"manifestacija\": "+ this.manifestacija 
-				+ ", \"tekst\": \""+ this.tekst + "\", \"ocena\": \""+ this.ocena
-				+ "\", \"status\": \""+ this.status +"\"}";
+		return "{\"kupca\": \""+ this.kupac.getKorisnickoIme() + "\", \"manifestacija\": \""
+				+ this.manifestacija.getNaziv() + "\", \"tekst\": \""+ this.tekst + "\", \"ocena\": \""
+				+ this.ocena + "\", \"status\": \""+ this.status +"\"}";
 	}
 	
 	

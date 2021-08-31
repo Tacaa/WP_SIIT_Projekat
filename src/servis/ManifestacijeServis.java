@@ -1,6 +1,7 @@
 package servis;
 
 import java.text.Normalizer.Form;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -14,11 +15,15 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.PathSegment;
 
+import dao.KartaDAO;
 import dao.ManifestacijaDAO;
 
 import klase.CijenaSorter;
+import klase.Karta;
+import klase.Kupac;
 import klase.LokacijaSorter;
 import klase.Manifestacija;
+import klase.StatusKarte;
 import klase.StatusManifestacije;
 import klase.TipManifestacije;
 
@@ -214,5 +219,35 @@ public class ManifestacijeServis {
 			return vrati;
 	}
 	
+	@GET
+	@Path("/zaRezervaciju")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String sveZaRezervaciju() {
+		if (ManifestacijaDAO.manifestacije.size() == 0) { ManifestacijaDAO.ucitajManifestacije(); }
+		ArrayList<Manifestacija> povratnaLista = new ArrayList<>();
+		for (Manifestacija m :  ManifestacijaDAO.manifestacije) 
+			if (m.getVreme().isAfter(LocalDateTime.now())
+					&& m.getStatus() == StatusManifestacije.AKTIVNA) 
+				povratnaLista.add(m);
+		return povratnaLista.toString();
+	}
+	
+	@GET
+	@Path("/zaKomentarisanje")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String sveZaKomentarisanje() {
+		Kupac kupac = LogovanjeServis.ulogovaniKupac;
+		if (kupac == null) return null;
+		if (ManifestacijaDAO.manifestacije.size() == 0) { ManifestacijaDAO.ucitajManifestacije(); }
+		if (KartaDAO.karte.size() == 0) { KartaDAO.ucitajKarte(); }
+		ArrayList<Manifestacija> povratnaLista = new ArrayList<>();
+		for (Karta karta : kupac.getSveKarte()) 
+			if (karta.getManifestacija().getVreme().isBefore(LocalDateTime.now())
+					&& karta.getStatus() != StatusKarte.OBUSTAVLJENA 
+					&& !povratnaLista.contains(karta.getManifestacija())) 
+				povratnaLista.add(karta.getManifestacija());
+		return povratnaLista.toString();
+	}
+
 	
 }
