@@ -120,20 +120,15 @@ function popuniSadrzaj(manifestacije) {
 $(document).ready(function(){
 	let korisnik = JSON.parse(window.sessionStorage.getItem("trenutniKupac"));
     if (korisnik == null) {window.location.href = "logovanje.html";}
-
-	let manifestacije = window.sessionStorage.getItem("manifestacije");
-	if (manifestacije == null)
-		$.ajax({
-			url: "rest/manifestacije/aktivne",
-			type:"GET",
-			dataType:"json",
-			complete: function(manifestacije_lista) {
-				manifestacije = JSON.parse(JSON.stringify(manifestacije_lista.responseJSON));
-				popuniSadrzaj(manifestacije);
-				window.sessionStorage.setItem("manifestacije", JSON.stringify(manifestacije_lista.responseJSON));
-			}
-		});
-	else popuniSadrzaj(JSON.parse(manifestacije));
+	$.ajax({
+		url: "rest/manifestacije/zaRezervaciju",
+		type:"GET",
+		dataType:"json",
+		complete: function(data) {
+			let manifestacije = JSON.parse(data.responseText);
+			popuniSadrzaj(manifestacije);
+		}
+	});
 	
 	//***************************************************************************************
 		// rezervacije
@@ -149,7 +144,7 @@ $(document).ready(function(){
 			type:"POST",
 			data: parametri,
 			complete: function(data, uspesno) {
-				if (uspesno== "success") {
+				if (uspesno == "success") {
 					$("#uspesna_rezervacija").text("Uspesno ste rezervisali kartu! :D");
 					$("#uspesna_rezervacija").css("color", "#545871");
 	            	$("#uspesna_rezervacija").show().delay(4000).fadeOut();

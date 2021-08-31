@@ -108,7 +108,6 @@ $(document).ready(function() {
 		let fil_naziv = $('#naziv_man').val();
 		let fil_tip = $('input[name=tip_karte]:checked').val();
 		let fil_status = $('input[name=status_karte]:checked').val();
-		console.log(fil_status);
 		
 		$.ajax({
            url: "rest/karte/filterKarata",
@@ -211,7 +210,6 @@ $(document).ready(function() {
            type:"GET",
 		   dataType:"json",
            complete: function(data, uspelo) {
-				console.log(uspelo);
 				window.sessionStorage.setItem("trenutniKupac", data.responseText)
 				for (let k of listaKarata) {
 					if (k.id == splitvalue[0]) k.status = "OBUSTAVLJENA";

@@ -101,7 +101,7 @@ function popuniSadrzaj(manifestacije) {
 		
 		    rezervisiDugme.onclick = function(event) {
 		    	modal.style.display = "block";		// prikazujem formu za komentar
-				window.sessionStorage.setItem("rezervisiZa", event.currentTarget.id.split("+kom")[0]);
+				window.sessionStorage.setItem("komentarZa", event.currentTarget.id.split("+kom")[0]);
 		    }
 		    x_rezervisi.onclick = function() {
 		    	modal.style.display = "none";		// sakrij formu kad klikne na x
@@ -136,7 +136,33 @@ $(document).ready(function(){
 	$("form#komentari").submit(function(event) {
 		event.preventDefault();
 		let ocena = $('input[name=ocena]:checked').val();
-		alert("ulaaa");
+		let komentar = $('input.unos_komentara').val();
+		let nazivDatum = window.sessionStorage.getItem("komentarZa").split("+");
+		let objekatZaSlanje = {
+			"manifestacija": {"naziv": nazivDatum[0], "vreme": nazivDatum[1]},
+			"ocena": ocena,
+			"tekst": komentar,
+			"status": "NA_CEKANJU"
+		};
+		$.ajax({
+			url: "rest/komentari/napraviNovi",
+			type:"POST",
+			dataType:"json",
+			contentType:"application/json",
+			data: JSON.stringify(objekatZaSlanje),
+			complete: function(data, uspelo) {
+				if (uspelo == "success") {
+					$("#uspeo_komentar").text("Uspesno je napravljen zahtev za komentar! :D");
+					$("#uspeo_komentar").css("color", "#545871");
+	            	$("#uspeo_komentar").show().delay(4000).fadeOut();
+				}
+				else {
+					$("#uspeo_komentar").text("Nesto je poslo po zlu :(");
+					$("#uspeo_komentar").css("color", "#545871");
+	            	$("#uspeo_komentar").show().delay(4000).fadeOut();
+				}
+			}
+		});
 	});
 
 });

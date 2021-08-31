@@ -220,6 +220,19 @@ public class ManifestacijeServis {
 	}
 	
 	@GET
+	@Path("/zaRezervaciju")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String sveZaRezervaciju() {
+		if (ManifestacijaDAO.manifestacije.size() == 0) { ManifestacijaDAO.ucitajManifestacije(); }
+		ArrayList<Manifestacija> povratnaLista = new ArrayList<>();
+		for (Manifestacija m :  ManifestacijaDAO.manifestacije) 
+			if (m.getVreme().isAfter(LocalDateTime.now())
+					&& m.getStatus() == StatusManifestacije.AKTIVNA) 
+				povratnaLista.add(m);
+		return povratnaLista.toString();
+	}
+	
+	@GET
 	@Path("/zaKomentarisanje")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String sveZaKomentarisanje() {
@@ -230,10 +243,11 @@ public class ManifestacijeServis {
 		ArrayList<Manifestacija> povratnaLista = new ArrayList<>();
 		for (Karta karta : kupac.getSveKarte()) 
 			if (karta.getManifestacija().getVreme().isBefore(LocalDateTime.now())
-					&& karta.getStatus() != StatusKarte.OBUSTAVLJENA) 
+					&& karta.getStatus() != StatusKarte.OBUSTAVLJENA 
+					&& !povratnaLista.contains(karta.getManifestacija())) 
 				povratnaLista.add(karta.getManifestacija());
 		return povratnaLista.toString();
 	}
-	
+
 	
 }
