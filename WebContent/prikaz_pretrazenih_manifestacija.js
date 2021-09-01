@@ -1,3 +1,7 @@
+function podesi_manifestaciju(tagA) { 
+	window.sessionStorage.setItem("manifestacija", tagA.id.split("+ppm")[0])
+};
+
 function popuniSadrzaj(manifestacije) {
 
 	//console.log(manifestacije);
@@ -17,155 +21,21 @@ function popuniSadrzaj(manifestacije) {
 			divZaSliku.setAttributeNode(klasaDivaZaSliku);
 
 
-	//tu cemo smjestiti slike u zavisnosti od tipa dogadjaja
-			if(manifestacija.tip == "KONCERT"){
-				let slika = document.createElement("img");
-				let putanjaSlike = document.createAttribute("src");
-				putanjaSlike.value = "koncert.png";
-				slika.setAttributeNode(putanjaSlike);
-				let link = document.createElement("a");
-				let putanjaLinka = document.createAttribute("href");
-				putanjaLinka.value = "jedna_manifestacija.html";
-				link.setAttributeNode(putanjaLinka);
-				link.appendChild(slika);
-				divZaSliku.appendChild(link);
-				window.sessionStorage.setItem("manifestacija", JSON.stringify(manifestacija));
-			}else if(manifestacija.tip == "FESTIVAL"){
-				let slika = document.createElement("img");
-				let putanjaSlike = document.createAttribute("src");
-				putanjaSlike.value = "festival.jpg";
-				slika.setAttributeNode(putanjaSlike);
-				let link = document.createElement("a");
-				let putanjaLinka = document.createAttribute("href");
-				putanjaLinka.value = "jedna_manifestacija.html";
-				link.setAttributeNode(putanjaLinka);
-				link.appendChild(slika);
-				divZaSliku.appendChild(link);
-				window.sessionStorage.setItem("manifestacija", JSON.stringify(manifestacija));
-			}else if(manifestacija.tip == "POZORISNA_PREDSTAVA"){
-				let slika = document.createElement("img");
-				let putanjaSlike = document.createAttribute("src");
-				putanjaSlike.value = "pozoriste.jpg";
-				slika.setAttributeNode(putanjaSlike);
-				let link = document.createElement("a");
-				let putanjaLinka = document.createAttribute("href");
-				putanjaLinka.value = "jedna_manifestacija.html";
-				link.setAttributeNode(putanjaLinka);
-				link.appendChild(slika);
-				divZaSliku.appendChild(link);
-				window.sessionStorage.setItem("manifestacija", JSON.stringify(manifestacija));
-			}else if(manifestacija.tip == "BIOSKOPSKA_PROJEKCIJA"){
-				let slika = document.createElement("img");
-				let putanjaSlike = document.createAttribute("src");
-				putanjaSlike.value = "kino.jpg";
-				slika.setAttributeNode(putanjaSlike);
-				let link = document.createElement("a");
-				let putanjaLinka = document.createAttribute("href");
-				putanjaLinka.value = "jedna_manifestacija.html";
-				link.setAttributeNode(putanjaLinka);
-				link.appendChild(slika);
-				divZaSliku.appendChild(link);
-				window.sessionStorage.setItem("manifestacija", JSON.stringify(manifestacija));
-			}else if(manifestacija.tip == "SPORTSKA_NADMETANJA"){
-				let slika = document.createElement("img");
-				let putanjaSlike = document.createAttribute("src");
-				putanjaSlike.value = "utakmica.jpg";
-				slika.setAttributeNode(putanjaSlike);
-				let link = document.createElement("a");
-				let putanjaLinka = document.createAttribute("href");
-				putanjaLinka.value = "jedna_manifestacija.html";
-				link.setAttributeNode(putanjaLinka);
-				link.appendChild(slika);
-				divZaSliku.appendChild(link);
-				window.sessionStorage.setItem("manifestacija", JSON.stringify(manifestacija));
-			}else if(manifestacija.tip == "PLESNI_NASTUP"){
-				let slika = document.createElement("img");
-				let putanjaSlike = document.createAttribute("src");
-				putanjaSlike.value = "ples.png";
-				slika.setAttributeNode(putanjaSlike);
-				let link = document.createElement("a");
-				let putanjaLinka = document.createAttribute("href");
-				putanjaLinka.value = "jedna_manifestacija.html";
-				link.setAttributeNode(putanjaLinka);
-				link.appendChild(slika);
-				divZaSliku.appendChild(link);
-				window.sessionStorage.setItem("manifestacija", JSON.stringify(manifestacija));
-			}else if(manifestacija.tip == "STANDUP_NASTUP"){
-				let slika = document.createElement("img");
-				let putanjaSlike = document.createAttribute("src");
-				putanjaSlike.value = "standup.jpg";
-				slika.setAttributeNode(putanjaSlike);
-				let link = document.createElement("a");
-				let putanjaLinka = document.createAttribute("href");
-				putanjaLinka.value = "jedna_manifestacija.html";
-				link.setAttributeNode(putanjaLinka);
-				link.appendChild(slika);
-				divZaSliku.appendChild(link);
-				window.sessionStorage.setItem("manifestacija", JSON.stringify(manifestacija));
-			}else if(manifestacija.tip == "NASTUP_CIRKUSA"){
-				let slika = document.createElement("img");
-				let putanjaSlike = document.createAttribute("src");
-				putanjaSlike.value = "cirkus.jpg";
-				slika.setAttributeNode(putanjaSlike);
-				let link = document.createElement("a");
-				let putanjaLinka = document.createAttribute("href");
-				putanjaLinka.value = "jedna_manifestacija.html";
-				link.setAttributeNode(putanjaLinka);
-				link.appendChild(slika);
-				divZaSliku.appendChild(link);
-				window.sessionStorage.setItem("manifestacija", JSON.stringify(manifestacija));
-			}else if(manifestacija.tip == "SAJAM"){
-				let slika = document.createElement("img");
-				let putanjaSlike = document.createAttribute("src");
-				putanjaSlike.value = "sajam.jpg";
-				slika.setAttributeNode(putanjaSlike);
-				let link = document.createElement("a");
-				let putanjaLinka = document.createAttribute("href");
-				putanjaLinka.value = "jedna_manifestacija.html";
-				link.setAttributeNode(putanjaLinka);
-				link.appendChild(slika);
-				divZaSliku.appendChild(link);
-				window.sessionStorage.setItem("manifestacija", JSON.stringify(manifestacija));
-			}else if(manifestacija.tip == "MUZEJSKO_VECE"){
-				let slika = document.createElement("img");
-				let putanjaSlike = document.createAttribute("src");
-				putanjaSlike.value = "muzej.jpg";
-				slika.setAttributeNode(putanjaSlike);
-				let link = document.createElement("a");
-				let putanjaLinka = document.createAttribute("href");
-				putanjaLinka.value = "jedna_manifestacija.html";
-				link.setAttributeNode(putanjaLinka);
-				link.appendChild(slika);
-				divZaSliku.appendChild(link);
-				window.sessionStorage.setItem("manifestacija", JSON.stringify(manifestacija));
-			}else if(manifestacija.tip == "KNJIZEVNO_VECE"){
-				let slika = document.createElement("img");
-				let putanjaSlike = document.createAttribute("src");
-				putanjaSlike.value = "knjizevno_vece.png";
-				slika.setAttributeNode(putanjaSlike);
-				let link = document.createElement("a");
-				let putanjaLinka = document.createAttribute("href");
-				putanjaLinka.value = "jedna_manifestacija.html";
-				link.setAttributeNode(putanjaLinka);
-				link.appendChild(slika);
-				divZaSliku.appendChild(link);
-				window.sessionStorage.setItem("manifestacija", JSON.stringify(manifestacija));
-			}else{
-				let slika = document.createElement("img");
-				let putanjaSlike = document.createAttribute("src");
-				putanjaSlike.value = "drugo.jpg";
-				slika.setAttributeNode(putanjaSlike);
-				let link = document.createElement("a");
-				let putanjaLinka = document.createAttribute("href");
-				putanjaLinka.value = "jedna_manifestacija.html";
-				link.setAttributeNode(putanjaLinka);
-				link.appendChild(slika);
-				divZaSliku.appendChild(link);
-				window.sessionStorage.setItem("manifestacija", JSON.stringify(manifestacija));
-			}
+			//tu cemo smjestiti slike u zavisnosti od tipa dogadjaja
+			let slika = document.createElement("img");
+			let putanjaSlike = document.createAttribute("src");
+			putanjaSlike.value = manifestacija.poster;
+			slika.setAttributeNode(putanjaSlike);
+			let link = document.createElement("a");
+			let putanjaLinka = document.createAttribute("href");
+			putanjaLinka.value = "jedna_manifestacija.html";
+			link.setAttributeNode(putanjaLinka);
+			link.appendChild(slika);
+				// da bi podesilo manifestaciju
+			link.setAttribute("onclick", "return podesi_manifestaciju(this);");	
+			link.setAttribute("id", JSON.stringify(manifestacija) + "+ppm");
+			divZaSliku.appendChild(link);
 			
-			
-
 			//pravimo div za text
 			let divZaTekst = document.createElement("div");
 			let klasaDivaZaTekst = document.createAttribute("class");

@@ -4,12 +4,17 @@
 $(document).ready(function(){
 	const manifestacija = JSON.parse(window.sessionStorage.getItem("manifestacija"));
 	console.log(manifestacija);
+	console.log("-----------------------------------");
+	console.log(window);
+	console.log("-----------------------------------");
+	console.log(document);
+
 	
 	let div_za_sliku = document.getElementById("div_za_sliku");
 	let slika = document.createElement("img");
 	let putanjaSlike = document.createAttribute("src");
 	//putanjaSlike.value = manifestacija.poster;
-	putanjaSlike.value = "koncert.png";
+	putanjaSlike.value = manifestacija.poster;
 	slika.setAttributeNode(putanjaSlike);
 	div_za_sliku.appendChild(slika);
 	

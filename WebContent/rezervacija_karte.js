@@ -1,3 +1,7 @@
+function podesi_manifestaciju(tagA) { 
+	window.sessionStorage.setItem("manifestacija", tagA.id.split("+rk")[0])
+};
+
 function popuniSadrzaj(manifestacije) {
 	for(let manifestacija of manifestacije){
 			let div = document.getElementById("sadrzaj_rezervacija");
@@ -19,7 +23,15 @@ function popuniSadrzaj(manifestacije) {
 			let putanjaSlike = document.createAttribute("src");
 			putanjaSlike.value = manifestacija.poster;
 			slika.setAttributeNode(putanjaSlike);
-			divZaSliku.appendChild(slika);
+			let link = document.createElement("a");
+			let putanjaLinka = document.createAttribute("href");
+			putanjaLinka.value = "jedna_manifestacija.html";
+			link.setAttributeNode(putanjaLinka);
+			link.appendChild(slika);
+				// da bi podesilo manifestaciju
+			link.setAttribute("onclick", "return podesi_manifestaciju(this);");	
+			link.setAttribute("id", JSON.stringify(manifestacija) + "+rk");
+			divZaSliku.appendChild(link);
 			
 			
 			//pravimo div za text
