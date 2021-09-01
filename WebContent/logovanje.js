@@ -18,7 +18,7 @@ function redirektujprodavca(korisnickoIme) {
 		dataType:"json",
 		complete: function(prodavac) {
 			window.sessionStorage.setItem("trenutniProdavac", JSON.stringify(prodavac.responseJSON));
-			window.location.href = "proba.html";
+			window.location.href = "profil_prodavca.html";
 		}
 	});
 }
