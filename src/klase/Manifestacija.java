@@ -109,6 +109,9 @@ public class Manifestacija {
 		this.status = status;
 		this.lokacija = lokacija;
 		this.poster = poster;
+		this.brojRezervisanihMesta = 0;
+		this.komentari = new ArrayList<>();
+		this.ocena = 0;
 	}
 	
 	public Manifestacija(String naziv, TipManifestacije tip, int brojMesta, LocalDateTime vreme, double cena,
@@ -133,7 +136,9 @@ public class Manifestacija {
 		return "{\"naziv\": \"" + this.naziv + "\", \"tip\": \""+ this.tip + "\", \"brojMesta\": \"" + 
 				this.brojMesta + "\", \"vreme\": \""+ this.vreme + "\", \"cena\": \""+ this.cena + 
 				"\", \"status\": \""+ this.status + "\", \"lokacija\": "+ this.lokacija + 
-				", \"poster\": \""+ this.poster + "\"}";
+				", \"poster\": \""+ this.poster + "\", \"ocena\": \""+ this.ocena +
+				"\", \"brojRezervisanihMesta\": \""+ this.brojRezervisanihMesta + 
+				"\", \"komentari\": "+ this.komentari +"}";
 	}
 	
 	

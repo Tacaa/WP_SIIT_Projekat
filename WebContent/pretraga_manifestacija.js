@@ -108,7 +108,7 @@
 			dataType:"json",
 			complete: function(vraceno) {
 				console.log(vraceno);
-				window.sessionStorage.setItem("pretrazene_manifestacije", JSON.stringify(vraceno.responseJSON));
+				window.sessionStorage.setItem("pretrazene_manifestacije", vraceno.responseText);
 				window.location.href = "prikaz_pretrazenih_manifestacija.html";
 			}
 							
