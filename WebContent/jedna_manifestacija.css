@@ -58,4 +58,24 @@ body{
 	text-align: center;
 }
 
+.svetli_dugmici {
+ 	padding: 2px;
+	border: 0;
+	border-radius: 3px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	cursor: pointer;
+	margin-right: 47px;
+    margin-left: 47px;
+    font-size: 15px;
+ }
+ 
+ .svetli_dugmici {
+ 	color: #545871;
+	width: 40%;
+	background: white;
+ }
 
+.svetli_dugmici:hover {
+    background: #ffd5d2;
+}

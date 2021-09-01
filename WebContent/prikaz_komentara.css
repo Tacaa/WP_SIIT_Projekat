@@ -1,0 +1,65 @@
+ body {
+ 	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	list-style: none;
+	font-family: fantasy, sans-serif;
+	background: #84889c;
+ }
+ 
+ .dugmici, .svetli_dugmici {
+ 	padding: 2px;
+	border: 0;
+	border-radius: 3px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	cursor: pointer;
+	margin-right: 47px;
+    margin-left: 47px;
+    font-size: 15px;
+ }
+ 
+ .otkazi_dugmici {
+	border-radius: 3px;
+	border: 0;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+    font-size: 15px;
+    color: #ffd5d2;
+	background: #84889c;
+ }
+ 
+ .svetli_dugmici {
+ 	color: #545871;
+	width: 20%;
+	background: white;
+ }
+
+.svetli_dugmici:hover {
+    background: #ffd5d2;
+}
+ 
+ .dugmici {
+    color: #ffd5d2;
+	width: 40%;
+	background: #84889c;
+}
+
+.dugmici:hover,  .otkazi_dugmic:hover {
+    background: #545871;
+}
+
+table#tabela_komentara {
+ 	font-size: 20px;
+	 border: 1;
+	 border-radius: 3px;
+	 background: #ebd0ce;
+	 color: #545871;
+	 width: 97%;
+	 margin-left: 7px;
+}
+
+p.specijalni {
+	color: #ffd5d2;
+  	font-size: 25px;
+}

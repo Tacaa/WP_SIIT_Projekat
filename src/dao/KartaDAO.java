@@ -19,6 +19,7 @@ public class KartaDAO {
 	}
 	
 	public static void ucitajKarte() {
+		if (karte.size() != 0) return; 
 		if (ManifestacijaDAO.manifestacije.size() == 0) ManifestacijaDAO.ucitajManifestacije();
 		if (KupacDAO.kupci.size() == 0) KupacDAO.ucitajKupce();
 		

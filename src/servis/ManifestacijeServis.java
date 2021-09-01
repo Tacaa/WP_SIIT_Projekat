@@ -37,7 +37,7 @@ public class ManifestacijeServis {
 	@GET
 	@Path("/aktivne")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Manifestacija> aktivne() {
+	public String aktivne() {
 		if(ManifestacijaDAO.manifestacije.size() == 0) {
 			ManifestacijaDAO.ucitajManifestacije();
 		}
@@ -50,7 +50,7 @@ public class ManifestacijeServis {
 		}
 		//treba sortirati po vremenu
 		Collections.sort(aktivne, (a,b)->a.getVreme().compareTo(b.getVreme()));
-		return aktivne;
+		return aktivne.toString();
 		
 	}
 	
@@ -60,7 +60,7 @@ public class ManifestacijeServis {
 	@GET
 	@Path("/pretraga/{params}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Manifestacija> pretraga(@PathParam("params") PathSegment params) {
+	public String pretraga(@PathParam("params") PathSegment params) {
 		if(ManifestacijaDAO.manifestacije.size() == 0) {
 			ManifestacijaDAO.ucitajManifestacije();
 		}
@@ -216,7 +216,7 @@ public class ManifestacijeServis {
 			}
 			
 			
-			return vrati;
+			return vrati.toString();
 	}
 	
 	@GET
@@ -238,7 +238,6 @@ public class ManifestacijeServis {
 	public String sveZaKomentarisanje() {
 		Kupac kupac = LogovanjeServis.ulogovaniKupac;
 		if (kupac == null) return null;
-		if (ManifestacijaDAO.manifestacije.size() == 0) { ManifestacijaDAO.ucitajManifestacije(); }
 		if (KartaDAO.karte.size() == 0) { KartaDAO.ucitajKarte(); }
 		ArrayList<Manifestacija> povratnaLista = new ArrayList<>();
 		for (Karta karta : kupac.getSveKarte()) 

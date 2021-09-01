@@ -28,7 +28,7 @@ function popunjavanjeTabele(lista) {
 		let tdStatus = $('<td>' + karta.status + '</td>');
 		let tdTip = $('<td>' + karta.tip + '</td>');
 		let tdOtkazi = "<td></td>";
-		if (danas <= vreme && karta.status == "REZERVISANA")  
+		if (danas <= vreme[0] && karta.status == "REZERVISANA")  
 			tdOtkazi = '<td><form class="otkazivanje"><input type="submit" id="' + karta.id + 
 				'" value="Otkazi" class="otkazi_dugmici"></form></td>';
 		red.append(tdManifestacija).append(tdAdresa).append(tdkupac).append(tdVreme).append(tdCena)

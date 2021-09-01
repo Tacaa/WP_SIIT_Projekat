@@ -8,9 +8,7 @@ public class LokacijaDAO {
 	
 	public static ArrayList<Lokacija> lokacije = new ArrayList();
 	
-	public LokacijaDAO() {
-		ucitajLokacije();
-	}
+	public LokacijaDAO() {}
 
 	public static void ucitajLokacije() {
 		Lokacija lokacija1 = new Lokacija(44.4, 77.7, "Zmaj Jovina 17", "Novi Sad", "Srbija", 21000);

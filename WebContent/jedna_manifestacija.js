@@ -4,11 +4,14 @@
 $(document).ready(function(){
 	const manifestacija = JSON.parse(window.sessionStorage.getItem("manifestacija"));
 	console.log(manifestacija);
-	console.log("-----------------------------------");
-	console.log(window);
-	console.log("-----------------------------------");
-	console.log(document);
 
+	var danas = new Date();
+    var dan = danas.getDate();
+    var mesec = danas.getMonth()+1; //januar je 0
+    var godina = danas.getFullYear();
+    if(dan<10) dan='0'+dan;
+    if(mesec<10) mesec='0'+mesec;
+    danas = godina + '-' + mesec + '-' + dan;
 	
 	let div_za_sliku = document.getElementById("div_za_sliku");
 	let slika = document.createElement("img");
@@ -69,12 +72,6 @@ $(document).ready(function(){
 	labela4.appendChild(broj_rezervisanih_mjesta);
 	div4.appendChild(labela4);
 	
-	
-	
-	
-	
-	
-	
 	//status
 	let div5 = document.createElement("div");
 	let klasa5 = document.createAttribute("class");
@@ -113,9 +110,6 @@ $(document).ready(function(){
 	let vrijeme1 = document.createTextNode("VRIJEME: " + vrijeme[0] + ":" + vrijeme[1]);
 	labela7.appendChild(vrijeme1);
 	div7.appendChild(labela7);
-	
-	
-	
 	
 	//lokacija
 	
@@ -179,24 +173,17 @@ $(document).ready(function(){
 	labela12.appendChild(ocjena);
 	div12.appendChild(labela12);
 	
-	
-	
-	
 	//komentar ako ih ima
 	let div13 = document.createElement("div");
 	let klasa13 = document.createAttribute("class");
 	klasa13.value = "div_input";
 	div13.setAttributeNode(klasa13);
-	
-	for (let i = 0; i < manifestacija.komentari; i++) {
-		let labela13 = document.createElement("label");
-		let komentar = document.createTextNode("KOMENTAR: " + manifestacija.komentar[i]);
-		labela13.appendChild(komentar);
-		div13.appendChild(labela13);
-	}	
-	
-	
-	
+
+	let dugme = document.createElement("button");
+	dugme.setAttribute("class", "svetli_dugmici");
+	dugme.appendChild(document.createTextNode("KOMENTARI"));
+	if (manifestacija.vreme.split("T")[0] > danas) dugme.setAttribute("disabled", "true");
+	div13.appendChild(dugme);
 	
 	//manje divove stavi u formin div
 	let formin_div = document.getElementById("formin_div");
@@ -214,4 +201,8 @@ $(document).ready(function(){
 	formin_div.appendChild(div12);
 	formin_div.appendChild(div13);
 
+	$("button").click(function(event) {
+		event.preventDefault();
+		window.location.href = "http://localhost:8080/Projekat/prikaz_komentara.html";
+	});
 })

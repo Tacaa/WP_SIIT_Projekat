@@ -16,10 +16,10 @@ public class ManifestacijaDAO {
 	
 
 	public ManifestacijaDAO() {
-		ucitajManifestacije();
 	}
 	
 	public static void ucitajManifestacije(){
+		if (manifestacije.size() != 0) return;
 		if (LokacijaDAO.lokacije.size() == 0) {LokacijaDAO.ucitajLokacije();}
 				// prosle manifestacije
 		Manifestacija m1 = new Manifestacija("Makarena ponovo bruji", TipManifestacije.PLESNI_NASTUP, 
@@ -96,6 +96,8 @@ public class ManifestacijaDAO {
 		
 		manifestacije.add(m11);
 		manifestacije.add(m12);
+		
+		if (KomentarDAO.komentari.size() == 0) KomentarDAO.ucitajKomentare();
 	}
 	
 	public static Manifestacija nadjiPoNazivuVremenu(String naziv, String vreme) {

@@ -19,20 +19,21 @@ public class KomentarDAO {
 	}
 	
 	public static void ucitajKomentare() {
+		if (komentari.size() != 0) return;
 		if (KartaDAO.karte.size() == 0) KartaDAO.ucitajKarte();
 		
 		// provereni komentari
-		Karta peraMakarena = KartaDAO.karte.get(0);
-		Komentar prihvacenKom = new Komentar(peraMakarena.getKupac(), peraMakarena.getManifestacija(), 
-				"Obozavam ples", 5, StatusKomentara.PRIHVACEN);
-		Komentar odbijenKom = new Komentar(peraMakarena.getKupac(), peraMakarena.getManifestacija(), 
-				"Devojke vole plesace", 5, StatusKomentara.ODBIJEN);
-		Komentar naCekanjuKom = new Komentar(peraMakarena.getKupac(), peraMakarena.getManifestacija(), 
-				"Igram makarenu od 3. godine", 5, StatusKomentara.NA_CEKANJU);
-		peraMakarena.getManifestacija().setOcena(5);
-		peraMakarena.getManifestacija().getKomentari().add(prihvacenKom);
-		peraMakarena.getManifestacija().getKomentari().add(odbijenKom);
-		peraMakarena.getManifestacija().getKomentari().add(naCekanjuKom);
+		Karta peraKuvar = KartaDAO.karte.get(0);
+		Komentar prihvacenKom = new Komentar(peraKuvar.getKupac(), peraKuvar.getManifestacija(), 
+				"Obozavam kuvanje", 5, StatusKomentara.PRIHVACEN);
+		Komentar odbijenKom = new Komentar(peraKuvar.getKupac(), peraKuvar.getManifestacija(), 
+				"Devojke vole kuvare ;)", 5, StatusKomentara.ODBIJEN);
+		Komentar naCekanjuKom = new Komentar(peraKuvar.getKupac(), peraKuvar.getManifestacija(), 
+				"Kuvam od 7. godine", 5, StatusKomentara.NA_CEKANJU);
+		peraKuvar.getManifestacija().setOcena(5);
+		peraKuvar.getManifestacija().getKomentari().add(prihvacenKom);
+		peraKuvar.getManifestacija().getKomentari().add(odbijenKom);
+		peraKuvar.getManifestacija().getKomentari().add(naCekanjuKom);
 		
 		// nasumicni komentari
 		Random zaRacunanje = new Random();

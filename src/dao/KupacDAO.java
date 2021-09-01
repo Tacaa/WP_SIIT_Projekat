@@ -43,6 +43,8 @@ public class KupacDAO {
 		this.kupci = gson.fromJson(br, token);
 		*/
 		
+		if (kupci.size() != 0) return;
+		
 		Kupac kupac1 = new Kupac("pera", "pera", "Pera", "Peric", Pol.MUSKI, LocalDate.of(2000, 1, 12), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), obicni);
 		Kupac kupac2 = new Kupac("mika", "mika", "Mika", "Mikic", Pol.MUSKI, LocalDate.of(1998, 4, 13), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), obicni);
 		Kupac kupac3 = new Kupac("ana", "ana", "Ana", "Anic", Pol.ZENSKI, LocalDate.of(1999, 6, 6), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), obicni);

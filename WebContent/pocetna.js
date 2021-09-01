@@ -160,7 +160,7 @@ $(document).ready(function(){
 		type:"GET",
 		dataType:"json",
 		complete: function(manifestacije_lista) {
-			manifestacije = JSON.parse(JSON.stringify(manifestacije_lista.responseJSON));
+			manifestacije = JSON.parse(manifestacije_lista.responseText);
 			popuniSadrzaj(manifestacije);
 			window.sessionStorage.setItem("manifestacije", JSON.stringify(manifestacije_lista.responseJSON));
 		}
