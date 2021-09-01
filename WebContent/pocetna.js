@@ -153,6 +153,7 @@ function popuniSadrzaj(manifestacije) {
 
 //MAIN
 $(document).ready(function(){
+	
 
 	if(JSON.parse(window.sessionStorage.getItem("manifestacije")) == null){
 		$.ajax({
@@ -165,13 +166,20 @@ $(document).ready(function(){
 			window.sessionStorage.setItem("manifestacije", JSON.stringify(manifestacije_lista.responseJSON));
 		}
 	});
-	}else{
-		popuniSadrzaj(JSON.parse(window.sessionStorage.getItem("manifestacije")));
-		window.sessionStorage.setItem("manifestacije", JSON.stringify(manifestacije_lista.responseJSON));
-	}
+	
+	console.log(event);
 	
 	$('button#pretrazi').click(function() {
 		window.location.href = "pretraga_manifestacija.html";
 	});
+	
+	}else{
+		popuniSadrzaj(JSON.parse(window.sessionStorage.getItem("manifestacije")));
+		window.sessionStorage.setItem("manifestacije", JSON.stringify(manifestacije_lista.responseJSON));
+		
+		$('button#pretrazi').click(function() {
+		window.location.href = "pretraga_manifestacija.html";
+	});
+	}
 
 })
