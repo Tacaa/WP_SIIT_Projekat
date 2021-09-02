@@ -24,11 +24,13 @@ public class ProdavacDAO {
 		//prodavci
 		if (prodavci.size() != 0) return;
 		
-		Prodavac daca = new Prodavac("daca", "daca", "Danijela", "Djumic", Pol.ZENSKI, LocalDate.of(1997, 4, 13), AktivnostKorisnika.AKTIVAN, new ArrayList<Manifestacija>());
+		Prodavac daca = new Prodavac("daca", "daca", "Danijela", "Djumic", Pol.ZENSKI, LocalDate.of(1997, 8, 5), AktivnostKorisnika.AKTIVAN, new ArrayList<Manifestacija>());
 		Prodavac mama = new Prodavac("lidija", "lidija", "Lidija", "Gavrilovic", Pol.ZENSKI, LocalDate.of(1977, 11, 17), AktivnostKorisnika.AKTIVAN, new ArrayList<Manifestacija>());
+		Prodavac nana = new Prodavac("nana", "nana", "Nana", "Nanic", Pol.ZENSKI, LocalDate.of(2001, 4, 13), AktivnostKorisnika.IZBRISAN, new ArrayList<>());
 		
 		prodavci.put(daca.getKorisnickoIme(), daca);
 		prodavci.put(mama.getKorisnickoIme(), mama);
+		prodavci.put(nana.getKorisnickoIme(), nana);
 	}
 	
 

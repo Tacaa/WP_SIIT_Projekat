@@ -21,12 +21,12 @@ $(document).ready(function() {
 
  	$("#svi_prodavci").submit(function(event) {
 		event.preventDefault();
-		// bice
+		window.location.href = "http://localhost:8080/Projekat/prikaz_prodavaca.html";
     }); 
 
  	$("#svi_kupci").submit(function(event) {
 		event.preventDefault();
-		// bice
+		window.location.href = "http://localhost:8080/Projekat/prikaz_kupaca.html";
     });  
 
  	$("#odobri_man").submit(function(event) {

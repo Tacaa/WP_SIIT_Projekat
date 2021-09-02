@@ -9,14 +9,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.PathSegment;
 
 import dao.AdministratorDAO;
-import dao.KartaDAO;
 import dao.KomentarDAO;
 import dao.KupacDAO;
 import dao.ProdavacDAO;
 import klase.Administrator;
+import klase.AktivnostKorisnika;
 import klase.Korisnik;
 import klase.Kupac;
 import klase.Prodavac;
@@ -46,27 +45,35 @@ public class LogovanjeServis {
 		//provjeriti da li postoji korisnik u nekoj od malih baza i ako postoji saznajemo i koji tip korisnika je
 		if(KupacDAO.kupci.containsKey(korisnik.getKorisnickoIme())) {
 			koJeUlogovan = "kupac";
-			if(!KupacDAO.kupci.get(korisnik.getKorisnickoIme()).getLozinka().equals(korisnik.getLozinka())) {
+			ulogovaniKupac = KupacDAO.kupci.get(korisnik.getKorisnickoIme());
+			if(!ulogovaniKupac.getLozinka().equals(korisnik.getLozinka()) 
+					|| ulogovaniKupac.getAktivnost() != AktivnostKorisnika.AKTIVAN) {
 				return null;
 			}
-		}else if(AdministratorDAO.administratori.containsKey(korisnik.getKorisnickoIme())) {
+		}
+		else if(AdministratorDAO.administratori.containsKey(korisnik.getKorisnickoIme())) {
 			koJeUlogovan = "administrator";
-			if(!AdministratorDAO.administratori.get(korisnik.getKorisnickoIme()).getLozinka().equals(korisnik.getLozinka())) {
+			ulogovaniAdmin = AdministratorDAO.administratori.get(korisnik.getKorisnickoIme());
+			if(!ulogovaniAdmin.getLozinka().equals(korisnik.getLozinka()) 
+					|| ulogovaniAdmin.getAktivnost() != AktivnostKorisnika.AKTIVAN) {
 				return null;
 			}
-		}else if(ProdavacDAO.prodavci.containsKey(korisnik.getKorisnickoIme())) {
+		}
+		else if(ProdavacDAO.prodavci.containsKey(korisnik.getKorisnickoIme())) {
 			koJeUlogovan = "prodavac";
-			if(!ProdavacDAO.prodavci.get(korisnik.getKorisnickoIme()).getLozinka().equals(korisnik.getLozinka())) {
+			ulogovaniProdavac = ProdavacDAO.prodavci.get(korisnik.getKorisnickoIme());
+			if(!ulogovaniProdavac.getLozinka().equals(korisnik.getLozinka()) 
+					|| ulogovaniProdavac.getAktivnost() != AktivnostKorisnika.AKTIVAN) {
 				return null;
 			}
-		}else {
+		}
+		else {
 			return null; //ako ne postoji vrati null za ponovno logovanje
 		}
 		
 		
 		//u zavisnosti od uloge provjeriti da li je na sesiji
 		if(koJeUlogovan.equals("kupac")) {
-			ulogovaniKupac = KupacDAO.kupci.get(korisnik.getKorisnickoIme());
 			Kupac kupacNaSesiji = null;
 			kupacNaSesiji = (Kupac) zahtjev.getSession().getAttribute("trenutniKupac");
 			if (kupacNaSesiji == null) {
@@ -75,7 +82,6 @@ public class LogovanjeServis {
 			}
 		}
 		else if(koJeUlogovan.equals("prodavac")) {
-			ulogovaniProdavac = ProdavacDAO.prodavci.get(korisnik.getKorisnickoIme());
 			Prodavac prodavacNaSesiji = null;
 			prodavacNaSesiji = (Prodavac) zahtjev.getSession().getAttribute("trenutniProdavac");
 			if (prodavacNaSesiji == null) {
@@ -84,7 +90,6 @@ public class LogovanjeServis {
 			}
 		}
 		else if(koJeUlogovan.equals("administrator")) {
-			ulogovaniAdmin = AdministratorDAO.administratori.get(korisnik.getKorisnickoIme());
 			Administrator administratorNaSesiji = null;
 			administratorNaSesiji = (Administrator) zahtjev.getSession().getAttribute("trenutniAdministrator");
 			if (administratorNaSesiji == null) {

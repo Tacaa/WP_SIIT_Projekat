@@ -70,7 +70,8 @@ public class Kupac extends Korisnik {
 	public String toString() {
 		return "{\"ime\": \""+ this.getIme() +"\", \"prezime\": \""+ this.getPrezime() +
 				"\", \"korisnickoIme\": \""+ this.getKorisnickoIme() + "\", \"pol\": \""+ this.getPol() +
-				"\", \"lozinka\": \""+ this.getLozinka() +"\", \"datumRodjenja\": \""+ this.getDatumRodjenja() +
+				"\", \"lozinka\": \""+ this.getLozinka() +"\", \"datumRodjenja\": \""+ 
+				this.getDatumRodjenja() + "\", \"aktivnost\": \""+ this.getAktivnost() + 
 				"\", \"brojBodova\": \""+ this.brojBodova +"\", \"sveKarte\": "+ this.sveKarte +
 				", \"tip\": "+ this.tip + "}";
 	}

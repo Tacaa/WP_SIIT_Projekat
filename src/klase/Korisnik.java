@@ -81,7 +81,7 @@ public class Korisnik {
 		return "{\"ime\": \""+ this.ime +"\", \"prezime\": \""+ this.prezime +
 				"\", \"korisnickoIme\": \""+ this.korisnickoIme + "\", \"pol\": \""+ this.pol +
 				"\", \"lozinka\": \""+ this.lozinka +"\", \"datumRodjenja\": \""+ this.datumRodjenja +
-				"\"}";
+				"\", \"aktivnost\": \""+ this.aktivnost +"\"}";
 	}
 	
 	

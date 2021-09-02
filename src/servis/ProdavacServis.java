@@ -3,8 +3,10 @@ package servis;
 import java.util.ArrayList;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -37,5 +39,21 @@ public class ProdavacServis {
 		ProdavacDAO.ucitajProdavce();
 		return ProdavacDAO.dodajProdavca(noviProdavac).toString();
 		
+	}
+	
+	@GET
+	@Path("/")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getProdavce(){
+		return ProdavacDAO.prodavci.values().toString();
+	}
+	
+	@GET
+	@Path("/{korisnickoIme}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String izbrisiProdavca(@PathParam("korisnickoIme") String korisnickoIme){
+		Prodavac prodavac = ProdavacDAO.prodavci.get(korisnickoIme);
+		prodavac.setAktivnost(AktivnostKorisnika.IZBRISAN);
+		return prodavac.toString();
 	}
 }
