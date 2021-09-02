@@ -8,12 +8,14 @@ import java.util.HashMap;
 
 import com.google.gson.Gson;
 
+import klase.Administrator;
 import klase.AktivnostKorisnika;
 import klase.ImeTipaKupca;
 import klase.Karta;
 import klase.Korisnik;
 import klase.Kupac;
 import klase.Pol;
+import klase.Prodavac;
 import klase.TipKupca;
 
 public class KupacDAO {
@@ -63,13 +65,17 @@ public class KupacDAO {
 	public void upisiKupce() throws IOException{
 		Gson gson = new Gson();
 		FileWriter fw = new FileWriter("../WebContent/json/kupci.json"); //putanja
-		gson.toJson(this.kupci, fw);
+		gson.toJson(kupci, fw);
 		fw.flush();
 		fw.close();
 	}
 	
-	private static boolean zauzetoKorisnickoIme(String novoKorIme) {
+	public static boolean zauzetoKorisnickoIme(String novoKorIme) {
 		for (Kupac k : kupci.values()) if (k.getKorisnickoIme().equals(novoKorIme)) return true;
+		for (Prodavac p : ProdavacDAO.prodavci.values()) if (p.getKorisnickoIme().equals(novoKorIme))
+				return true;
+		for (Administrator a : AdministratorDAO.administratori.values()) 
+			if (a.getKorisnickoIme().equals(novoKorIme)) return true;
 		return false;
 	}
 

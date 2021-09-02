@@ -16,7 +16,7 @@ $(document).ready(function() {
 
  	$("#dodaj_prodavca").submit(function(event) {
 		event.preventDefault();
-		// bice
+		window.location.href = "http://localhost:8080/Projekat/login.html";
     }); 
 
  	$("#svi_prodavci").submit(function(event) {

@@ -153,7 +153,9 @@ function popuniSadrzaj(manifestacije) {
 
 //MAIN
 $(document).ready(function(){
-	
+	window.sessionStorage.removeItem("trenutniKupac");
+	window.sessionStorage.removeItem("trenutniProdavac");
+	window.sessionStorage.removeItem("trenutniAdministrator");
 
 	if(JSON.parse(window.sessionStorage.getItem("manifestacije")) == null){
 		$.ajax({

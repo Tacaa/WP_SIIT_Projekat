@@ -7,6 +7,7 @@ import java.util.HashMap;
 import klase.Administrator;
 import klase.AktivnostKorisnika;
 import klase.Korisnik;
+import klase.Kupac;
 import klase.Manifestacija;
 import klase.Pol;
 import klase.Prodavac;
@@ -51,5 +52,18 @@ public class ProdavacDAO {
 			e.printStackTrace();
 		}*/
 		return izabrani;
+	}
+	
+	public static Prodavac dodajProdavca(Prodavac prodavac) {
+		if (KupacDAO.zauzetoKorisnickoIme(prodavac.getKorisnickoIme())) return null;
+		
+		prodavci.put(prodavac.getKorisnickoIme(), prodavac);
+		/*try {
+			this.upisiKupce();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		return prodavac;
 	}
 }

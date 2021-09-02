@@ -10,11 +10,9 @@ import javax.ws.rs.core.MediaType;
 
 import dao.KupacDAO;
 import klase.AktivnostKorisnika;
-import klase.ImeTipaKupca;
 import klase.Karta;
 import klase.Korisnik;
 import klase.Kupac;
-import klase.TipKupca;
 
 @Path("/kupci")
 public class KupacServis {
