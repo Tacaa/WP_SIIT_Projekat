@@ -23,15 +23,13 @@ public class KupacServis {
 	@Path("/registrujKupca")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Kupac registrujKupca(Korisnik noviKorisnik){
+	public String registrujKupca(Korisnik noviKorisnik){
 		Kupac noviKupac = new Kupac(noviKorisnik.getKorisnickoIme(), noviKorisnik.getLozinka(), noviKorisnik.getIme(), 
 				noviKorisnik.getPrezime(), noviKorisnik.getPol(), noviKorisnik.getDatumRodjenja(), 
 				AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), KupacDAO.obicni);
 		
-		if(KupacDAO.kupci.size() == 0) {
-			KupacDAO.ucitajKupce();
-		}
-		return KupacDAO.dodajKupca(noviKupac);
+		KupacDAO.ucitajKupce();
+		return KupacDAO.dodajKupca(noviKupac).toString();
 		
 	}
 	
@@ -40,7 +38,7 @@ public class KupacServis {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public String izmeniKupca(Korisnik kupac){
-		if(KupacDAO.kupci.size() == 0) KupacDAO.ucitajKupce();
+		KupacDAO.ucitajKupce();
 		return KupacDAO.izmeniKupca(kupac).toString();
 	}
 	

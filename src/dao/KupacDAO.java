@@ -56,8 +56,6 @@ public class KupacDAO {
 		kupci.put(kupac3.getKorisnickoIme(), kupac3);
 		kupci.put(kupac4.getKorisnickoIme(), kupac4);
 		kupci.put(kupac5.getKorisnickoIme(), kupac5);
-		
-		if (KartaDAO.karte.size() == 0) KartaDAO.ucitajKarte();
 	}
 	
 	

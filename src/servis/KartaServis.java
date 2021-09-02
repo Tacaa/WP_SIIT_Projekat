@@ -29,7 +29,7 @@ public class KartaServis {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String getSveKarte(){
-		if (KartaDAO.karte.size() == 0) KartaDAO.ucitajKarte();
+		KartaDAO.ucitajKarte();
 		return KartaDAO.karte.toString();
 	}
 	

@@ -12,6 +12,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.PathSegment;
 
 import dao.AdministratorDAO;
+import dao.KartaDAO;
+import dao.KomentarDAO;
 import dao.KupacDAO;
 import dao.ProdavacDAO;
 import klase.Administrator;
@@ -35,15 +37,10 @@ public class LogovanjeServis {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String logovanje(@Context HttpServletRequest zahtjev, Korisnik korisnik) {
 		//prvo ucitaj sve iz male baze
-		if(KupacDAO.kupci.size() == 0) {
-			KupacDAO.ucitajKupce();
-		}
-		if(AdministratorDAO.administratori.size() == 0) {
-			AdministratorDAO.ucitajAdministratore();
-		}
-		if(ProdavacDAO.prodavci.size() == 0) {
-			ProdavacDAO.ucitajProdavce();
-		}
+		KupacDAO.ucitajKupce();
+		AdministratorDAO.ucitajAdministratore();
+		ProdavacDAO.ucitajProdavce();
+		KomentarDAO.ucitajKomentare();
 		
 		
 		//provjeriti da li postoji korisnik u nekoj od malih baza i ako postoji saznajemo i koji tip korisnika je

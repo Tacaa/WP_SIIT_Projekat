@@ -1,6 +1,6 @@
 $(document).ready(function() {
-	let prodavac = window.sessionStorage.getItem("trenutniKupac");
-	let admin = window.sessionStorage.getItem("trenutniKupac");
+	let prodavac = window.sessionStorage.getItem("trenutniProdavac");
+	let admin = window.sessionStorage.getItem("trenutniAdministrator");
 	
 	let manifestacija = JSON.parse(window.sessionStorage.getItem("manifestacija"));
 	$("span#naz_manif").append(document.createTextNode(manifestacija.naziv));

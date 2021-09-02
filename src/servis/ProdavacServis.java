@@ -18,9 +18,7 @@ public class ProdavacServis {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public String izmeniProdavca(Korisnik prodavac){
-		if(ProdavacDAO.prodavci.size() == 0) {
-			ProdavacDAO.ucitajProdavce();
-		}
+		ProdavacDAO.ucitajProdavce();
 		return ProdavacDAO.izmeniProdavca(prodavac).toString();
 	}
 

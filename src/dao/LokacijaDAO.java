@@ -11,6 +11,7 @@ public class LokacijaDAO {
 	public LokacijaDAO() {}
 
 	public static void ucitajLokacije() {
+		if (lokacije.size() != 0) return;
 		Lokacija lokacija1 = new Lokacija(44.4, 77.7, "Zmaj Jovina 17", "Novi Sad", "Srbija", 21000);
 		Lokacija lokacija2 = new Lokacija(44.4, 77.7, "Knez Mihajlova 17", "Beograd", "Srbija", 11000);
 		Lokacija lokacija3 = new Lokacija(44.4, 77.7, "Dinavska 27", "Novi Sad", "Srbija", 21000);

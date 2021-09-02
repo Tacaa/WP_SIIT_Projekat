@@ -20,7 +20,9 @@ public class ProdavacDAO {
 	
 	
 	public static void ucitajProdavce() {
-		//administratori
+		//prodavci
+		if (prodavci.size() != 0) return;
+		
 		Prodavac daca = new Prodavac("daca", "daca", "Danijela", "Djumic", Pol.ZENSKI, LocalDate.of(1997, 4, 13), AktivnostKorisnika.AKTIVAN, new ArrayList<Manifestacija>());
 		Prodavac mama = new Prodavac("lidija", "lidija", "Lidija", "Gavrilovic", Pol.ZENSKI, LocalDate.of(1977, 11, 17), AktivnostKorisnika.AKTIVAN, new ArrayList<Manifestacija>());
 		
