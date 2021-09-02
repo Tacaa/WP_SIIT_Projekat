@@ -31,7 +31,7 @@ function redirektujadministratora(korisnickoIme) {
 		dataType:"json",
 		complete: function(administrator) {
 			window.sessionStorage.setItem("trenutniAdministrator", JSON.stringify(administrator.responseJSON));
-			window.location.href = "proba.html";
+			window.location.href = "profil_admina.html";
 		}
 	});
 }
