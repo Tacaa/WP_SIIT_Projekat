@@ -109,19 +109,19 @@ body{
     background: #545871;
 }
 
-.labela_vrsta_kartice, .labela_ocena {
+.labela_vrsta_kartice, .labela_ocena, .labela_prihvati {
 	position: relative;
 	margin-bottom: 0;
 }
 
-input.vrsta_kartice, input.ocena {
+input.vrsta_kartice, input.ocena, input.prihvati {
 	position: absolute;
 	top: 0;
 	right: 0;
 	opacity: 0;
 }
 
-.labela_vrsta_kartice span, .labela_ocena span {
+.labela_vrsta_kartice span, .labela_ocena span, .labela_prihvati span {
 	display: inline-block;
 	font-size: 17px;
 	padding: 3px;
@@ -129,11 +129,11 @@ input.vrsta_kartice, input.ocena {
 	color: #545871;
 }
 
-.vrsta_kartice:checked ~ span, .ocena:checked ~ span {
+.vrsta_kartice:checked ~ span, .ocena:checked ~ span, .prihvati:checked ~ span {
 	background: white;
 }
 
-table#tabela_rezervacije, table#tabela_kom {
+table#tabela_rezervacije, table#tabela_kom, table#tabela_odobravanja {
   	font-size: 20px;
 	 border: 1;
 	 border-radius: 3px;

@@ -244,5 +244,26 @@ public class ManifestacijeServis {
 		return povratnaLista.toString();
 	}
 
+	@GET
+	@Path("/zaOdobravanje")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String sveZaOdobravanje() {
+		ArrayList<Manifestacija> povratnaLista = new ArrayList<>();
+		for (Manifestacija m : ManifestacijaDAO.manifestacije) 
+			if (m.getStatus() == StatusManifestacije.NA_CEKANJU)
+				povratnaLista.add(m);
+		return povratnaLista.toString();
+	}
 	
+	@GET
+	@Path("/odobri/{nazivPlusVremePlusOdobri}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String odobri(@PathParam("nazivPlusVremePlusOdobri") String parametar) {
+		String[] splitovano = parametar.split("\\+");
+		Manifestacija manifestacija = ManifestacijaDAO.nadjiPoNazivuVremenu(splitovano[0], splitovano[1]);
+		if (manifestacija == null) return null;
+		if (splitovano[2].equals("DA")) manifestacija.setStatus(StatusManifestacije.AKTIVNA);
+		else manifestacija.setStatus(StatusManifestacije.ODBIJENA);
+		return manifestacija.toString();
+	}
 }

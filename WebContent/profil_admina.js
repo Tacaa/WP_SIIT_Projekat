@@ -31,7 +31,7 @@ $(document).ready(function() {
 
  	$("#odobri_man").submit(function(event) {
 		event.preventDefault();
-		// bice
+		window.location.href = "http://localhost:8080/Projekat/odobravanje_manifestacija.html";
     }); 
 
  	$("#pregled_man").submit(function(event) {

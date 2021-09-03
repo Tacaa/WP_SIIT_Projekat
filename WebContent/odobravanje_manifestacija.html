@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Odobravanje</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="rezervacija_karte.css">
+		<script src="jquery.min.js"></script>
+		<script src="odobravanje_manifestacija.js"></script>
+	</head>
+	<body>
+    	<div id="sadrzaj_odobravanja" class="sadrzaj"></div>
+    	
+    	
+        	<!-- ****************************** forma rezervacija ****************************** -->
+        <div id="modal_odob" class="modal">
+	        <div class="modal-content">
+	            <span class="close">&times;</span>
+	            <form id="odobri_man" action="#" method="get">
+		            <table id="tabela_odobravanja">
+		            	<tr>
+		            		<td colspan='3'>Prihvati manifestaciju:</td>
+		            	</tr>
+		            	<tr>
+		            		<td>
+			            		<label class="labela_prihvati">
+									<input type="radio" name="prihvati" value="DA" class="prihvati" checked>
+									<span>DA</span>
+								</label>
+		            		</td>
+		            		<td>
+			            		<label class="labela_prihvati">
+									<input type="radio" name="prihvati" value="NE" class="prihvati">
+									<span>NE</span>
+								</label>
+		            		</td>
+		            	</tr>
+		            	<tr align="center">
+		            		<td colspan="3"><input class="dugmici" type="submit" value="Sacuvaj"/></td>
+		            	</tr>
+		            	
+		            </table>
+	            </form>
+	        </div>
+        </div>
+	</body>
+</html>
