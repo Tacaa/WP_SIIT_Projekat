@@ -105,9 +105,9 @@ public class Karta {
 	}
 
 	public String jednostavanString() {
-		return "{\"id\": \""+ this.id + "\", \"manifestacija\": \""+ this.manifestacija.getNaziv()  +
-				"\", \"kupac\": \""+ this.kupac.getKorisnickoIme()+ "\", \"status\": \""+ this.status +
-				"\", \"tip\": \""+ this.tip + "\", \"konacnaCena\": \""+ this.konacnaCena  +"\"}";
+		return "{\"id\": \""+ this.id + "\", \"kupac\": \""+ this.kupac.getKorisnickoIme()+ 
+				"\", \"status\": \""+ this.status + "\", \"tip\": \""+ this.tip + 
+				"\", \"konacnaCena\": \""+ this.konacnaCena  +"\"}";
 	}
 
 }

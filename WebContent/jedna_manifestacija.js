@@ -231,6 +231,6 @@ $(document).ready(function(){
 	});
 	$("#karte").click(function(event) {
 		event.preventDefault();
-		alert("karte");
+		window.location.href = "http://localhost:8080/Projekat/prikaz_karata_adminu.html";
 	});
 })
