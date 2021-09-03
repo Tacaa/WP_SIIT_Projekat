@@ -104,4 +104,10 @@ public class Karta {
 				"\", \"tip\": \""+ this.tip + "\", \"konacnaCena\": \""+ this.konacnaCena  +"\"}";
 	}
 
+	public String jednostavanString() {
+		return "{\"id\": \""+ this.id + "\", \"manifestacija\": \""+ this.manifestacija.getNaziv()  +
+				"\", \"kupac\": \""+ this.kupac.getKorisnickoIme()+ "\", \"status\": \""+ this.status +
+				"\", \"tip\": \""+ this.tip + "\", \"konacnaCena\": \""+ this.konacnaCena  +"\"}";
+	}
+
 }

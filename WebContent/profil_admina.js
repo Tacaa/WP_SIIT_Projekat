@@ -36,7 +36,7 @@ $(document).ready(function() {
 
  	$("#pregled_man").submit(function(event) {
 		event.preventDefault();
-		// bice
+		window.location.href = "http://localhost:8080/Projekat/prikaz_manifestacija.html";
     }); 
 
     $("#odjava").submit(function(event) {

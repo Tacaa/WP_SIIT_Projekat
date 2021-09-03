@@ -1,8 +1,6 @@
 package dao;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.Random;
 
 import klase.Karta;
@@ -46,15 +44,15 @@ public class KartaDAO {
 		Karta karta9 = new Karta("9999988888", manifestacije.get(2), kupci.get(0), 
 				StatusKarte.REZERVISANA, TipKarte.FAN_PIT);
 		
-		karte.add(karta1);	
-		karte.add(karta2);	
-		karte.add(karta3);	
-		karte.add(karta4);	
-		karte.add(karta5);	
-		karte.add(karta6);	
-		karte.add(karta7);	
-		karte.add(karta8);	
-		karte.add(karta9);
+		karte.add(karta1); 	karta1.getManifestacija().getKarte().add(karta1);
+		karte.add(karta2);	karta2.getManifestacija().getKarte().add(karta2);
+		karte.add(karta3);	karta3.getManifestacija().getKarte().add(karta3);
+		karte.add(karta4);	karta4.getManifestacija().getKarte().add(karta4);
+		karte.add(karta5);	karta5.getManifestacija().getKarte().add(karta5);
+		karte.add(karta6);	karta6.getManifestacija().getKarte().add(karta6);
+		karte.add(karta7);	karta7.getManifestacija().getKarte().add(karta7);
+		karte.add(karta8);	karta8.getManifestacija().getKarte().add(karta8);
+		karte.add(karta9);  karta9.getManifestacija().getKarte().add(karta9);
 	}
 	
 	private static Karta nadjiPoId(String id) {
