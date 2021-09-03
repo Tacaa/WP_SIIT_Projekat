@@ -20,8 +20,8 @@ public class KartaDAO {
 	
 	public static void ucitajKarte() {
 		if (karte.size() != 0) return; 
-		if (ManifestacijaDAO.manifestacije.size() == 0) ManifestacijaDAO.ucitajManifestacije();
-		if (KupacDAO.kupci.size() == 0) KupacDAO.ucitajKupce();
+		ManifestacijaDAO.ucitajManifestacije();
+		KupacDAO.ucitajKupce();
 		
 		ArrayList<Manifestacija> manifestacije = ManifestacijaDAO.manifestacije;
 		ArrayList<Kupac> kupci = new ArrayList<>();
@@ -58,7 +58,7 @@ public class KartaDAO {
 	}
 	
 	private static Karta nadjiPoId(String id) {
-		if (karte.size() == 0) ucitajKarte();
+		ucitajKarte();
 		for (Karta k : karte) if (k.getId().equals(id)) return k;
 		return null;
 	} 

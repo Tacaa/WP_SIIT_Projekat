@@ -20,20 +20,17 @@ public class KomentarDAO {
 	
 	public static void ucitajKomentare() {
 		if (komentari.size() != 0) return;
-		if (KartaDAO.karte.size() == 0) KartaDAO.ucitajKarte();
+		KartaDAO.ucitajKarte();
 		
 		// provereni komentari
 		Karta peraKuvar = KartaDAO.karte.get(0);
-		Komentar prihvacenKom = new Komentar(peraKuvar.getKupac(), peraKuvar.getManifestacija(), 
-				"Obozavam kuvanje", 5, StatusKomentara.PRIHVACEN);
-		Komentar odbijenKom = new Komentar(peraKuvar.getKupac(), peraKuvar.getManifestacija(), 
-				"Devojke vole kuvare ;)", 5, StatusKomentara.ODBIJEN);
-		Komentar naCekanjuKom = new Komentar(peraKuvar.getKupac(), peraKuvar.getManifestacija(), 
-				"Kuvam od 7. godine", 5, StatusKomentara.NA_CEKANJU);
+		new Komentar(peraKuvar.getKupac(), peraKuvar.getManifestacija(), "Obozavam kuvanje", 
+				5, StatusKomentara.PRIHVACEN);
+		new Komentar(peraKuvar.getKupac(), peraKuvar.getManifestacija(), "Devojke vole kuvare ;)",
+				5, StatusKomentara.ODBIJEN);
+		new Komentar(peraKuvar.getKupac(), peraKuvar.getManifestacija(), "Kuvam od 7. godine", 
+				5, StatusKomentara.NA_CEKANJU);
 		peraKuvar.getManifestacija().setOcena(5);
-		peraKuvar.getManifestacija().getKomentari().add(prihvacenKom);
-		peraKuvar.getManifestacija().getKomentari().add(odbijenKom);
-		peraKuvar.getManifestacija().getKomentari().add(naCekanjuKom);
 		
 		// nasumicni komentari
 		Random zaRacunanje = new Random();
@@ -55,10 +52,8 @@ public class KomentarDAO {
 					manifestacija.setOcena(suma/(manifestacija.getKomentari().size() + 1));
 				}
 				else if (zaStatus == 2) status = StatusKomentara.ODBIJEN;
-				Komentar komentar = new Komentar(k.getKupac(), manifestacija, "Sve je bilo super",
-						ocena, status);
 				
-				manifestacija.getKomentari().add(komentar);
+				new Komentar(k.getKupac(), manifestacija, "Sve je bilo super", ocena, status);
 			}
 		}
 	}

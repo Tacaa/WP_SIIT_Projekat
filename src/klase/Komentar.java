@@ -40,6 +40,15 @@ public class Komentar {
 	}
 	public void setStatus(StatusKomentara status) {
 		this.status = status;
+		
+		// moze ili da prihvati ili da odbije
+		if (this.status == StatusKomentara.PRIHVACEN) {
+			int suma = this.ocena;
+			for (Komentar kom : this.manifestacija.getKomentari()) {
+				suma += kom.getOcena();
+			}
+			this.manifestacija.setOcena(suma/(this.manifestacija.getKomentari().size()));
+		}
 	}
 	
 	public Komentar() {
@@ -53,6 +62,8 @@ public class Komentar {
 		this.tekst = tekst;
 		this.ocena = ocena;
 		this.status = status;
+		
+		this.manifestacija.getKomentari().add(this);
 	}
 	
 	@Override

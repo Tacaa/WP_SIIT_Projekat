@@ -35,6 +35,7 @@ public class Karta {
 	public void setStatus(StatusKarte status) {
 		this.status = status;
 		
+		// moze samo da otkaze
 		double bodovi = this.kupac.getBrojBodova() - this.manifestacija.getCena()/1000 * 133 * 4; 
 		this.kupac.setBrojBodova(bodovi >= 0 ? bodovi : 0);
 		

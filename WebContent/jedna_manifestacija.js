@@ -182,7 +182,10 @@ $(document).ready(function(){
 	let dugme = document.createElement("button");
 	dugme.setAttribute("class", "svetli_dugmici");
 	dugme.appendChild(document.createTextNode("KOMENTARI"));
-	if (manifestacija.vreme.split("T")[0] > danas) dugme.setAttribute("disabled", "true");
+	if (manifestacija.vreme.split("T")[0] > danas) {
+		dugme.setAttribute("class", "onemoguceni_dugmici");
+		dugme.setAttribute("disabled", "true");
+	}
 	div13.appendChild(dugme);
 	
 	//manje divove stavi u formin div

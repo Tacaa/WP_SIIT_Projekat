@@ -34,7 +34,7 @@ public class Prodavac extends Korisnik {
 		return "{\"ime\": \""+ this.getIme() +"\", \"prezime\": \""+ this.getPrezime() +
 				"\", \"korisnickoIme\": \""+ this.getKorisnickoIme() + "\", \"pol\": \""+ this.getPol() +
 				"\", \"lozinka\": \""+ this.getLozinka() +"\", \"datumRodjenja\": \""+ this.getDatumRodjenja() +
-				"\", \"manifestacije\": "+ this.manifestacije + "}";
+				"\", \"aktivnost\": \"" + this.getAktivnost() +"\", \"manifestacije\": "+ this.manifestacije + "}";
 	}
 	
 }

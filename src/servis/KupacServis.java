@@ -3,18 +3,18 @@ package servis;
 import java.util.ArrayList;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import dao.KupacDAO;
 import klase.AktivnostKorisnika;
-import klase.ImeTipaKupca;
 import klase.Karta;
 import klase.Korisnik;
 import klase.Kupac;
-import klase.TipKupca;
 
 @Path("/kupci")
 public class KupacServis {
@@ -23,15 +23,13 @@ public class KupacServis {
 	@Path("/registrujKupca")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Kupac registrujKupca(Korisnik noviKorisnik){
+	public String registrujKupca(Korisnik noviKorisnik){
 		Kupac noviKupac = new Kupac(noviKorisnik.getKorisnickoIme(), noviKorisnik.getLozinka(), noviKorisnik.getIme(), 
 				noviKorisnik.getPrezime(), noviKorisnik.getPol(), noviKorisnik.getDatumRodjenja(), 
 				AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), KupacDAO.obicni);
 		
-		if(KupacDAO.kupci.size() == 0) {
-			KupacDAO.ucitajKupce();
-		}
-		return KupacDAO.dodajKupca(noviKupac);
+		KupacDAO.ucitajKupce();
+		return KupacDAO.dodajKupca(noviKupac).toString();
 		
 	}
 	
@@ -40,8 +38,23 @@ public class KupacServis {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public String izmeniKupca(Korisnik kupac){
-		if(KupacDAO.kupci.size() == 0) KupacDAO.ucitajKupce();
+		KupacDAO.ucitajKupce();
 		return KupacDAO.izmeniKupca(kupac).toString();
 	}
+
+	@GET
+	@Path("/")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getProdavce(){
+		return KupacDAO.kupci.values().toString();
+	}
 	
+	@GET
+	@Path("/{korisnickoIme}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String izbrisiKupca(@PathParam("korisnickoIme") String korisnickoIme){
+		Kupac kupac = KupacDAO.kupci.get(korisnickoIme);
+		kupac.setAktivnost(AktivnostKorisnika.IZBRISAN);
+		return kupac.toString();
+	}
 }

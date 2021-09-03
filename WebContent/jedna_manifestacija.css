@@ -58,7 +58,7 @@ body{
 	text-align: center;
 }
 
-.svetli_dugmici {
+.svetli_dugmici, .onemoguceni_dugmici {
  	padding: 2px;
 	border: 0;
 	border-radius: 3px;
@@ -68,9 +68,6 @@ body{
 	margin-right: 47px;
     margin-left: 47px;
     font-size: 15px;
- }
- 
- .svetli_dugmici {
  	color: #545871;
 	width: 40%;
 	background: white;

@@ -38,9 +38,7 @@ public class ManifestacijeServis {
 	@Path("/aktivne")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String aktivne() {
-		if(ManifestacijaDAO.manifestacije.size() == 0) {
-			ManifestacijaDAO.ucitajManifestacije();
-		}
+		ManifestacijaDAO.ucitajManifestacije();
 		ArrayList<Manifestacija> aktivne = new ArrayList<Manifestacija>();
 		
 		for(Manifestacija m : ManifestacijaDAO.manifestacije) {
@@ -61,9 +59,7 @@ public class ManifestacijeServis {
 	@Path("/pretraga/{params}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String pretraga(@PathParam("params") PathSegment params) {
-		if(ManifestacijaDAO.manifestacije.size() == 0) {
-			ManifestacijaDAO.ucitajManifestacije();
-		}
+		ManifestacijaDAO.ucitajManifestacije();
 		ArrayList<Manifestacija> vrati = ManifestacijaDAO.manifestacije;
 		
 		
@@ -223,7 +219,7 @@ public class ManifestacijeServis {
 	@Path("/zaRezervaciju")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String sveZaRezervaciju() {
-		if (ManifestacijaDAO.manifestacije.size() == 0) { ManifestacijaDAO.ucitajManifestacije(); }
+		ManifestacijaDAO.ucitajManifestacije();
 		ArrayList<Manifestacija> povratnaLista = new ArrayList<>();
 		for (Manifestacija m :  ManifestacijaDAO.manifestacije) 
 			if (m.getVreme().isAfter(LocalDateTime.now())
@@ -238,7 +234,7 @@ public class ManifestacijeServis {
 	public String sveZaKomentarisanje() {
 		Kupac kupac = LogovanjeServis.ulogovaniKupac;
 		if (kupac == null) return null;
-		if (KartaDAO.karte.size() == 0) { KartaDAO.ucitajKarte(); }
+		KartaDAO.ucitajKarte();
 		ArrayList<Manifestacija> povratnaLista = new ArrayList<>();
 		for (Karta karta : kupac.getSveKarte()) 
 			if (karta.getManifestacija().getVreme().isBefore(LocalDateTime.now())

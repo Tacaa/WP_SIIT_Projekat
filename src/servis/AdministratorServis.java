@@ -18,9 +18,7 @@ public class AdministratorServis {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public String izmeniAdministratora(Korisnik admin){
-		if(AdministratorDAO.administratori.size() == 0) {
-			AdministratorDAO.ucitajAdministratore();
-		}
+		AdministratorDAO.ucitajAdministratore();
 		return AdministratorDAO.izmeniAdmina(admin).toString();
 	}
 }

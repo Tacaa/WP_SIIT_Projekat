@@ -17,10 +17,10 @@
 	danas = godina + '-' + mjesec + '-' + dan;
 	document.getElementById("datum_rodjenja").setAttribute("max", danas);
 	 
- 
- 
- 
- 
+ 	if (window.sessionStorage.getItem("trenutniAdministrator") == null) 
+		$(".div_za_naslov")[0].append(document.createTextNode("REGISTRACIJA"));
+	else $(".div_za_naslov")[0].append(document.createTextNode("REGISTRACIJA KUPCA"));
+  
  	//KLIK NA DUGME "REGISTRUJTE SE"
  	$('form#forma').submit(function(event){
  		
@@ -54,27 +54,42 @@
  		}
  		
  		
+ 		if (window.sessionStorage.getItem("trenutniAdministrator") == null) {
+	 		$.ajax({
+				url: "rest/kupci/registrujKupca",
+				type:"POST",
+				data: JSON.stringify({korisnickoIme: korisnickoIme, lozinka: lozinka, ime: ime, prezime: prezime, pol:pol, datumRodjenja:datumRodjenja, aktivnost:"AKTIVAN"}),
+				contentType:"application/json",
+				dataType:"json",
+				complete: function(data, uspelo) {
+					if (uspelo == "success") $('#greska_unosa').text('Uspesno registrovanje korisnika!!!! :)');
+					else $('#greska_unosa').text('Korisnicko ime je vec zauzeto :( Probajte da unesete neko drugo :)');
+					
+					$('#greska_unosa').css("color", "#fbc2c0");
+					$("#greska_unosa").show().delay(4000).fadeOut();
+				}
+								
+			});
+		}
+ 		else {
+	 		$.ajax({
+				url: "rest/prodavci/registrujProdavca",
+				type:"POST",
+				data: JSON.stringify({korisnickoIme: korisnickoIme, lozinka: lozinka, ime: ime, prezime: prezime, pol:pol, datumRodjenja:datumRodjenja, aktivnost:"AKTIVAN"}),
+				contentType:"application/json",
+				dataType:"json",
+				complete: function(data, uspelo) {
+					if (uspelo == "success") $('#greska_unosa').text('Uspesno registrovanje prodavca!!!! :)');
+					else $('#greska_unosa').text('Korisnicko ime je vec zauzeto :( Probajte da unesete neko drugo :)');
+					
+					$('#greska_unosa').css("color", "#fbc2c0");
+					$("#greska_unosa").show().delay(4000).fadeOut();
+				}
+								
+			});
+		}
  		
- 		$.ajax({
-			url: "rest/kupci/registrujKupca",
-			type:"POST",
-			data: JSON.stringify({korisnickoIme: korisnickoIme, lozinka: lozinka, ime: ime, prezime: prezime, pol:pol, datumRodjenja:datumRodjenja, aktivnost:"AKTIVAN"}),
-			contentType:"application/json",
-			dataType:"json",
-			complete: function(data, uspelo) {
-				if (uspelo == "success") $('#greska_unosa').text('Uspesno registrovanje korisnika!!!! :)');
-				else $('#greska_unosa').text('Korisnicko ime je vec zauzeto :( Probajte da unesete neko drugo :)');
-				
-				$('#greska_unosa').css("color", "#fbc2c0");
-				$("#greska_unosa").show().delay(4000).fadeOut();
-			}
-							
-		});
-		
- 		
- 		
- 		
- 		 	});
+ 	});
  
  
  })

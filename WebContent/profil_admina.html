@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Profil</title>
+		<link rel="stylesheet" type ="text/css" href="profil_korisnika.css"/>
+		<script src="jquery.min.js"></script>
+		<script src="profil_admina.js"></script>
+	</head>
+	<body>
+		<div class="centriran_div">
+			
+			<div class="div_za_tabelu" align="center">
+				<table>
+					<tr>
+						<td>
+							<p id="informacije">
+								<span id="korisnicko_ime"></span><br /><br />
+								Ime i prezime:&ensp;<span id="ime_prezime"></span><br />
+								Pol:&ensp;<span id="pol"></span><br />
+								Datum rodjenja:&ensp;<span id="datum_rodjenja"></span><br />
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<form id="izmena_podataka" method="get" action="/izmena_podataka.html">
+								<input class="dugmici" type="submit" value="Izmena licnih podataka"/>
+							</form>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<form id="dodaj_prodavca" method="get"  action="#">
+								<input class="dugmici" type="submit" value="Dodaj prodavca"/>
+							</form>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<form id="svi_prodavci" method="get"  action="#">
+								<input class="dugmici" type="submit" value="Pregled prodavaca"/>
+							</form>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<form id="svi_kupci" method="get"  action="#">
+								<input class="dugmici" type="submit" value="Pregled kupaca"/>
+							</form>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<form id="odobri_man" method="get"  action="#">
+								<input class="dugmici" type="submit" value="Odobri manifestaciju"/>
+							</form>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<form id="pregled_man" method="get"  action="#">
+								<input class="dugmici" type="submit" value="Preged manifestacija"/>
+							</form>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<form id="pregled_karata" method="get"  action="#">
+								<input class="dugmici" type="submit" value="Pregled karata"/>
+							</form>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<form id="odjava" action="#" method="get">
+								<input class="dugmici" type="submit" value="Odjavi se"/>
+							</form>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>

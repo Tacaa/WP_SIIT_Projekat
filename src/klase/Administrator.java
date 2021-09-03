@@ -20,7 +20,7 @@ public class Administrator extends Korisnik {
 		return "{\"ime\": \""+ this.getIme() +"\", \"prezime\": \""+ this.getPrezime() +
 				"\", \"korisnickoIme\": \""+ this.getKorisnickoIme() + "\", \"pol\": \""+ this.getPol() +
 				"\", \"lozinka\": \""+ this.getLozinka() +"\", \"datumRodjenja\": \""+ this.getDatumRodjenja() +
-				"\"}";
+				"\", \"aktivnost\": \"" + this.getAktivnost() + "\"}";
 	}
 	
 	
