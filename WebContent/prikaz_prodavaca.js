@@ -96,4 +96,136 @@ $(document).ready(function() {
 		}
 		modal.style.display = "none";		// sakrij formu kad klikne na x
 	});
+				//***************************************************************************************
+		// podesavanje forme
+    var modal_filtera = document.getElementById("modal_filtera_prodavaca");
+    var filter = document.getElementById("filter");
+    var span_filter = document.getElementsByClassName("close")[1];
+    var span_sort = document.getElementsByClassName("close")[2];
+	var modal_sort = document.getElementById("modal_sort_prodavaca");
+    var sortiranje = document.getElementById("sortiranje");
+
+    filter.onclick = function() {
+    	modal_filtera.style.display = "block";		// prikazujem formu za filter
+    }
+ 	sortiranje.onclick = function() {
+    	modal_sort.style.display = "block";		// prikazujem formu za sort
+    }
+    span_filter.onclick = function() {
+    	modal_filtera.style.display = "none";		// sakrij filter kad klikne na x
+    }
+    span_sort.onclick = function() {
+    	modal_sort.style.display = "none";		// sakrij filter kad klikne na x
+    }
+    window.onclick = function(event) {
+	    if (event.target == modal_filtera) {		// sakrij filter kad klikne van filtera
+	        modal_filtera.style.display = "none";
+			return;
+	    }
+	    if (event.target == modal_sort) {		// sakrij sort kad klikne van filtera
+	        modal_sort.style.display = "none";
+	    }
+    }
+
+	//***************************************************************************************
+		// filtriranjee
+	$("form#filter_prodavaca").submit(function(event) {
+		event.preventDefault();
+		let ime_prodavca = $('#ime_prodavca').val();
+		let prez_prodavca= $('#prez_prodavca').val();
+		let korIme_prodavca = $('#korIme_prodavca').val();
+		
+		if (ime_prodavca == "" && prez_prodavca == "" && korIme_prodavca == "") {
+			$('#greska_filtera_prodavca').text("Morate uneti bar jedan parametar pretrage :D");
+			$('#greska_filtera_prodavca').css("color", "#545871");
+            $("#greska_filtera_prodavca").show().delay(4000).fadeOut();
+			return;
+		}
+		
+		$.ajax({
+           url: "rest/prodavci/filterProdavaca",
+           type:"POST",
+           data: JSON.stringify({ime: ime_prodavca, prezime: prez_prodavca, korisnickoIme: korIme_prodavca}),
+           contentType:"application/json",
+           dataType:"json",
+           complete: function(data, uspelo) {
+				console.log("-------------------------------");
+				console.log(data.responseText);
+				listaProdavaca = JSON.parse(data.responseText);
+               	popunjavanjeTabele(listaProdavaca);
+				modal_filtera.style.display = "none";		// sakrij filter
+           }               
+       });
+		
+	});
+	
+		//***************************************************************************************
+		// sortiranje
+	$("form#sort_prodavaca").submit(function(event) {
+		event.preventDefault();	
+		if (listaProdavaca.length == 0) {
+			modal_sort.style.display = "none";
+			return;
+		}
+		let sort_po_cemu = $('input[name=sta_sortiramo]:checked').val();
+		let vrsta_sorta = $('input[name=vrsta_sorta]:checked').val();
+		let lista = []; let x = 0;
+		let sortiraniProdavci = [listaProdavaca.length]; let y = 0;
+		if (sort_po_cemu == "IME") {
+			for (let p of listaProdavaca) {lista[x] = p.ime + "+" + p.korisnickoIme; x = x + 1;}
+			lista.sort();
+			for (let s of lista) {
+				let ime = s.split("+");
+				for (let pro of listaProdavaca) 
+					if (pro.ime == ime[0] && pro.korisnickoIme == ime[1]) {
+						if (vrsta_sorta == "true") sortiraniProdavci[y] = pro;
+						else sortiraniProdavci[x - y - 1] = pro;
+						y = y + 1;
+						break;
+					}
+			}
+		}
+		else if (sort_po_cemu == "PREZIME") {
+			for (let p of listaProdavaca) {lista[x] = p.prezime + "+" + p.korisnickoIme; x = x + 1;}
+			lista.sort();
+			for (let s of lista) {
+				let prez = s.split("+");
+				for (let pro of listaProdavaca) 
+					if (pro.prezime == prez[0] && pro.korisnickoIme == prez[1]) {
+						if (vrsta_sorta == "true") sortiraniProdavci[y] = pro;
+						else sortiraniProdavci[x - y - 1] = pro;
+						y = y + 1;
+						break;
+					}
+			}
+		}
+		else if (sort_po_cemu == "KOR_IME") {
+			for (let p of listaProdavaca) {lista[x] = p.korisnickoIme; x = x + 1;}
+			lista.sort();
+			for (let s of lista)
+				for (let pro of listaProdavaca) 
+					if (pro.korisnickoIme == s) {
+						if (vrsta_sorta == "true") sortiraniProdavci[y] = pro;
+						else sortiraniProdavci[x - y - 1] = pro;
+						y = y + 1;
+						break;
+					}
+		}
+		else if (sort_po_cemu == "BR_MAN") {
+		for (let p of listaProdavaca) {lista[x] = p.manifestacije.length + "+" + p.korisnickoIme; x = x + 1;}
+			lista.sort();
+			for (let s of lista) {
+				let bodovi = s.split("+");
+				for (let pro of listaProdavaca) 
+					if (pro.manifestacije.length == bodovi[0] && pro.korisnickoIme == bodovi[1]) {
+						if (vrsta_sorta == "true") sortiraniProdavci[y] = pro;
+						else sortiraniProdavci[x - y - 1] = pro;
+						y = y + 1;
+						break;
+					}
+			}
+		}
+		popunjavanjeTabele(sortiraniProdavci);
+		modal_sort.style.display = "none";
+	});
 });

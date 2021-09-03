@@ -39,11 +39,6 @@ $(document).ready(function() {
 		// bice
     }); 
 
- 	$("#pregled_karata").submit(function(event) {
-		event.preventDefault();
-		// bice
-    }); 
-
     $("#odjava").submit(function(event) {
 		event.preventDefault();
 		window.sessionStorage.removeItem("trenutniAdministrator");
