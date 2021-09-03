@@ -82,6 +82,9 @@ public class ManifestacijaDAO {
 				new Lokacija(45.2889, 45.2889, "", "Kragujevac", "Srbija", 34000), "koncert.png",
 				0, new ArrayList<Komentar>(), 0);
 		
+		Manifestacija m13 = new Manifestacija("Noc istrazivaca", TipManifestacije.FESTIVAL, 
+				78, LocalDateTime.now().plusDays(17), 277, StatusManifestacije.NA_CEKANJU, 
+				LokacijaDAO.lokacije.get(0), "festival.jpg", 0, new ArrayList<>(), 0);
 		
 		manifestacije.add(m1);
 		manifestacije.add(m2);
@@ -97,6 +100,7 @@ public class ManifestacijaDAO {
 		
 		manifestacije.add(m11);
 		manifestacije.add(m12);
+		manifestacije.add(m13);
 	}
 	
 	public static Manifestacija nadjiPoNazivuVremenu(String naziv, String vreme) {

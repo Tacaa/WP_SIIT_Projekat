@@ -92,14 +92,14 @@
  
  .labela_tip_karte, .labela_status_karte, 
  	.labela_vrsta_sorta, .labela_po_cemu_sort,
- 	.labela_izvrisi {
+ 	.labela_izvrisi, .labela_tip_kupca {
 	position: relative;
 	margin-bottom: 0;
 }
 
 input.status_karte, input.tip_karte, 
 	input.vrsta_sorta, input.sta_sortiramo,
-	input.izbrisi {
+	input.izbrisi, input.tip_kupca {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -108,7 +108,7 @@ input.status_karte, input.tip_karte,
 
 .labela_status_karte span, .labela_tip_karte span, 
 	.labela_vrsta_sorta span, .labela_po_cemu_sort span,
-	.labela_izvrisi span {
+	.labela_izvrisi span, .labela_tip_kupca span {
 	display: inline-block;
 	font-size: 17px;
 	padding: 3px;
@@ -118,18 +118,20 @@ input.status_karte, input.tip_karte,
 
 .status_karte:checked ~ span, .tip_karte:checked ~ span, 
 	.vrsta_sorta:checked ~ span, .sta_sortiramo:checked ~ span,
-	.izbrisi:checked ~ span {
+	.izbrisi:checked ~ span, .tip_kupca:checked ~ span {
 	background: white;
 }
 
 table#tabela_filter, table#tabela_karata, 
 	table#tabela_prodavaca, table#tabela_brisanje,
-	table#tabela_kupaca {
+	table#tabela_kupaca, table#tabela_filter_kupaca,
+	table#tabela_prodavaca, table#tabela_filter_prodavaca {
   font-size: 20px;
 }
 
 table#tabela_karata, table#tabela_prodavaca,
-	table#tabela_brisanje, table#tabela_kupaca {
+	table#tabela_brisanje, table#tabela_kupaca,
+	table#tabela_prodavaca {
 	 border: 1;
 	 border-radius: 3px;
 	 background: #ffd5d2;

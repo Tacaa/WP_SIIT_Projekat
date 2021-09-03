@@ -10,9 +10,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import dao.KupacDAO;
 import dao.ProdavacDAO;
 import klase.AktivnostKorisnika;
 import klase.Korisnik;
+import klase.Kupac;
 import klase.Prodavac;
 
 @Path("/prodavci")
@@ -55,5 +57,24 @@ public class ProdavacServis {
 		Prodavac prodavac = ProdavacDAO.prodavci.get(korisnickoIme);
 		prodavac.setAktivnost(AktivnostKorisnika.IZBRISAN);
 		return prodavac.toString();
+	}
+
+	@POST
+	@Path("/filterProdavaca")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public String filtriranjeProdavaca(Prodavac filter){
+		ProdavacDAO.ucitajProdavce();
+		ArrayList<Prodavac> povratnaLista = new ArrayList<>();
+		for (Prodavac p : ProdavacDAO.prodavci.values()) {
+			if (!filter.getIme().equals("")) 
+				if (!p.getIme().toLowerCase().contains(filter.getIme().toLowerCase())) continue;
+			if (!filter.getPrezime().equals("")) 
+				if (!p.getPrezime().toLowerCase().contains(filter.getPrezime().toLowerCase())) continue;
+			if (!filter.getKorisnickoIme().equals("")) 
+				if (!p.getKorisnickoIme().toLowerCase().contains(filter.getKorisnickoIme().toLowerCase())) continue;
+			povratnaLista.add(p);
+		}
+		return povratnaLista.toString();
 	}
 }

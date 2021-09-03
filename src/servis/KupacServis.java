@@ -57,4 +57,24 @@ public class KupacServis {
 		kupac.setAktivnost(AktivnostKorisnika.IZBRISAN);
 		return kupac.toString();
 	}
+
+	@POST
+	@Path("/filterKupaca")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public String filtriranjeKupaca(Kupac filter){
+		KupacDAO.ucitajKupce();
+		ArrayList<Kupac> povratnaLista = new ArrayList<>();
+		for (Kupac k : KupacDAO.kupci.values()) {
+			if (!filter.getIme().equals("")) 
+				if (!k.getIme().toLowerCase().contains(filter.getIme().toLowerCase())) continue;
+			if (!filter.getPrezime().equals("")) 
+				if (!k.getPrezime().toLowerCase().contains(filter.getPrezime().toLowerCase())) continue;
+			if (!filter.getKorisnickoIme().equals("")) 
+				if (!k.getKorisnickoIme().toLowerCase().contains(filter.getKorisnickoIme().toLowerCase())) continue;
+			if (k.getTip().getIme() != filter.getTip().getIme()) continue;
+			povratnaLista.add(k);
+		}
+		return povratnaLista.toString();
+	}
 }

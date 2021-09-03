@@ -120,6 +120,7 @@ $(document).ready(function() {
 				console.log(data.responseText);
 				listaKarata = JSON.parse(data.responseText);
                	popunjavanjeTabele(listaKarata);
+				modal.style.display = "none";
            }               
        });
 		
@@ -129,6 +130,10 @@ $(document).ready(function() {
 		// sortiranje
 	$("form#sort_karte").submit(function(event) {
 		event.preventDefault();			// ovde cemo dobavljati karte za prikaz
+		if (listaKarata.length == 0) {
+			modal_sort.style.display = "none";
+			return;
+		}
 		let sort_po_cemu = $('input[name=sta_sortiramo]:checked').val();
 		let vrsta_sorta = $('input[name=vrsta_sorta]:checked').val();
 		let lista = []; let x = 0;
@@ -197,6 +202,7 @@ $(document).ready(function() {
 				}
 		}
 		popunjavanjeTabele(sortiraneKarte);
+		modal_sort.style.display = "none";
 	});
 	
 	$("form.otkazivanje").submit(function(event) {
