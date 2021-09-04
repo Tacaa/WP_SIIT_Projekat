@@ -167,17 +167,25 @@ $(document).ready(function(){
 			popuniSadrzaj(manifestacije);
 			window.sessionStorage.setItem("manifestacije", JSON.stringify(manifestacije_lista.responseJSON));
 		}
-	});
-	
-	console.log(event);
-	
-	$('button#pretrazi').click(function() {
-		window.location.href = "pretraga_manifestacija.html";
-	});
+		});
+		
+		console.log(event);
+		
+		$('button#pretrazi').click(function() {
+			window.location.href = "pretraga_manifestacija.html";
+		});
 	
 	}else{
-		popuniSadrzaj(JSON.parse(window.sessionStorage.getItem("manifestacije")));
-		window.sessionStorage.setItem("manifestacije", JSON.stringify(manifestacije_lista.responseJSON));
+		$.ajax({
+		url: "rest/manifestacije/aktivne",
+		type:"GET",
+		dataType:"json",
+		complete: function(manifestacije_lista) {
+			manifestacije = JSON.parse(manifestacije_lista.responseText);
+			popuniSadrzaj(manifestacije);
+			window.sessionStorage.setItem("manifestacije", JSON.stringify(manifestacije_lista.responseJSON));
+		}
+		});
 		
 		$('button#pretrazi').click(function() {
 		window.location.href = "pretraga_manifestacija.html";
