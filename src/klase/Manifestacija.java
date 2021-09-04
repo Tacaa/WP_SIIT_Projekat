@@ -17,6 +17,10 @@ public class Manifestacija {
 	private ArrayList<Komentar> komentari;
 	private double ocena;
 	
+	private String prodavac;
+	
+	
+	
 	public String getNaziv() {
 		return naziv;
 	}
@@ -94,12 +98,23 @@ public class Manifestacija {
 		this.ocena = ocena;
 	}
 	
+	public String getProdavac() {
+		return prodavac;
+	}
+	public void setProdavac(String prodavac) {
+		this.prodavac = prodavac;
+	}
+	
+	
 	public Manifestacija() {
 		super();
 	}
+
+	
+	
 	
 	public Manifestacija(String naziv, TipManifestacije tip, int brojMesta, LocalDateTime vreme, double cena,
-			StatusManifestacije status, Lokacija lokacija, String poster) {
+			StatusManifestacije status, Lokacija lokacija, String poster, String prodavac) {
 		super();
 		this.naziv = naziv;
 		this.tip = tip;
@@ -112,11 +127,12 @@ public class Manifestacija {
 		this.brojRezervisanihMesta = 0;
 		this.komentari = new ArrayList<>();
 		this.ocena = 0;
+		this.prodavac = prodavac;
 	}
 	
 	public Manifestacija(String naziv, TipManifestacije tip, int brojMesta, LocalDateTime vreme, double cena,
 			StatusManifestacije status, Lokacija lokacija, String poster, int brojRezervisanihMesta,
-			ArrayList<Komentar> komentari, double ocena) {
+			ArrayList<Komentar> komentari, double ocena, String prodavac) {
 		super();
 		this.naziv = naziv;
 		this.tip = tip;
@@ -129,7 +145,30 @@ public class Manifestacija {
 		this.brojRezervisanihMesta = brojRezervisanihMesta;
 		this.komentari = komentari;
 		this.ocena = ocena;
+		this.prodavac = prodavac;
+		
 	}
+	
+	
+	
+
+	public Manifestacija(String naziv, TipManifestacije tip, int brojMesta, LocalDateTime vreme, double cena,
+			String adresa, String grad, String drzava, String poster, String prodavac) {
+		super();
+		this.naziv = naziv;
+		this.tip = tip;
+		this.brojMesta = brojMesta;
+		this.vreme = vreme;
+		this.cena = cena;
+		this.poster = poster;
+		this.prodavac = prodavac;
+		this.lokacija = new Lokacija(0, 0, adresa, grad, drzava, 0);
+		
+	}
+	
+	
+	
+	
 	
 	@Override
 	public String toString() {
@@ -140,6 +179,7 @@ public class Manifestacija {
 				"\", \"brojRezervisanihMesta\": \""+ this.brojRezervisanihMesta + 
 				"\", \"komentari\": "+ this.komentari +"}";
 	}
+	
 	
 	
 }
