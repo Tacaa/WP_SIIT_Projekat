@@ -26,6 +26,15 @@ body{
   text-align: center;
 }
 
+.div_teksta{
+  margin-left: 200px;
+  margin-top: -214px;
+  background: #494c63;
+  width: 520px;
+  height: 220px;
+  text-align: center;
+}
+
 .d1{
   margin-top: 10px;
   font-family: fantasy, sans-serif;

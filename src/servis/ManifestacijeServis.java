@@ -1,14 +1,10 @@
 package servis;
 
-import java.text.Normalizer.Form;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -28,10 +24,6 @@ import klase.Prodavac;
 import klase.StatusKarte;
 import klase.StatusManifestacije;
 import klase.TipManifestacije;
-
-
-
-
 
 @Path("/manifestacije")
 public class ManifestacijeServis {
@@ -53,9 +45,6 @@ public class ManifestacijeServis {
 		return aktivne.toString();
 		
 	}
-	
-	
-	
 	
 	@GET
 	@Path("/pretraga/{params}")

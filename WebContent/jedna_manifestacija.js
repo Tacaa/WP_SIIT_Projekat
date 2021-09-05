@@ -179,14 +179,34 @@ $(document).ready(function(){
 	klasa13.value = "div_input";
 	div13.setAttributeNode(klasa13);
 
-	let dugme = document.createElement("button");
-	dugme.setAttribute("class", "svetli_dugmici");
-	dugme.appendChild(document.createTextNode("KOMENTARI"));
-	if (manifestacija.vreme.split("T")[0] > danas) {
-		dugme.setAttribute("class", "onemoguceni_dugmici");
-		dugme.setAttribute("disabled", "true");
+	let komentari = document.createElement("button");
+	komentari.setAttribute("class", "svetli_dugmici");
+	komentari.setAttribute("id", "komentari");
+	komentari.appendChild(document.createTextNode("KOMENTARI"));
+	if (manifestacija.vreme.split("T")[0] > danas || manifestacija.komentari.length == 0) {
+		komentari.setAttribute("class", "onemoguceni_dugmici");
+		komentari.setAttribute("disabled", "true");
 	}
-	div13.appendChild(dugme);
+	div13.appendChild(komentari);
+	
+		//karte ako je admin i ako ih ima
+	let div14 = document.createElement("div");
+	if (window.sessionStorage.getItem("trenutniAdministrator") != null) {
+
+		let klasa14 = document.createAttribute("class");
+		klasa14.value = "div_input";
+		div14.setAttributeNode(klasa14);
+		
+		let karte = document.createElement("button");
+		karte.setAttribute("class", "svetli_dugmici");
+		karte.setAttribute("id", "karte");
+		karte.appendChild(document.createTextNode("KARTE"));
+		if (manifestacija.vreme.split("T")[0] > danas  || manifestacija.karte.length == 0) {
+			karte.setAttribute("class", "onemoguceni_dugmici");
+			karte.setAttribute("disabled", "true");
+		}
+		div14.appendChild(karte);
+	}
 	
 	//manje divove stavi u formin div
 	let formin_div = document.getElementById("formin_div");
@@ -203,9 +223,14 @@ $(document).ready(function(){
 	formin_div.appendChild(div11);
 	formin_div.appendChild(div12);
 	formin_div.appendChild(div13);
+	formin_div.appendChild(div14);
 
-	$("button").click(function(event) {
+	$("#komentari").click(function(event) {
 		event.preventDefault();
 		window.location.href = "http://localhost:8080/Projekat/prikaz_komentara.html";
+	});
+	$("#karte").click(function(event) {
+		event.preventDefault();
+		window.location.href = "http://localhost:8080/Projekat/prikaz_karata_adminu.html";
 	});
 })
