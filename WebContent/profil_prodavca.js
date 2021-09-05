@@ -19,7 +19,7 @@ $(document).ready(function() {
 
  	$("#napravi_manifestaciju").submit(function(event) {
 		event.preventDefault();
-    	window.location.href = "";
+    	window.location.href = "forma_manifestacije.html";
     }); 
 
 

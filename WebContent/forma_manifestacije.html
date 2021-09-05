@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="foma_manifestacije.css">
+		<script src="jquery.min.js"></script>
+		<script src="forma_manifestacije.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>FORMA MANIFESTACIJE</title>
+</head>
+<body>
+	
+	<div class="centriran_div">
+			
+			<div class="div_za_registraciju">
+				<div class="div_za_naslov">NOVA MANIFESTACIJA </div>
+				<div class="div_za_objasnjenje"> Molim Vas, popunite sva polja :)</div>
+				
+				<form class="forma" id="forma">
+					<div class="formin_div">
+					
+						<div class="div_input">
+							<label>NAZIV MANIFESTACIJE</label>
+							<input type="text" name="naziv">
+						</div>
+					
+					
+					
+						<div class="div_ime_prezime">
+							<div class="div_input">
+								<label>DATUM</label>
+								<input type="date" name="datum" id="datum">
+							</div>
+							<div class="div_input">
+								<label>VRIJEME</label>
+								<input type="time" name="vrijeme">
+						</div>
+						</div>	
+					
+						
+						
+						<div class="div_input">
+							<label>ADRESA</label>
+							<input type="text" name="adresa">
+						</div>
+						
+						
+						<div class="div_ime_prezime">
+							<div class="div_input">
+								<label>GRAD</label>
+								<input type="text" name="grad">
+							</div>
+							<div class="div_input">
+								<label>DRZAVA</label>
+								<input type="text" name="drzava">
+							</div>
+						</div>
+						
+						
+						
+						<div class="div_ime_prezime">
+							<div class="div_input">
+								<label>BROJ MJESTA</label>
+								<input type="number" name="broj_mjesta">
+							</div>
+						
+							<div class="div_input">
+								<label>CIJENA KARTE</label>
+								<input type="number" name="cijena">
+							</div>
+						</div>
+						
+							
+						
+						<div class="div_input">
+								<label>SLIKA (Unesite link slike :))</label>
+								<input type="text" name="slika">
+						</div>
+						
+						
+						<div class="div_input">
+							<label>TIP MANIFESTACIJE</label>
+							<div class="div_za_filter">
+								<div class="mini_div_za_filter">
+									<input type="radio"   class="filter_input" name="filter" value="KONCERT" checked>
+									<span  class="filter_span">KONCERT</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+								  <input type="radio" class="filter_input" name="filter" value="FESTIVAL">
+								  <span  class="filter_span">FESTIVAL</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+								  <input type="radio" class="filter_input" name="filter" value="POZORISNA_PREDSTAVA">
+								  <span  class="filter_span">POZORISNA_PREDSTAVA</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+									<input type="radio" class="filter_input" name="filter" value="BIOSKOPSKA_PROJEKCIJA">
+									<span  class="filter_span">BIOSKOPSKA_PROJEKCIJA</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+								  <input type="radio" class="filter_input"  name="filter" value="SPORTSKA_NADMETANJA">
+								  <span  class="filter_span">SPORTSKA_NADMETANJA</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+								  <input type="radio"  class="filter_input" name="filter" value="PLESNI_NASTUP">
+								  <span  class="filter_span">PLESNI_NASTUP</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+									<input type="radio" class="filter_input" name="filter" value="STANDUP_NASTUP">
+									<span  class="filter_span">STANDUP_NASTUP</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+								  <input type="radio" class="filter_input" name="filter" value="NASTUP_CIRKUSA">
+								  <span  class="filter_span">NASTUP_CIRKUSA</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+								  <input type="radio" class="filter_input" name="filter" value="SAJAM">
+								  <span  class="filter_span">SAJAM</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+									<input type="radio" class="filter_input" name="filter" value="MUZEJSKO_VECE">
+									<span  class="filter_span">MUZEJSKO_VECE</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+								  <input type="radio" class="filter_input" name="filter" value="KNJIZEVNO_VECE">
+								 <span  class="filter_span">KNJIZEVNO_VECE</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+								  <input type="radio" class="filter_input" name="filter" value="DRUGA_KATEGORIJA">
+								  <span  class="filter_span">DRUGA_KATEGORIJA</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+								  <input type="radio" class="filter_input" name="filter" value="bez">
+								  <span  class="filter_span">NE ZELIM FILTRIRANJE</span>
+								</div>
+							</div>
+						</div>
+						
+						
+						
+						<br>
+						
+						<br>
+						<p id="greska_unosa" hidden="true"></p>
+						<br>
+						
+						
+						
+						<div class="div_input">
+							<input type="submit" value="KREIRAJ" class="submit_dugme">
+						</div>
+
+					</div>
+				</form>
+				
+				
+				
+			</div>
+			
+		</div>
+	
+	
+	
+	
+	
+</body>
+</html>

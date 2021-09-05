@@ -13,11 +13,14 @@ import javax.ws.rs.core.PathSegment;
 
 import dao.KartaDAO;
 import dao.ManifestacijaDAO;
+import dao.ProdavacDAO;
 import klase.CijenaSorter;
 import klase.Karta;
+import klase.Komentar;
 import klase.Kupac;
 import klase.LokacijaSorter;
 import klase.Manifestacija;
+import klase.Prodavac;
 import klase.StatusKarte;
 import klase.StatusManifestacije;
 import klase.TipManifestacije;
@@ -254,4 +257,36 @@ public class ManifestacijeServis {
 		else manifestacija.setStatus(StatusManifestacije.ODBIJENA);
 		return manifestacija.toString();
 	}
+	
+	
+	
+	
+	
+	@POST
+	@Path("/kreiraj")
+	@Produces(MediaType.TEXT_PLAIN)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String kreiraj(Manifestacija manifestacija) {
+		manifestacija.setBrojRezervisanihMesta(0);
+		manifestacija.setKomentari(new ArrayList<Komentar>());
+		manifestacija.setOcena(0);
+		manifestacija.setStatus(StatusManifestacije.NA_CEKANJU);
+		
+		ManifestacijaDAO.manifestacije.add(manifestacija);
+		
+		//dodaj u prodavcevu listu manifestacija
+		Prodavac prodavac = ProdavacDAO.prodavci.get(manifestacija.getProdavac());
+		if(prodavac == null) {
+			return null;
+		}else {
+			prodavac.getManifestacije().add(manifestacija);
+		}
+		
+		return "Dodano!";
+	}
+	
+	
+	
+	
+	
 }
