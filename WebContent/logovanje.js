@@ -38,7 +38,9 @@ function redirektujadministratora(korisnickoIme) {
 
 
 $(document).ready(function(){
- 	
+ 	window.sessionStorage.removeItem("trenutniKupac");
+	window.sessionStorage.removeItem("trenutniProdavac");
+	window.sessionStorage.removeItem("trenutniAdministrator");
  	
  	//KLIK NA DUGME "REGISTRUJTE SE"
  	$('form#forma').submit(function(event){

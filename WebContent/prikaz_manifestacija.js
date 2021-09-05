@@ -103,7 +103,6 @@ $(document).ready(function(){
 		dataType:"json",
 		complete: function(data) {
 			console.log(data.responseText);
-			alert(data.responseText);
 			let manifestacije = JSON.parse(data.responseText);
 			popuniSadrzaj(manifestacije);
 		}

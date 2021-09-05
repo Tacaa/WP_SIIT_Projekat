@@ -57,7 +57,7 @@ public class KomentarDAO {
 				}
 				else if (zaStatus == 2) status = StatusKomentara.ODBIJEN;
 				
-				Komentar kom_n = new Komentar(k.getKupac(), manifestacija, "Sve je bilo super + " + ocena, ocena, status);
+				Komentar kom_n = new Komentar(k.getKupac(), manifestacija, "Sve je bilo super - " + ocena, ocena, status);
 				komentari.add(kom_n);
 			}
 		}
