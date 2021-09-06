@@ -9,6 +9,7 @@ import java.util.Collections;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -22,6 +23,7 @@ import klase.CijenaSorter;
 import klase.Karta;
 import klase.Komentar;
 import klase.Kupac;
+import klase.Lokacija;
 import klase.LokacijaSorter;
 import klase.Manifestacija;
 import klase.Prodavac;
@@ -278,19 +280,20 @@ public class ManifestacijeServis {
 	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String kreiraj(Manifestacija manifestacija) {
-		manifestacija.setBrojRezervisanihMesta(0);
-		manifestacija.setKomentari(new ArrayList<Komentar>());
-		manifestacija.setOcena(0);
-		manifestacija.setStatus(StatusManifestacije.NA_CEKANJU);
+		Lokacija lokacija = new Lokacija(0, 0, manifestacija.getAdresa(), manifestacija.getGrad(), manifestacija.getDrzava(), 0);
+		Manifestacija m = new Manifestacija(manifestacija.getNaziv(), manifestacija.getTip(), manifestacija.getBrojMesta(), manifestacija.getVreme(), manifestacija.getCena(),
+				StatusManifestacije.NA_CEKANJU, lokacija, manifestacija.getPoster(), 0,
+				new ArrayList<Komentar>(), 0, manifestacija.getProdavac());
 		
-		ManifestacijaDAO.manifestacije.add(manifestacija);
+		ManifestacijaDAO.manifestacije.add(m);
 		
 		//dodaj u prodavcevu listu manifestacija
 		Prodavac prodavac = ProdavacDAO.prodavci.get(manifestacija.getProdavac());
 		if(prodavac == null) {
 			return null;
 		}else {
-			prodavac.getManifestacije().add(manifestacija);
+			prodavac.getManifestacije().add(m);
+			Collections.sort(prodavac.getManifestacije(), (a,b)->a.getVreme().compareTo(b.getVreme()));
 		}
 		
 		return "Dodano!";
@@ -298,6 +301,70 @@ public class ManifestacijeServis {
 	
 	
 	
+	@PUT
+	@Path("/mijenjaj")
+	@Produces(MediaType.TEXT_PLAIN)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String mijenjaj(Manifestacija manifestacija) {
+		
+		for(int i = 0; i<ManifestacijaDAO.manifestacije.size(); i++) {
+			if(ManifestacijaDAO.manifestacije.get(i).getNaziv().equals(manifestacija.getStariNaziv()) && ManifestacijaDAO.manifestacije.get(i).getVreme().equals(manifestacija.getStaroVrijeme())) {
+				StatusManifestacije status = ManifestacijaDAO.manifestacije.get(i).getStatus();
+				Lokacija lokacija = ManifestacijaDAO.manifestacije.get(i).getLokacija();
+				lokacija.setDrzava(manifestacija.getDrzava());
+				lokacija.setGrad(manifestacija.getGrad());
+				lokacija.setUlicaBroj(manifestacija.getAdresa());
+				int brojRezMjesta = ManifestacijaDAO.manifestacije.get(i).getBrojRezervisanihMesta();
+				ArrayList<Komentar> komentari = ManifestacijaDAO.manifestacije.get(i).getKomentari();
+				double ocena = ManifestacijaDAO.manifestacije.get(i).getOcena();
+				
+				
+				
+				Manifestacija m = new Manifestacija(manifestacija.getNaziv(), manifestacija.getTip(), manifestacija.getBrojMesta(), manifestacija.getVreme(), manifestacija.getCena(),
+						status, lokacija, manifestacija.getPoster(), brojRezMjesta,
+						komentari, ocena, manifestacija.getProdavac());
+				
+				Prodavac p = ProdavacDAO.prodavci.get(manifestacija.getProdavac());
+
+				for(int j = 0; j<p.getManifestacije().size(); j++) {
+					if(p.getManifestacije().get(j).equals(ManifestacijaDAO.manifestacije.get(i))) {
+						p.getManifestacije().remove(j);
+						p.getManifestacije().add(m);
+						
+						Collections.sort(p.getManifestacije(), (a,b)->a.getVreme().compareTo(b.getVreme()));
+					}
+					
+					
+				}
+				
+				ManifestacijaDAO.manifestacije.remove(i);
+				ManifestacijaDAO.manifestacije.add(m);
+				
+				
+				return m.toString();
+			}
+		}
+		
+		return null;
+		
+		
+		
+		
+	}
+	
+	
+	
+	@GET
+	@Path("/prodavceve_manifestacije/{prodavac}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String prodavceve_manifestacije(@PathParam("prodavac") String prodavac) {
+		if(ProdavacDAO.prodavci.size() == 0) {
+			ProdavacDAO.ucitajProdavce();
+		}
+		
+		Prodavac pronadjenProdavac = ProdavacDAO.prodavci.get(prodavac);
+		return pronadjenProdavac.getManifestacije().toString();
+	}
 	
 	
 }

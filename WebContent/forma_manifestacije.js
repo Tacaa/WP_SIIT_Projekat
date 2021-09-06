@@ -35,6 +35,9 @@ $(document).ready(function(){
 	 	let poster = $('input[name="slika"]').val();	
 	 	let tip = $('input[name="filter"]:checked').val();
 	 	
+	 
+	 	
+	 	
 	 	let vreme = datum + "T" + vrijeme + ":00";
 	 	
 	 	//PROVJERE
