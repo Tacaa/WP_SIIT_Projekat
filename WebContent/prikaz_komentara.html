@@ -22,5 +22,39 @@
 			</thead>
 			<tbody></tbody>
 		</table>
+		
+		
+        	<!-- ****************************** forma odobravanje ****************************** -->
+        <div id="modal_odob" class="modal">
+	        <div class="modal-content">
+	            <span class="close">&times;</span>
+	            <form id="odobri_kom" action="#" method="get">
+		            <table id="tabela_odobravanja">
+		            	<tr>
+		            		<td colspan='3'>Odobri komentar:</td>
+		            	</tr>
+		            	<tr>
+		            		<td>
+			            		<label class="labela_prihvati">
+									<input type="radio" name="prihvati" value="DA" class="prihvati" checked>
+									<span>DA</span>
+								</label>
+		            		</td>
+		            		<td>
+			            		<label class="labela_prihvati">
+									<input type="radio" name="prihvati" value="NE" class="prihvati">
+									<span>NE</span>
+								</label>
+		            		</td>
+		            	</tr>
+		            	<tr align="center">
+		            		<td colspan="3"><input class="dugmici" type="submit" value="Sacuvaj"/></td>
+		            	</tr>
+		            	
+		            </table>
+	            </form>
+	        </div>
+        </div>
+		
     </body>
 </html>

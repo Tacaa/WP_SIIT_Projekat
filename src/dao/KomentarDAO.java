@@ -24,13 +24,17 @@ public class KomentarDAO {
 		
 		// provereni komentari
 		Karta peraKuvar = KartaDAO.karte.get(0);
-		new Komentar(peraKuvar.getKupac(), peraKuvar.getManifestacija(), "Obozavam kuvanje", 
+		Komentar kom1 = new Komentar(peraKuvar.getKupac(), peraKuvar.getManifestacija(), "Obozavam kuvanje", 
 				5, StatusKomentara.PRIHVACEN);
-		new Komentar(peraKuvar.getKupac(), peraKuvar.getManifestacija(), "Devojke vole kuvare ;)",
+		Komentar kom2 = new Komentar(peraKuvar.getKupac(), peraKuvar.getManifestacija(), "Devojke vole kuvare ;)",
 				5, StatusKomentara.ODBIJEN);
-		new Komentar(peraKuvar.getKupac(), peraKuvar.getManifestacija(), "Kuvam od 7. godine", 
+		Komentar kom3 = new Komentar(peraKuvar.getKupac(), peraKuvar.getManifestacija(), "Kuvam od 7. godine", 
 				5, StatusKomentara.NA_CEKANJU);
 		peraKuvar.getManifestacija().setOcena(5);
+		
+		komentari.add(kom1);
+		komentari.add(kom2);
+		komentari.add(kom3);
 		
 		// nasumicni komentari
 		Random zaRacunanje = new Random();
@@ -38,7 +42,7 @@ public class KomentarDAO {
 			if (k.getStatus() == StatusKarte.OBUSTAVLJENA) continue;
 			if (k.getManifestacija().getVreme().isBefore(LocalDateTime.now())) {
 				Manifestacija manifestacija = k.getManifestacija();
-				int ocena = zaRacunanje.nextInt() % 5 + 1;		// ocena od 1 do 5
+				int ocena = (zaRacunanje.nextInt() % 5) + 1;		// ocena od 1 do 5
 				int zaStatus = zaRacunanje.nextInt() % 3;		// ocena od 0 do 2
 				StatusKomentara status = StatusKomentara.NA_CEKANJU;
 				if (zaStatus == 1) {
@@ -53,7 +57,8 @@ public class KomentarDAO {
 				}
 				else if (zaStatus == 2) status = StatusKomentara.ODBIJEN;
 				
-				new Komentar(k.getKupac(), manifestacija, "Sve je bilo super", ocena, status);
+				Komentar kom_n = new Komentar(k.getKupac(), manifestacija, "Sve je bilo super - " + ocena, ocena, status);
+				komentari.add(kom_n);
 			}
 		}
 	}

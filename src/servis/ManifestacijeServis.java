@@ -1,9 +1,7 @@
 package servis;
 
-import java.text.Normalizer.Form;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 import javax.ws.rs.Consumes;
@@ -31,10 +29,6 @@ import klase.StatusKarte;
 import klase.StatusManifestacije;
 import klase.TipManifestacije;
 
-
-
-
-
 @Path("/manifestacije")
 public class ManifestacijeServis {
 	//vraca sve manifestacije koje su statusa AKTIVAN
@@ -55,9 +49,6 @@ public class ManifestacijeServis {
 		return aktivne.toString();
 		
 	}
-	
-	
-	
 	
 	@GET
 	@Path("/pretraga/{params}")

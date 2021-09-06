@@ -15,6 +15,7 @@ public class Manifestacija {
 	
 	private int brojRezervisanihMesta;
 	private ArrayList<Komentar> komentari;
+	private ArrayList<Karta> karte;
 	private double ocena;
 	
 	private String prodavac;
@@ -104,6 +105,13 @@ public class Manifestacija {
 		this.ocena = ocena;
 	}
 	
+	public ArrayList<Karta> getKarte() {
+		return karte;
+	}
+	public void setKarte(ArrayList<Karta> karte) {
+		this.karte = karte;
+	}
+
 	public String getProdavac() {
 		return prodavac;
 	}
@@ -111,6 +119,7 @@ public class Manifestacija {
 		this.prodavac = prodavac;
 	}
 	
+
 	
 	public String getStariNaziv() {
 		return stariNaziv;
@@ -144,12 +153,11 @@ public class Manifestacija {
 		this.grad = grad;
 	}
 	
+  
+  
 	public Manifestacija() {
 		super();
 	}
-
-	
-	
 	
 	public Manifestacija(String naziv, TipManifestacije tip, int brojMesta, LocalDateTime vreme, double cena,
 			StatusManifestacije status, Lokacija lokacija, String poster, String prodavac) {
@@ -164,6 +172,7 @@ public class Manifestacija {
 		this.poster = poster;
 		this.brojRezervisanihMesta = 0;
 		this.komentari = new ArrayList<>();
+		this.karte = new ArrayList<>();
 		this.ocena = 0;
 		this.prodavac = prodavac;
 	}
@@ -182,6 +191,7 @@ public class Manifestacija {
 		this.poster = poster;
 		this.brojRezervisanihMesta = brojRezervisanihMesta;
 		this.komentari = komentari;
+		this.karte = new ArrayList<>();
 		this.ocena = ocena;
 		this.prodavac = prodavac;
 		
@@ -228,12 +238,18 @@ public class Manifestacija {
 	
 	@Override
 	public String toString() {
+		StringBuilder zaKarte = new StringBuilder();
+		zaKarte.append("[");
+		for (Karta k : this.karte) zaKarte.append(k.jednostavanString() + ",");
+		if (this.karte.size() != 0) zaKarte.deleteCharAt(zaKarte.length() - 1);
+		zaKarte.append("]");
 		return "{\"naziv\": \"" + this.naziv + "\", \"tip\": \""+ this.tip + "\", \"brojMesta\": \"" + 
 				this.brojMesta + "\", \"vreme\": \""+ this.vreme + "\", \"cena\": \""+ this.cena + 
 				"\", \"status\": \""+ this.status + "\", \"lokacija\": "+ this.lokacija + 
 				", \"poster\": \""+ this.poster + "\", \"ocena\": \""+ this.ocena +
 				"\", \"brojRezervisanihMesta\": \""+ this.brojRezervisanihMesta + 
-				"\", \"komentari\": "+ this.komentari +"}";
+				"\", \"komentari\": "+ this.komentari + ", \"karte\": "+ zaKarte.toString() +
+        ", \"prodavac\": \""+ this.prodavac + "\"}";
 	}
 	
 	
