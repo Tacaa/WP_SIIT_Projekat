@@ -23,21 +23,9 @@ $(document).ready(function() {
     }); 
 
 
- 	$("#izmjena_manifestacije").submit(function(event) {
-		event.preventDefault();
-    	window.location.href = "";
-    }); 
-    
-
  	$("#pregled_manifestacija").submit(function(event) {
 		event.preventDefault();
-    	window.location.href = "";
-    }); 
-
-
-	 $("#pregled_kupaca").submit(function(event) {
-		event.preventDefault();
-    	window.location.href = "izmjena_prodavcevih_podataka.html";
+    	window.location.href = "prikaz_prodavcevih_manifestacija.html";
     }); 
 
 
@@ -62,6 +50,6 @@ $(document).ready(function() {
     $("#odjava").submit(function(event) {
 		event.preventDefault();
 		window.sessionStorage.removeItem("trenutniProdavac");
-    	window.location.href = "logovanje.html";
+    	window.location.href = "pocetna.html";
     }); 
 });
