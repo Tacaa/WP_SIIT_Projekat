@@ -71,7 +71,6 @@ $(document).ready(function(){
 			contentType:"application/json",
 			dataType:"text",
 			complete: function(data, uspjelo) {
-				alert(data.responseText);
 				if (uspjelo == "success") {
  					//redirektovati
  					if(data.responseText == "kupac"){

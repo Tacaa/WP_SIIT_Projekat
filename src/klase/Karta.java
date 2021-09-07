@@ -79,6 +79,7 @@ public class Karta {
 		this.kupac.setBrojBodova(bodovi);
 		
 		this.kupac.getSveKarte().add(this);
+		this.manifestacija.getKarte().add(this);
 		this.manifestacija.setBrojRezervisanihMesta(this.manifestacija.getBrojRezervisanihMesta() + 1);
 	}
 	
@@ -96,6 +97,7 @@ public class Karta {
 		this.kupac.setBrojBodova(bodovi);
 
 		this.kupac.getSveKarte().add(this);
+		this.manifestacija.getKarte().add(this);
 		this.manifestacija.setBrojRezervisanihMesta(this.manifestacija.getBrojRezervisanihMesta() + 1);
 	}
 
