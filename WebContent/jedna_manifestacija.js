@@ -191,7 +191,7 @@ $(document).ready(function(){
 	
 		//karte ako je admin i ako ih ima
 	let div14 = document.createElement("div");
-	if (window.sessionStorage.getItem("trenutniAdministrator") != null) {
+	if (window.sessionStorage.getItem("trenutniAdministrator") != null || window.sessionStorage.getItem("trenutniProdavac") != null) {
 
 		let klasa14 = document.createAttribute("class");
 		klasa14.value = "div_input";

@@ -3,9 +3,9 @@ $(document).ready(function() {
 	console.log(korisnik);
     if (korisnik == null) {window.location.href = "logovanje.html";}
 
-    $("#korisnicko_ime").text(korisnik.korisnickoIme);
+    $("#korisnicko_ime").text("@" + korisnik.korisnickoIme);
     $("#ime_prezime").text(korisnik.ime + " " + korisnik.prezime);
-    $("#pol").text(korisnik.pol);
+    $("#pol").text(korisnik.pol.toLowerCase());
 	let datum = korisnik.datumRodjenja.split("-");
     $("#datum_rodjenja").text(datum[2] + "." + datum[1] + "." + datum[0] + ".");
 

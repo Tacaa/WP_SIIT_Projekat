@@ -1,5 +1,5 @@
 function podesi_manifestaciju(tagA) { 
-	window.sessionStorage.setItem("manifestacija", tagA.id.split("+ppm")[0])
+	window.sessionStorage.setItem("mijenjaj_manifestaciju", tagA.id.split("+ppm")[0])
 };
 
 function popuniSadrzaj(manifestacije) {
@@ -28,7 +28,7 @@ function popuniSadrzaj(manifestacije) {
 			slika.setAttributeNode(putanjaSlike);
 			let link = document.createElement("a");
 			let putanjaLinka = document.createAttribute("href");
-			putanjaLinka.value = "jedna_manifestacija.html";
+			putanjaLinka.value = "mijenjaj_manifestaciju.html";
 			link.setAttributeNode(putanjaLinka);
 			link.appendChild(slika);
 				// da bi podesilo manifestaciju
@@ -143,21 +143,24 @@ function popuniSadrzaj(manifestacije) {
 
 
 
+ 
+ 
+ 
 
 //MAIN
 $(document).ready(function(){
-	const objekat = JSON.parse(window.sessionStorage.getItem("pretrazene_manifestacije"));
-	console.log("OBJEKAT");
-	console.log(objekat);
+	const prodavac = JSON.parse(window.sessionStorage.getItem("trenutniProdavac"));
 	
-	
-	popuniSadrzaj(objekat);
-	
-	$('button#pretrazi').click(function() {
-		window.sessionStorage.removeItem("pretrazene_manifestacije");
-		window.location.href = "pocetna.html";
-		
-	});
-	
+	$.ajax({
+		url: "rest/manifestacije/prodavceve_manifestacije/" + prodavac.korisnickoIme,
+		type:"GET",
+		dataType:"json",
+		complete: function(manifestacije_lista) {
+			manifestacije = JSON.parse(manifestacije_lista.responseText);
+			console.log(manifestacije)
+			popuniSadrzaj(manifestacije);
+			
+		}
+		});
 
 })

@@ -21,6 +21,12 @@ public class Manifestacija {
 	
 	private String prodavac;
 	
+	private String stariNaziv;
+	private LocalDateTime staroVrijeme;
+	private String adresa;
+	private String drzava;
+	private String grad;
+	
 	public String getNaziv() {
 		return naziv;
 	}
@@ -112,6 +118,38 @@ public class Manifestacija {
 		this.prodavac = prodavac;
 	}
 	
+	public String getStariNaziv() {
+		return stariNaziv;
+	}
+	public void setStariNaziv(String stariNaziv) {
+		this.stariNaziv = stariNaziv;
+	}
+	public LocalDateTime getStaroVrijeme() {
+		return staroVrijeme;
+	}
+	public void setStaroVrijeme(LocalDateTime staroVrijeme) {
+		this.staroVrijeme = staroVrijeme;
+	}
+	
+	public String getAdresa() {
+		return adresa;
+	}
+	public void setAdresa(String adresa) {
+		this.adresa = adresa;
+	}
+	public String getDrzava() {
+		return drzava;
+	}
+	public void setDrzava(String drzava) {
+		this.drzava = drzava;
+	}
+	public String getGrad() {
+		return grad;
+	}
+	public void setGrad(String grad) {
+		this.grad = grad;
+	}
+  
 	public Manifestacija() {
 		super();
 	}
@@ -168,6 +206,24 @@ public class Manifestacija {
 		
 	}
 	
+	public Manifestacija(String stariNaziv, LocalDateTime staroVrijeme, String naziv, TipManifestacije tip, int brojMesta, LocalDateTime vreme, double cena,
+			String adresa, String grad, String drzava, String poster, String prodavac) {
+		super();
+		this.stariNaziv = stariNaziv;
+		this.staroVrijeme = staroVrijeme;
+		this.naziv = naziv;
+		this.tip = tip;
+		this.brojMesta = brojMesta;
+		this.vreme = vreme;
+		this.cena = cena;
+		this.poster = poster;
+		this.prodavac = prodavac;
+		this.adresa = adresa;
+		this.grad = grad;
+		this.drzava = drzava;
+		
+	}
+  
 	@Override
 	public String toString() {
 		StringBuilder zaKarte = new StringBuilder();

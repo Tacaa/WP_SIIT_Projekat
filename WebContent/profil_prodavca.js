@@ -3,9 +3,9 @@ $(document).ready(function() {
     let korisnik = JSON.parse(window.sessionStorage.getItem("trenutniProdavac"));
     if (korisnik == null) {window.location.href = "logovanje.html";}
 
-    $("#korisnicko_ime").text(korisnik.korisnickoIme);
+    $("#korisnicko_ime").text("@" + korisnik.korisnickoIme);
     $("#ime_prezime").text(korisnik.ime + " " + korisnik.prezime);
-    $("#pol").text(korisnik.pol);
+    $("#pol").text(korisnik.pol.toLowerCase());
 	let datum = korisnik.datumRodjenja.split("-");
     $("#datum_rodjenja").text(datum[2] + "." + datum[1] + "." + datum[0] + ".");
     
@@ -23,45 +23,21 @@ $(document).ready(function() {
     }); 
 
 
- 	$("#izmjena_manifestacije").submit(function(event) {
-		event.preventDefault();
-    	window.location.href = "";
-    }); 
-    
-
  	$("#pregled_manifestacija").submit(function(event) {
 		event.preventDefault();
-    	window.location.href = "";
-    }); 
-
-
-	 $("#pregled_kupaca").submit(function(event) {
-		event.preventDefault();
-    	window.location.href = "izmjena_prodavcevih_podataka.html";
+    	window.location.href = "prikaz_prodavcevih_manifestacija.html";
     }); 
 
 
  	$("#pregled_karata").submit(function(event) {
 		event.preventDefault();
-    	window.location.href = "";
-    }); 
-    
-    
-
- 	$("#odobrenje_komentara").submit(function(event) {
-		event.preventDefault();
-    	window.location.href = "http://localhost:8080/Projekat/rezervacija_karte.html";
-    }); 
-
- 	$("#vidi_komentare").submit(function(event) {
-		event.preventDefault();
-    	window.location.href = "http://localhost:8080/Projekat/komentarisanje.html";
+    	window.location.href = "prodavcev_pregled_karata_i_komentara.html";
     }); 
     
 
     $("#odjava").submit(function(event) {
 		event.preventDefault();
 		window.sessionStorage.removeItem("trenutniProdavac");
-    	window.location.href = "logovanje.html";
+    	window.location.href = "pocetna.html";
     }); 
 });

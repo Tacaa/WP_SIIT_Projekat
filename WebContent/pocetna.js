@@ -157,39 +157,29 @@ $(document).ready(function(){
 	window.sessionStorage.removeItem("trenutniProdavac");
 	window.sessionStorage.removeItem("trenutniAdministrator");
 
-	if(JSON.parse(window.sessionStorage.getItem("manifestacije")) == null){
-		$.ajax({
-		url: "rest/manifestacije/aktivne",
-		type:"GET",
-		dataType:"json",
-		complete: function(manifestacije_lista) {
-			manifestacije = JSON.parse(manifestacije_lista.responseText);
-			popuniSadrzaj(manifestacije);
-			window.sessionStorage.setItem("manifestacije", JSON.stringify(manifestacije_lista.responseJSON));
-		}
-		});
-		
-		console.log(event);
-		
-		$('button#pretrazi').click(function() {
-			window.location.href = "pretraga_manifestacija.html";
-		});
 	
-	}else{
-		$.ajax({
-		url: "rest/manifestacije/aktivne",
-		type:"GET",
-		dataType:"json",
-		complete: function(manifestacije_lista) {
-			manifestacije = JSON.parse(manifestacije_lista.responseText);
-			popuniSadrzaj(manifestacije);
-			window.sessionStorage.setItem("manifestacije", JSON.stringify(manifestacije_lista.responseJSON));
-		}
-		});
+	
+	
+	
+	$.ajax({
+	url: "rest/manifestacije/aktivne",
+	type:"GET",
+	dataType:"json",
+	complete: function(manifestacije_lista) {
+		manifestacije = JSON.parse(manifestacije_lista.responseText);
+		popuniSadrzaj(manifestacije);
+		window.sessionStorage.setItem("manifestacije", JSON.stringify(manifestacije_lista.responseJSON));
+	}
+	});
+	
 		
-		$('button#pretrazi').click(function() {
+	
+	
+		
+	$('button#pretrazi').click(function() {
 		window.location.href = "pretraga_manifestacija.html";
 	});
-	}
-
+	
+	
+	
 })

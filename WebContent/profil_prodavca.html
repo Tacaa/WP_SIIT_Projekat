@@ -3,7 +3,7 @@
 <head>
 		<title>Profil prodavca</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="profil_korisnika.css">
+		<link rel="stylesheet" href="profil_prodavca.css">
 		<script src="jquery.min.js"></script>
 		<script src="profil_prodavca.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,10 +18,12 @@
 					<tr>
 						<td>
 							<p id="informacije">
-								<span id="korisnicko_ime"></span><br /><br />
+								<span id="korisnicko_ime"></span><br />
+								<img src="user.png" alt="USER">
+								<br /> <br />
 								Ime i prezime:&ensp;<span id="ime_prezime"></span><br />
 								Pol:&ensp;<span id="pol"></span><br />
-								Datum rodjenja:&ensp;<span id="datum_rodjenja"></span><br />
+								Datum rodjenja:&ensp;<span id="datum_rodjenja"></span><br /><br />
 							</p>
 						</td>
 					</tr>
@@ -36,7 +38,7 @@
 					
 					<tr>
 						<td>
-							<form id="napravi_manifestaciju"">
+							<form id="napravi_manifestaciju">
 								<input class="dugmici" type="submit" value="Napravite manifestaciju"/>
 							</form>
 						</td>
@@ -44,53 +46,22 @@
 					
 					<tr>
 						<td>
-							<form id="izmjena_manifestacije" method="get"  action="#">
-								<input class="dugmici" type="submit" value="Izmjena manifestacija"/>
-							</form>
-						</td>
-					</tr>
-					
-					<tr>
-						<td>
 							<form id="pregled_manifestacija" method="get"  action="#">
-								<input class="dugmici" type="submit" value="Pregled Vasih manifestacija"/>
+								<input class="dugmici" type="submit" value="Pregled Vasih manifestacija i izmena"/>
 							</form>
 						</td>
 					</tr>
-					
 
-					<tr>
-						<td>
-							<form id="pregled_kupaca" method="get"  action="#">
-								<input class="dugmici" type="submit" value="Pregled Vasih kupaca"/>
-							</form>
-						</td>
-					</tr>
 
 					<tr>
 						<td>
 							<form id="pregled_karata" action="#" method="get">
-								<input class="dugmici" type="submit" value="Pregled rezervisanih karata"/>
-							</form>
-						</td>
-					</tr>
-					
-					<tr>
-						<td>
-							<form id="odobrenje_komentara" action="#" method="get">
-								<input class="dugmici" type="submit" value="Odobri komentar"/>
+								<input class="dugmici" type="submit" value="Pregled rezervisanih karata i komentari"/>
 							</form>
 						</td>
 					</tr>
 					
 					
-					<tr>
-						<td>
-							<form id="vidi_komentare" action="#" method="get">
-								<input class="dugmici" type="submit" value="Vidi komentare"/>
-							</form>
-						</td>
-					</tr>
 					
 					<tr>
 						<td>

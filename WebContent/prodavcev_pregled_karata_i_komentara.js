@@ -143,21 +143,24 @@ function popuniSadrzaj(manifestacije) {
 
 
 
+ 
+ 
+ 
 
 //MAIN
 $(document).ready(function(){
-	const objekat = JSON.parse(window.sessionStorage.getItem("pretrazene_manifestacije"));
-	console.log("OBJEKAT");
-	console.log(objekat);
+	const prodavac = JSON.parse(window.sessionStorage.getItem("trenutniProdavac"));
 	
-	
-	popuniSadrzaj(objekat);
-	
-	$('button#pretrazi').click(function() {
-		window.sessionStorage.removeItem("pretrazene_manifestacije");
-		window.location.href = "pocetna.html";
-		
-	});
-	
+	$.ajax({
+		url: "rest/manifestacije/prodavceve_manifestacije/" + prodavac.korisnickoIme,
+		type:"GET",
+		dataType:"json",
+		complete: function(manifestacije_lista) {
+			manifestacije = JSON.parse(manifestacije_lista.responseText);
+			console.log(manifestacije)
+			popuniSadrzaj(manifestacije);
+			
+		}
+		});
 
 })

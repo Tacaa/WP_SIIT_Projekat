@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	let korisnik = JSON.parse(window.sessionStorage.getItem("trenutniAdministrator"));
-    if (korisnik == null) {window.location.href = "logovanje.html";}
+	let korisnik2 = JSON.parse(window.sessionStorage.getItem("trenutniProdavac"));
+  	if (korisnik == null && korisnik2==null) {window.location.href = "logovanje.html";}
 
 		//***************************************************************************************
 		// pocetno stanje tabele, sve moguce karte
