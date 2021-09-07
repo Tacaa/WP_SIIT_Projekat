@@ -76,4 +76,10 @@ public class Kupac extends Korisnik {
 				", \"tip\": "+ this.tip + "}";
 	}
 	
+	@Override
+	public String zaCuvanje() {
+		return this.getIme() + ';' + this.getPrezime() + ';' + this.getKorisnickoIme() + 
+				';' + this.getPol() + ';' + this.getLozinka() + ';' + this.getDatumRodjenja() + 
+				';' + this.getAktivnost() + ';' + this.getTip().getIme() + ';' + this.brojBodova;
+	}
 }

@@ -1,5 +1,11 @@
 package dao;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -12,48 +18,10 @@ import klase.TipKarte;
 public class KartaDAO {
 	
 	public static ArrayList<Karta> karte = new ArrayList<>();
+	private static String sledeciRed = System.lineSeparator();
+	private static final String putanja = "C:\\Users\\Admin\\Desktop\\VezbeWeb\\Projekat\\WP_SIIT_Projekat\\src\\podaci\\karte.csv";
 	
-	public KartaDAO() {
-	}
-	
-	public static void ucitajKarte() {
-		if (karte.size() != 0) return; 
-		ManifestacijaDAO.ucitajManifestacije();
-		KupacDAO.ucitajKupce();
-		
-		ArrayList<Manifestacija> manifestacije = ManifestacijaDAO.manifestacije;
-		ArrayList<Kupac> kupci = new ArrayList<>();
-		for (Kupac k : KupacDAO.kupci.values()) kupci.add(k);
-		
-		Karta karta1 = new Karta("1234567891", manifestacije.get(1), kupci.get(0), 
-				StatusKarte.REZERVISANA, TipKarte.REGULARNA);
-		Karta karta2 = new Karta("1111111111", manifestacije.get(0), kupci.get(0), 
-				StatusKarte.OBUSTAVLJENA, TipKarte.VIP);
-		Karta karta3 = new Karta("2222222222", manifestacije.get(4), kupci.get(1), 
-				StatusKarte.REZERVISANA, TipKarte.FAN_PIT);
-		Karta karta4 = new Karta("3131313131", manifestacije.get(0), kupci.get(1), 
-				StatusKarte.OBUSTAVLJENA, TipKarte.REGULARNA);
-		Karta karta5 = new Karta("1515151515", manifestacije.get(3), kupci.get(2), 
-				StatusKarte.REZERVISANA, TipKarte.REGULARNA);
-		Karta karta6 = new Karta("1112224448", manifestacije.get(2), kupci.get(3), 
-				StatusKarte.REZERVISANA, TipKarte.VIP);
-		Karta karta7 = new Karta("aaa999aaa9", manifestacije.get(4), kupci.get(4), 
-				StatusKarte.OBUSTAVLJENA, TipKarte.VIP);
-		Karta karta8 = new Karta("q5q5q5q5q5", manifestacije.get(3), kupci.get(0), 
-				StatusKarte.REZERVISANA, TipKarte.FAN_PIT);
-		Karta karta9 = new Karta("9999988888", manifestacije.get(2), kupci.get(0), 
-				StatusKarte.REZERVISANA, TipKarte.FAN_PIT);
-		
-		karte.add(karta1); 	karta1.getManifestacija().getKarte().add(karta1);
-		karte.add(karta2);	karta2.getManifestacija().getKarte().add(karta2);
-		karte.add(karta3);	karta3.getManifestacija().getKarte().add(karta3);
-		karte.add(karta4);	karta4.getManifestacija().getKarte().add(karta4);
-		karte.add(karta5);	karta5.getManifestacija().getKarte().add(karta5);
-		karte.add(karta6);	karta6.getManifestacija().getKarte().add(karta6);
-		karte.add(karta7);	karta7.getManifestacija().getKarte().add(karta7);
-		karte.add(karta8);	karta8.getManifestacija().getKarte().add(karta8);
-		karte.add(karta9);  karta9.getManifestacija().getKarte().add(karta9);
-	}
+	public KartaDAO() {}
 	
 	private static Karta nadjiPoId(String id) {
 		ucitajKarte();
@@ -65,6 +33,7 @@ public class KartaDAO {
 		Karta kartica = nadjiPoId(id);
 		if (kartica == null) return null;
 		kartica.setStatus(StatusKarte.OBUSTAVLJENA);
+		sacuvajKarte();
 		return kartica;
 	}
 	
@@ -85,5 +54,56 @@ public class KartaDAO {
 		    provera = nadjiPoId(povratnaVr) != null;		// true da bi nastavilo, kada je zauzeto ime
 	    }
 	    return povratnaVr;
+	}
+	
+	public static boolean sacuvajKarte() {
+		StringBuilder zaUpis = new StringBuilder();
+		for (Karta k : karte) zaUpis.append(k.zaCuvanje() + sledeciRed);
+		try {
+			PrintWriter pw = new PrintWriter(new File(putanja));
+			pw.print(zaUpis.toString());
+			pw.flush();
+			pw.close();
+		} catch (FileNotFoundException e) {
+			return false;
+		}
+		return true;
+	}
+	
+	public static boolean ucitajKarte() {
+		KupacDAO.ucitajKupce();
+		ManifestacijaDAO.ucitajManifestacije();
+		if (!karte.isEmpty()) return true;		// vec su ucitani
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(new File(putanja)));
+			String linija = br.readLine();
+			while (!linija.equals("")) {
+				// id,nazivMan,vremeMan,kImeKupca,status,tip
+				String[] splitovano = linija.split(";");
+				
+				Manifestacija manifestacija = ManifestacijaDAO.nadjiPoNazivuVremenu(splitovano[1],
+						splitovano[2]);
+				Kupac kupac = KupacDAO.kupci.get(splitovano[3]);
+				
+				StatusKarte status = StatusKarte.REZERVISANA;
+				if (splitovano[4].equals("OBUSTAVLJENA")) status = StatusKarte.OBUSTAVLJENA;
+				
+				TipKarte tip = TipKarte.REGULARNA;
+				if (splitovano[5].equals("VIP")) tip = TipKarte.VIP;
+				if (splitovano[5].equals("FAN_PIT")) tip = TipKarte.FAN_PIT;
+				
+				Karta karta = new Karta(splitovano[0], manifestacija, kupac, status, tip);
+				karte.add(karta);
+				
+				linija = br.readLine();
+				if (linija == null) break;
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			return false;
+		} catch (IOException e) {
+			return false;
+		}
+		return true;
 	}
 }

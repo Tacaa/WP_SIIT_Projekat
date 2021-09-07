@@ -72,6 +72,10 @@ public class Komentar {
 				+ this.manifestacija.getNaziv() + "\", \"tekst\": \""+ this.tekst + "\", \"ocena\": \""
 				+ this.ocena + "\", \"status\": \""+ this.status +"\"}";
 	}
-	
-	
+
+	public String zaCuvanje() {
+		return this.kupac.getKorisnickoIme() + ";" + this.manifestacija.getNaziv() + ";" +
+				this.manifestacija.getVreme() + ";" + this.tekst + ";" + this.ocena + ";" +
+				this.status;
+	}
 }

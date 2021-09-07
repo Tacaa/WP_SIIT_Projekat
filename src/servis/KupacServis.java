@@ -27,7 +27,6 @@ public class KupacServis {
 		Kupac noviKupac = new Kupac(noviKorisnik.getKorisnickoIme(), noviKorisnik.getLozinka(), noviKorisnik.getIme(), 
 				noviKorisnik.getPrezime(), noviKorisnik.getPol(), noviKorisnik.getDatumRodjenja(), 
 				AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), KupacDAO.obicni);
-		
 		KupacDAO.ucitajKupce();
 		return KupacDAO.dodajKupca(noviKupac).toString();
 		

@@ -163,7 +163,14 @@ $(document).ready(function(){
 					let kupac = JSON.parse(window.sessionStorage.getItem("trenutniKupac"));
 					let karta = JSON.parse(data.responseText);
 					kupac.sveKarte[kupac.sveKarte.length] = karta;
-					window.sessionStorage.setItem("trenutniKupac", JSON.stringify(kupac));
+					$.ajax({
+						url: "rest/login_out/trenutniKupac/"+ kupac.korisnickoIme,
+						type:"GET",
+						dataType:"json",
+						complete: function(kupac) {
+							window.sessionStorage.setItem("trenutniKupac", JSON.stringify(kupac.responseJSON));
+						}
+					});
 				}
 				else {
 					$("#uspesna_rezervacija").text("Rezervacija nije uspela :( nesto je poslo po zlu");

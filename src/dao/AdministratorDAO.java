@@ -1,33 +1,28 @@
 package dao;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.HashMap;
 
 import klase.Administrator;
 import klase.AktivnostKorisnika;
 import klase.Korisnik;
-import klase.Kupac;
 import klase.Pol;
 
 
 public class AdministratorDAO {
 	
 	public static HashMap<String, Administrator> administratori = new  HashMap<String, Administrator>();
-	
-	
-	public static void ucitajAdministratore() {
-		//administratori
-		
-		if (administratori.size() != 0) return;
-		
-		Administrator milica = new Administrator("dumit", "dumit", "Milica", "Djumic", Pol.ZENSKI, LocalDate.of(1999, 10, 28), AktivnostKorisnika.AKTIVAN);
-		Administrator tatjana = new Administrator("zevs", "zevs2207", "Tatjana", "Gavrilovic", Pol.ZENSKI, LocalDate.of(1999, 7, 22), AktivnostKorisnika.AKTIVAN);
-		
-		administratori.put(milica.getKorisnickoIme(), milica);
-		administratori.put(tatjana.getKorisnickoIme(), tatjana);
-	}
-	
+	private static String sledeciRed = System.lineSeparator();
+	private static final String putanja = "C:\\Users\\Admin\\Desktop\\VezbeWeb\\Projekat\\WP_SIIT_Projekat\\src\\podaci\\administratori.csv";
 
+	public AdministratorDAO() {}
+	
 	private static Administrator getAdmina(String korisnickoIme) {
 		for (Administrator a : administratori.values()) if (a.getKorisnickoIme().equals(korisnickoIme)) return a;
 		return null;
@@ -41,15 +36,54 @@ public class AdministratorDAO {
 		izabrani.setPol(admin.getPol());
 		izabrani.setDatumRodjenja(admin.getDatumRodjenja());
 		izabrani.setLozinka(admin.getLozinka());
-		/*try {
-			this.upisiKupce();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+		sacuvajAdministratore();
 		return izabrani;
 	}
 	
+	public static boolean sacuvajAdministratore() {
+		StringBuilder zaUpis = new StringBuilder();
+		for (Administrator a : administratori.values()) zaUpis.append(a.zaCuvanje() + sledeciRed);
+		try {
+			PrintWriter pw = new PrintWriter(new File(putanja));
+			pw.print(zaUpis.toString());
+			pw.flush();
+			pw.close();
+		} catch (FileNotFoundException e) {
+			return false;
+		}
+		return true;
+	}
 	
+	public static boolean ucitajAdministratore() {
+		if (!administratori.isEmpty()) return true;		// vec su ucitani
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(new File(putanja)));
+			String linija = br.readLine();
+			while (!linija.equals("")) {
+				// ime,prezime,kIme,pol,lozinka,rodjendan,aktivnost
+				String[] splitovano = linija.split(";");
+				Pol pol = Pol.MUSKI;
+				if (splitovano[3].equals("ZENSKI")) pol = Pol.ZENSKI;
+				
+				AktivnostKorisnika aktivnost = AktivnostKorisnika.AKTIVAN;
+				if (splitovano[6].equals("IZBRISAN")) aktivnost = AktivnostKorisnika.IZBRISAN;
+				else if (splitovano[6].equals("BLOKIRAN")) aktivnost = AktivnostKorisnika.BLOKIRAN;
+				
+				LocalDate datum = LocalDate.parse(splitovano[5]);
+				
+				Administrator admin = new Administrator(splitovano[2], splitovano[4], splitovano[0],
+						splitovano[1], pol, datum, aktivnost);
+				administratori.put(admin.getKorisnickoIme(), admin);
+				linija = br.readLine();
+				if (linija == null) break;
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			return false;
+		} catch (IOException e) {
+			return false;
+		}
+		return true;
+	}
 	
 }

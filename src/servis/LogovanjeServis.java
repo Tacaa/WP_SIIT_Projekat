@@ -20,8 +20,6 @@ import klase.Korisnik;
 import klase.Kupac;
 import klase.Prodavac;
 
-
-
 @Path("/login_out")
 public class LogovanjeServis {
 	
@@ -40,7 +38,6 @@ public class LogovanjeServis {
 		AdministratorDAO.ucitajAdministratore();
 		ProdavacDAO.ucitajProdavce();
 		KomentarDAO.ucitajKomentare();
-		
 		
 		//provjeriti da li postoji korisnik u nekoj od malih baza i ako postoji saznajemo i koji tip korisnika je
 		if(KupacDAO.kupci.containsKey(korisnik.getKorisnickoIme())) {
@@ -100,16 +97,11 @@ public class LogovanjeServis {
 		return koJeUlogovan;
 	}
 	
-	
-	
-	
 	@GET
 	@Path("/trenutniKupac/{korisnickoIme}")
 	public String trenutniKupac(@PathParam("korisnickoIme") String korisnickoIme) {
 		return KupacDAO.kupci.get(korisnickoIme).toString();
 	}
-	
-	
 
 	@GET
 	@Path("/trenutniProdavac/{korisnickoIme}")
@@ -117,9 +109,6 @@ public class LogovanjeServis {
 		return ProdavacDAO.prodavci.get(korisnickoIme).toString();
 		
 	}
-	
-	
-	
 
 	@GET
 	@Path("/trenutniAdministrator/{korisnickoIme}")

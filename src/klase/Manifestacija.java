@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Manifestacija {
+	
 	private String naziv;
 	private TipManifestacije tip;
 	private int brojMesta;
@@ -19,8 +20,6 @@ public class Manifestacija {
 	private double ocena;
 	
 	private String prodavac;
-	
-	
 	
 	public String getNaziv() {
 		return naziv;
@@ -113,7 +112,6 @@ public class Manifestacija {
 		this.prodavac = prodavac;
 	}
 	
-
 	public Manifestacija() {
 		super();
 	}
@@ -156,9 +154,6 @@ public class Manifestacija {
 		
 	}
 	
-	
-	
-
 	public Manifestacija(String naziv, TipManifestacije tip, int brojMesta, LocalDateTime vreme, double cena,
 			String adresa, String grad, String drzava, String poster, String prodavac) {
 		super();
@@ -172,10 +167,6 @@ public class Manifestacija {
 		this.lokacija = new Lokacija(0, 0, adresa, grad, drzava, 0);
 		
 	}
-	
-	
-	
-	
 	
 	@Override
 	public String toString() {
@@ -193,6 +184,9 @@ public class Manifestacija {
         ", \"prodavac\": \""+ this.prodavac + "\"}";
 	}
 	
-	
-	
+	public String zaCuvanje() {
+		return this.naziv + ";" + this.tip + ";" + this.brojMesta + ";" + this.vreme + ";" +
+				this.cena + ";" + this.status + ";" + this.lokacija.zaCuvanje() + ";" + 
+				this.poster + ";" + this.prodavac;
+	}
 }

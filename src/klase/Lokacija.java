@@ -7,14 +7,14 @@ public class Lokacija {
 	private String ulicaBroj;	// ulica i broj jer moze biti "Nikole Pasica 12a"
 	private String grad;
 	private String drzava;
+	private int postanskiBroj;
+	
 	public String getDrzava() {
 		return drzava;
 	}
 	public void setDrzava(String drzava) {
 		this.drzava = drzava;
 	}
-
-	private int postanskiBroj;
 	
 	public double getGeografskaDuzina() {
 		return geografskaDuzina;
@@ -55,8 +55,6 @@ public class Lokacija {
 		super();
 	}
 	
-	
-	
 	public Lokacija(double geografskaDuzina, double geografskaSirina, String ulicaBroj, String grad, String drzava,
 			int postanskiBroj) {
 		super();
@@ -67,12 +65,18 @@ public class Lokacija {
 		this.drzava = drzava;
 		this.postanskiBroj = postanskiBroj;
 	}
+	
 	@Override
 	public String toString() {
 		return "{\"geografskaDuzina\": \"" + this.geografskaDuzina + 
 				"\", \"geografskaSirina\": \""+ this.geografskaSirina + 
 				"\", \"drzava\": \""+ this.drzava + "\", \"ulicaBroj\": \""+ this.ulicaBroj +
 				"\", \"grad\": \""+ this.grad + "\", \"postanskiBroj\": \""+ this.postanskiBroj  + "\"}";
+	}
+	
+	public String zaCuvanje() {
+		return this.geografskaDuzina + ";" + this.geografskaSirina + ";" + this.drzava + ";" +
+				this.ulicaBroj + ";" + this.grad + ";" + this.postanskiBroj;
 	}
 	
 }
