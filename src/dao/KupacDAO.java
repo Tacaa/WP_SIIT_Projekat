@@ -1,17 +1,18 @@
 package dao;
 
-import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.google.gson.Gson;
-
 import klase.Administrator;
 import klase.AktivnostKorisnika;
 import klase.ImeTipaKupca;
-import klase.Karta;
 import klase.Korisnik;
 import klase.Kupac;
 import klase.Pol;
@@ -25,50 +26,10 @@ public class KupacDAO {
 	public static TipKupca bronzani = new TipKupca(ImeTipaKupca.BRONZANI, 0.9, 1000);
 	public static TipKupca obicni = new TipKupca(ImeTipaKupca.OBICNI, 1, 0);
 	
-	public KupacDAO() {
-		/*
-		try {
-			ucitajKupce();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		*/
-	}
+	private static String sledeciRed = System.lineSeparator();
+	private static final String putanja = "C:\\Users\\Admin\\Desktop\\VezbeWeb\\Projekat\\WP_SIIT_Projekat\\src\\podaci\\kupci.csv";
 	
-	
-	//kad se bude fajl dodavao staviti throws FileNotFoundException 
-	public static void ucitajKupce(){
-		/*
-		Gson gson = new Gson();
-		Type token = new TypeToken<HashMap<String,Kupac>>(){}.getType();
-		BufferedReader br = new BufferedReader(new FileReader("../WebContent/json/kupci.json")); //putanja
-		this.kupci = gson.fromJson(br, token);
-		*/
-		
-		if (kupci.size() != 0) return;
-		
-		Kupac kupac1 = new Kupac("pera", "pera", "Pera", "Peric", Pol.MUSKI, LocalDate.of(2000, 1, 12), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), obicni);
-		Kupac kupac2 = new Kupac("mika", "mika", "Mika", "Mikic", Pol.MUSKI, LocalDate.of(1998, 4, 13), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), obicni);
-		Kupac kupac3 = new Kupac("ana", "ana", "Ana", "Anic", Pol.ZENSKI, LocalDate.of(1999, 6, 6), AktivnostKorisnika.IZBRISAN, 0, new ArrayList<Karta>(), obicni);
-		Kupac kupac4 = new Kupac("ema", "ema", "Ema", "Emic", Pol.ZENSKI, LocalDate.of(2000, 9, 10), AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), obicni);
-		Kupac kupac5 = new Kupac("ilma", "ilma", "Ilma", "Ilmic", Pol.ZENSKI, LocalDate.of(2001, 3, 19), AktivnostKorisnika.IZBRISAN, 0, new ArrayList<Karta>(), obicni);
-		
-		kupci.put(kupac1.getKorisnickoIme(), kupac1);
-		kupci.put(kupac2.getKorisnickoIme(), kupac2);
-		kupci.put(kupac3.getKorisnickoIme(), kupac3);
-		kupci.put(kupac4.getKorisnickoIme(), kupac4);
-		kupci.put(kupac5.getKorisnickoIme(), kupac5);
-	}
-	
-	
-	
-	public void upisiKupce() throws IOException{
-		Gson gson = new Gson();
-		FileWriter fw = new FileWriter("../WebContent/json/kupci.json"); //putanja
-		gson.toJson(kupci, fw);
-		fw.flush();
-		fw.close();
-	}
+	public KupacDAO() {}
 	
 	public static boolean zauzetoKorisnickoIme(String novoKorIme) {
 		for (Kupac k : kupci.values()) if (k.getKorisnickoIme().equals(novoKorIme)) return true;
@@ -89,13 +50,7 @@ public class KupacDAO {
 		if (zauzetoKorisnickoIme(kupac.getKorisnickoIme())) return null;
 		
 		kupci.put(kupac.getKorisnickoIme(), kupac);
-		
-		/*try {
-			this.upisiKupce();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+		sacuvajKupce();
 		return kupac;
 	}
 
@@ -107,14 +62,59 @@ public class KupacDAO {
 		izabrani.setPol(kupac.getPol());
 		izabrani.setDatumRodjenja(kupac.getDatumRodjenja());
 		izabrani.setLozinka(kupac.getLozinka());
-		/*try {
-			this.upisiKupce();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+		sacuvajKupce();
 		return izabrani;
 	}
 	
+	public static boolean sacuvajKupce() {
+		StringBuilder zaUpis = new StringBuilder();
+		for (Kupac k : kupci.values()) zaUpis.append(k.zaCuvanje() + sledeciRed);
+		try {
+			PrintWriter pw = new PrintWriter(new File(putanja));
+			pw.print(zaUpis.toString());
+			pw.flush();
+			pw.close();
+		} catch (FileNotFoundException e) {
+			return false;
+		}
+		return true;
+	}
 	
+	public static boolean ucitajKupce() {
+		if (!kupci.isEmpty()) return true;		// vec su ucitani
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(new File(putanja)));
+			String linija = br.readLine();
+			while (!linija.equals("")) {
+				// ime,prezime,kIme,pol,lozinka,rodjendan,aktivnost,tip,brBodova
+				String[] splitovano = linija.split(";");
+				Pol pol = Pol.MUSKI;
+				if (splitovano[3].equals("ZENSKI")) pol = Pol.ZENSKI;
+				
+				TipKupca tip = KupacDAO.obicni;
+				if (splitovano[7].equals("BRONZANI")) tip = KupacDAO.bronzani;
+				else if (splitovano[7].equals("SREBRNI")) tip = KupacDAO.srebrni;
+				else if (splitovano[7].equals("ZLATNI")) tip = KupacDAO.zlatni;
+				
+				AktivnostKorisnika aktivnost = AktivnostKorisnika.AKTIVAN;
+				if (splitovano[6].equals("IZBRISAN")) aktivnost = AktivnostKorisnika.IZBRISAN;
+				else if (splitovano[6].equals("BLOKIRAN")) aktivnost = AktivnostKorisnika.BLOKIRAN;
+				
+				LocalDate datum = LocalDate.parse(splitovano[5]);
+				double bodovi = Double.parseDouble(splitovano[8]); 
+				
+				Kupac kupac = new Kupac(splitovano[2], splitovano[4], splitovano[0], splitovano[1], 
+						pol, datum, aktivnost, bodovi, new ArrayList<>(), tip);
+				kupci.put(kupac.getKorisnickoIme(), kupac);
+				linija = br.readLine();
+				if (linija == null) break;
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			return false;
+		} catch (IOException e) {
+			return false;
+		}
+		return true;
+	}
 }

@@ -8,12 +8,10 @@ public class Administrator extends Korisnik {
 		super();
 	}
 	
-	
 	public Administrator(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, 
 			LocalDate datumRodjenja, AktivnostKorisnika aktivnost) {
 		super(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, aktivnost);
 	}
-
 
 	@Override
 	public String toString() {
@@ -22,7 +20,5 @@ public class Administrator extends Korisnik {
 				"\", \"lozinka\": \""+ this.getLozinka() +"\", \"datumRodjenja\": \""+ this.getDatumRodjenja() +
 				"\", \"aktivnost\": \"" + this.getAktivnost() + "\"}";
 	}
-	
-	
 	
 }

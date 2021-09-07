@@ -39,7 +39,7 @@ public class Karta {
 		double bodovi = this.kupac.getBrojBodova() - this.manifestacija.getCena()/1000 * 133 * 4; 
 		this.kupac.setBrojBodova(bodovi >= 0 ? bodovi : 0);
 		
-		this.manifestacija.setBrojMesta(this.manifestacija.getBrojMesta() + 1);
+		this.manifestacija.setBrojRezervisanihMesta(this.manifestacija.getBrojRezervisanihMesta() - 1);
 	}
 	
 	public TipKarte getTip() {
@@ -79,6 +79,8 @@ public class Karta {
 		this.kupac.setBrojBodova(bodovi);
 		
 		this.kupac.getSveKarte().add(this);
+		this.manifestacija.getKarte().add(this);
+		this.manifestacija.setBrojRezervisanihMesta(this.manifestacija.getBrojRezervisanihMesta() + 1);
 	}
 	
 	public Karta(String id, Manifestacija manifestacija, Kupac kupac, StatusKarte status, TipKarte tip,
@@ -95,6 +97,8 @@ public class Karta {
 		this.kupac.setBrojBodova(bodovi);
 
 		this.kupac.getSveKarte().add(this);
+		this.manifestacija.getKarte().add(this);
+		this.manifestacija.setBrojRezervisanihMesta(this.manifestacija.getBrojRezervisanihMesta() + 1);
 	}
 
 	@Override
@@ -109,5 +113,9 @@ public class Karta {
 				"\", \"status\": \""+ this.status + "\", \"tip\": \""+ this.tip + 
 				"\", \"konacnaCena\": \""+ this.konacnaCena  +"\"}";
 	}
-
+	
+	public String zaCuvanje() {
+		return this.id + ";" + this.manifestacija.getNaziv() + ";" + this.manifestacija.getVreme() + 
+				";" + this.kupac.getKorisnickoIme() + ";" + this.status + ";" + this.tip;
+	}
 }

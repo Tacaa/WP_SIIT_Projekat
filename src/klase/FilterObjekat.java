@@ -77,5 +77,4 @@ public class FilterObjekat {
 		this.status = status;
 	}
 	
-	
 }

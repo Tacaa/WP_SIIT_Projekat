@@ -263,6 +263,7 @@ public class ManifestacijeServis {
 		if (manifestacija == null) return null;
 		if (splitovano[2].equals("DA")) manifestacija.setStatus(StatusManifestacije.AKTIVNA);
 		else manifestacija.setStatus(StatusManifestacije.ODBIJENA);
+		ManifestacijaDAO.sacuvajManifestacije();
 		return manifestacija.toString();
 	}
 	
@@ -290,7 +291,7 @@ public class ManifestacijeServis {
 			prodavac.getManifestacije().add(m);
 			Collections.sort(prodavac.getManifestacije(), (a,b)->a.getVreme().compareTo(b.getVreme()));
 		}
-		
+		ManifestacijaDAO.sacuvajManifestacije();
 		return "Dodano!";
 	}
 	

@@ -220,6 +220,14 @@ $(document).ready(function() {
 				for (let k of listaKarata) {
 					if (k.id == splitvalue[0]) k.status = "OBUSTAVLJENA";
 				}
+				$.ajax({
+						url: "rest/login_out/trenutniKupac/"+ kupac.korisnickoIme,
+						type:"GET",
+						dataType:"json",
+						complete: function(kupac) {
+							window.sessionStorage.setItem("trenutniKupac", JSON.stringify(kupac.responseJSON));
+						}
+					});
 				popunjavanjeTabele(listaKarata);
 			}
 		});            

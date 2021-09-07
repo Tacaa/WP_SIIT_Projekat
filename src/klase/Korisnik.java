@@ -84,5 +84,9 @@ public class Korisnik {
 				"\", \"aktivnost\": \""+ this.aktivnost +"\"}";
 	}
 	
+	public String zaCuvanje() {
+		return this.ime + ";" + this.prezime + ";" + this.korisnickoIme + ";" + this.pol + 
+				";" + this.lozinka+ ";" + this.datumRodjenja + ";" + this.aktivnost;
+	}
 	
 }

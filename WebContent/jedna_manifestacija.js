@@ -201,7 +201,7 @@ $(document).ready(function(){
 		karte.setAttribute("class", "svetli_dugmici");
 		karte.setAttribute("id", "karte");
 		karte.appendChild(document.createTextNode("KARTE"));
-		if (manifestacija.vreme.split("T")[0] > danas  || manifestacija.karte.length == 0) {
+		if ( manifestacija.karte.length == 0) {
 			karte.setAttribute("class", "onemoguceni_dugmici");
 			karte.setAttribute("disabled", "true");
 		}
