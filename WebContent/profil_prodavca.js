@@ -31,19 +31,7 @@ $(document).ready(function() {
 
  	$("#pregled_karata").submit(function(event) {
 		event.preventDefault();
-    	window.location.href = "";
-    }); 
-    
-    
-
- 	$("#odobrenje_komentara").submit(function(event) {
-		event.preventDefault();
-    	window.location.href = "http://localhost:8080/Projekat/rezervacija_karte.html";
-    }); 
-
- 	$("#vidi_komentare").submit(function(event) {
-		event.preventDefault();
-    	window.location.href = "http://localhost:8080/Projekat/komentarisanje.html";
+    	window.location.href = "prodavcev_pregled_karata_i_komentara.html";
     }); 
     
 
