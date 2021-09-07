@@ -108,10 +108,10 @@ function popuniSadrzaj(manifestacije) {
 			
 			// ***********************************************************************
 			var modal = document.getElementById("modal_kom");
-		    var rezervisiDugme = document.getElementById(manifestacija.naziv + "+" + manifestacija.vreme + "+kom");
+		    var rezervisi_dugme = document.getElementById(manifestacija.naziv + "+" + manifestacija.vreme + "+kom");
 			var x_rezervisi = document.getElementsByClassName("close")[0];
 		
-		    rezervisiDugme.onclick = function(event) {
+		    rezervisi_dugme.onclick = function(event) {
 		    	modal.style.display = "block";		// prikazujem formu za komentar
 				window.sessionStorage.setItem("komentarZa", event.currentTarget.id.split("+kom")[0]);
 		    }

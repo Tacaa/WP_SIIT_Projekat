@@ -11,7 +11,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import dao.AdministratorDAO;
-import dao.KartaDAO;
 import dao.KomentarDAO;
 import dao.KupacDAO;
 import dao.ProdavacDAO;

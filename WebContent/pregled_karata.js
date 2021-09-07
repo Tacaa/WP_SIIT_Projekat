@@ -208,7 +208,7 @@ $(document).ready(function() {
 	$("form.otkazivanje").submit(function(event) {
 		let elem = event.currentTarget.innerHTML;
 		let splitId = elem.split('id="');
-		let splitvalue = splitId[1].split('" type=');		// splitvalue[0] == id
+		let splitvalue = splitId[1].split('" value=');		// splitvalue[0] == id
 		event.preventDefault();
 		
 		$.ajax({
@@ -220,14 +220,6 @@ $(document).ready(function() {
 				for (let k of listaKarata) {
 					if (k.id == splitvalue[0]) k.status = "OBUSTAVLJENA";
 				}
-				$.ajax({
-						url: "rest/login_out/trenutniKupac/"+ kupac.korisnickoIme,
-						type:"GET",
-						dataType:"json",
-						complete: function(kupac) {
-							window.sessionStorage.setItem("trenutniKupac", JSON.stringify(kupac.responseJSON));
-						}
-					});
 				popunjavanjeTabele(listaKarata);
 			}
 		});            

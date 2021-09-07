@@ -81,7 +81,8 @@ $(document).ready(function() {
 					document.getElementById("modal_odob").style.display = "none";
 					let ind = 0;
 					for (let k of manifestacija.komentari) {
-						if (korisnikTextOCena == (k.kupac + "+" + k.tekst + "+" + k.ocena)) {
+						if (korisnikTextOCena == (k.kupac + "+" + k.tekst + "+" + k.ocena) 
+								&& k.status == "NA_CEKANJU") {
 							if (odobri == "DA") manifestacija.komentari[ind].status = "PRIHVACEN";
 							else manifestacija.komentari[ind].status= "ODBIJEN";
 							break;
