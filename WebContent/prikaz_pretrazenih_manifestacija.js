@@ -152,5 +152,12 @@ $(document).ready(function(){
 	
 	
 	popuniSadrzaj(objekat);
+	
+	$('button#pretrazi').click(function() {
+		window.sessionStorage.removeItem("pretrazene_manifestacije");
+		window.location.href = "pocetna.html";
+		
+	});
+	
 
 })

@@ -55,7 +55,11 @@ public class ManifestacijeServis {
 	@Produces(MediaType.APPLICATION_JSON)
 	public String pretraga(@PathParam("params") PathSegment params) {
 		ManifestacijaDAO.ucitajManifestacije();
-		ArrayList<Manifestacija> vrati = ManifestacijaDAO.manifestacije;
+		ArrayList<Manifestacija> vrati =  new ArrayList<Manifestacija>();
+		
+		for(int i = 0; i<ManifestacijaDAO.manifestacije.size(); i++) {
+			vrati.add(ManifestacijaDAO.manifestacije.get(i));
+		}
 		
 		
 		String naziv = params.getMatrixParameters().get("naziv").toString().substring(1,  params.getMatrixParameters().get("naziv").toString().length()-1);
