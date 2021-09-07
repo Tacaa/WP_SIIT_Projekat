@@ -62,11 +62,21 @@
 				contentType:"application/json",
 				dataType:"json",
 				complete: function(data, uspelo) {
-					if (uspelo == "success") $('#greska_unosa').text('Uspesno registrovanje korisnika!!!! :)');
-					else $('#greska_unosa').text('Korisnicko ime je vec zauzeto :( Probajte da unesete neko drugo :)');
-					
-					$('#greska_unosa').css("color", "#fbc2c0");
-					$("#greska_unosa").show().delay(4000).fadeOut();
+					if (uspelo == "success") {
+						console.log(data.responseText);
+						$('#greska_unosa').text('Uspesno ste registrovani! :)')
+						$('#greska_unosa').css("color", "#fbc2c0");
+						$("#greska_unosa").show().delay(1500).fadeOut(0, function(){
+							trenutniKupac = JSON.parse(data.responseText);
+							window.sessionStorage.setItem("trenutniKupac", JSON.stringify(trenutniKupac));
+							window.location.href = "profil_kupca.html";});
+						
+					}
+					else {
+						$('#greska_unosa').text('Korisnicko ime je vec zauzeto :( Probajte da unesete neko drugo :)');
+						$('#greska_unosa').css("color", "#fbc2c0");
+						$("#greska_unosa").show().delay(4000).fadeOut();
+					};
 				}
 								
 			});
@@ -79,14 +89,23 @@
 				contentType:"application/json",
 				dataType:"json",
 				complete: function(data, uspelo) {
-					if (uspelo == "success") $('#greska_unosa').text('Uspesno registrovanje prodavca!!!! :)');
-					else $('#greska_unosa').text('Korisnicko ime je vec zauzeto :( Probajte da unesete neko drugo :)');
-					
-					$('#greska_unosa').css("color", "#fbc2c0");
-					$("#greska_unosa").show().delay(4000).fadeOut();
-				}
-								
-			});
+					if (uspelo == "success") {
+						console.log(data.responseText);
+						$('#greska_unosa').text('Uspesno registrovanje prodavca!!!! :)')
+						$('#greska_unosa').css("color", "#fbc2c0");
+						$("#greska_unosa").show().delay(1500).fadeOut(0, function(){
+							trenutniProdavac = JSON.parse(data.responseText);
+							window.sessionStorage.setItem("trenutniProdavac", JSON.stringify(trenutniProdavac));
+							window.location.href = "profil_prodavca.html";});
+						
+					}
+					else {
+						$('#greska_unosa').text('Korisnicko ime je vec zauzeto :( Probajte da unesete neko drugo :)');
+						$('#greska_unosa').css("color", "#fbc2c0");
+						$("#greska_unosa").show().delay(4000).fadeOut();
+					}
+				}				
+			})
 		}
  		
  	});

@@ -5,7 +5,7 @@
 	padding: 0;
 	box-sizing: border-box;
 	list-style: none;
-	font-family: fantasy, sans-serif;
+	font-family: serif;
 	font-size: 100%;
 }
 
@@ -150,5 +150,30 @@ body{
 }
 
 .formin_div .submit_dugme:hover{
+	background: #ffd5d2;
+}
+
+
+
+
+.dugme_za_nazad{
+	width: 70%;
+	background: #ebd0ce;
+	padding: 10px;
+	display: inline-block;
+	text-decoration: none;
+	color: black;
+	border: 0;
+	border-radius: 3px;
+	text-transform: uppercase;
+	margin-left: 47px;
+	letter-spacing: 3px;
+	cursor: pointer;
+	text-align: center;
+     
+}
+
+
+.dugme_za_nazad:hover{
 	background: #ffd5d2;
 }
