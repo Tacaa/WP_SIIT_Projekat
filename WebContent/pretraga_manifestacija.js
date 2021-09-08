@@ -16,8 +16,8 @@
 	} 
 	
 	var danas = godina + '-' + mjesec + '-' + dan;
-	document.getElementById("od_datuma").setAttribute("min", danas);
-	document.getElementById("do_datuma").setAttribute("min", danas); 
+	//document.getElementById("od_datuma").setAttribute("min", danas);
+	//document.getElementById("do_datuma").setAttribute("min", danas); 
  
   	
   	
@@ -71,9 +71,9 @@
  		
  		
  		if(do_datuma == "" && vrijeme_kraj != ""){
- 			vrijeme_za_unos_do = "2800-01-01" + "T" + vrijeme_pocetak + ":00";
+ 			vrijeme_za_unos_do = "2800-01-01" + "T" + vrijeme_kraj + ":00";
  		}else if(do_datuma != "" && vrijeme_kraj == ""){
- 			vrijeme_za_unos_do = od_datuma + "T" + "00:00" + ":00";
+ 			vrijeme_za_unos_do = do_datuma + "T" + "00:00" + ":00";
  		}else if(do_datuma == "" && vrijeme_kraj == ""){
  			vrijeme_za_unos_do = "2800-01-01" + "T" + "00:00" + ":00";
  		}else{
@@ -97,8 +97,8 @@
  		}
  		
  		
- 		//let h = JSON.stringify({naziv: naziv, odVrijeme: vrijeme_za_unos_od, doVrijeme: vrijeme_za_unos_do, adresa: adresa, grad: grad, drzava: drzava, odCijena: od_cijena, doCijena: do_cijena, sortiranje: sortiraj, filtriranje: filter, filtriranje2: filter2, kriterijum: kriterijum});
- 		//console.log(h);
+ 		let h = JSON.stringify({naziv: naziv, odVrijeme: vrijeme_za_unos_od, doVrijeme: vrijeme_za_unos_do, adresa: adresa, grad: grad, drzava: drzava, odCijena: od_cijena, doCijena: do_cijena, sortiranje: sortiraj, filtriranje: filter, filtriranje2: filter2, kriterijum: kriterijum});
+ 		console.log(h);
  		
  		//101-456-890;name=Sabrana dela;author=Pera Perić"
  		
@@ -107,7 +107,7 @@
 			type:"GET",
 			dataType:"json",
 			complete: function(vraceno) {
-				console.log(vraceno);
+				console.log(vraceno.responseText);
 				window.sessionStorage.setItem("pretrazene_manifestacije", vraceno.responseText);
 				window.location.href = "prikaz_pretrazenih_manifestacija.html";
 			}

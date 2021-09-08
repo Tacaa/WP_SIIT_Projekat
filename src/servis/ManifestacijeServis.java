@@ -38,15 +38,24 @@ public class ManifestacijeServis {
 	public String aktivne() {
 		ManifestacijaDAO.ucitajManifestacije();
 		ArrayList<Manifestacija> aktivne = new ArrayList<Manifestacija>();
+		ArrayList<Manifestacija> vrati = new ArrayList<Manifestacija>();
 		
 		for(Manifestacija m : ManifestacijaDAO.manifestacije) {
 			if(m.getStatus() == StatusManifestacije.AKTIVNA) {
 				aktivne.add(m);
 			}
 		}
+		
+		LocalDateTime danas = LocalDateTime.now();
+		
+		for(int i = 0; i<aktivne.size(); i++) {
+			if(aktivne.get(i).getVreme().compareTo(danas) > 0) {
+				vrati.add(aktivne.get(i));
+			}
+		}
 		//treba sortirati po vremenu
-		Collections.sort(aktivne, (a,b)->a.getVreme().compareTo(b.getVreme()));
-		return aktivne.toString();
+		Collections.sort(vrati, (a,b)->a.getVreme().compareTo(b.getVreme()));
+		return vrati.toString();
 		
 	}
 	
@@ -74,6 +83,8 @@ public class ManifestacijeServis {
 		String filtriranje = params.getMatrixParameters().get("filtriranje").toString().substring(1,  params.getMatrixParameters().get("filtriranje").toString().length()-1);
 		String filtriranje2 = params.getMatrixParameters().get("filtriranje2").toString().substring(1,  params.getMatrixParameters().get("filtriranje2").toString().length()-1);
 		String kriterijum = params.getMatrixParameters().get("kriterijum").toString().substring(1,  params.getMatrixParameters().get("kriterijum").toString().length()-1);
+		
+		//return "odVrijeme --> " + odVrijeme + "    doVrijeme ---> " + doVrijeme;
 		
 		
 		
@@ -123,7 +134,7 @@ public class ManifestacijeServis {
 				}
 				
 				//adresa
-				if(!adresa.equals("nema") && flag==true) {
+				if(!adresa.equals("nema")) {
 					if(!adresa.equalsIgnoreCase(vrati.get(i).getLokacija().getUlicaBroj())) {
 						flag = true;
 					}
@@ -131,7 +142,7 @@ public class ManifestacijeServis {
 				
 				
 				//grad
-				if(!grad.equals("nema") && flag==true) {
+				if(!grad.equals("nema")) {
 					if(!grad.equalsIgnoreCase(vrati.get(i).getLokacija().getGrad())) {
 						flag = true;
 					}
@@ -139,14 +150,15 @@ public class ManifestacijeServis {
 				
 				
 				//drzava
-				if(!drzava.equals("nema") && flag==true) {
+				if(!drzava.equals("nema")) {
 					if(!drzava.equalsIgnoreCase(vrati.get(i).getLokacija().getDrzava())) {
 						flag = true;
 					}
 				}
 				
 				
-				if(odVrijeme.compareTo(vrati.get(i).getVreme().toString()) > 0 || doVrijeme.compareTo(vrati.get(i).getVreme().toString()) <0) {
+				
+				if(!(odVrijeme.compareTo(vrati.get(i).getVreme().toString()) < 0 && doVrijeme.compareTo(vrati.get(i).getVreme().toString()) > 0)) {
 					flag = true;
 				}
 				
@@ -173,6 +185,11 @@ public class ManifestacijeServis {
 					}
 				}
 				
+				LocalDateTime danas = LocalDateTime.now();
+				if(m.getVreme().compareTo(danas)< 0) {
+					flag = true;
+				}
+				
 				
 				if(flag) {
 					izbaci.add(m);
@@ -183,6 +200,8 @@ public class ManifestacijeServis {
 			
 			//pravi razliku
 			vrati.removeAll(izbaci);
+			
+			
 			
 			//sortiraj sad
 			if(sortiranje.equals("sortiraj_po_nazivu")) {
