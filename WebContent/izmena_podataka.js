@@ -108,7 +108,9 @@ $(document).ready(function(){
 					window.sessionStorage.setItem("trenutniProdavac", data.responseText);
 	               $('#greska_unosa').text('Uspesno cuvanje izmena!!!! :)');
 	               $('#greska_unosa').css("color", "#fbc2c0");
-	               $("#greska_unosa").show().delay(4000).fadeOut();
+	               $("#greska_unosa").show().delay(3000).fadeOut(1000, function(){
+	               		window.location.href = "profil_prodavca.html";
+	               });
 	           }          
 	       });
 		} 
