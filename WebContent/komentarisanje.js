@@ -1,5 +1,5 @@
 function podesi_manifestaciju(tagA) { 
-	window.sessionStorage.setItem("manifestacija", tagA.id.split("+kom")[0])
+	window.sessionStorage.setItem("manifestacija", tagA.id.split("+kom")[0]);
 };
 
 function popuniSadrzaj(manifestacije) {
@@ -166,7 +166,9 @@ $(document).ready(function(){
 				if (uspelo == "success") {
 					$("#uspeo_komentar").text("Uspesno je napravljen zahtev za komentar! :D");
 					$("#uspeo_komentar").css("color", "#545871");
-	            	$("#uspeo_komentar").show().delay(4000).fadeOut();
+	            	$("#uspeo_komentar").show().delay(4000).fadeOut(0, function() {
+						document.getElementById("modal_kom").style.display = "none";
+					});
 				}
 				else {
 					$("#uspeo_komentar").text("Nesto je poslo po zlu :(");

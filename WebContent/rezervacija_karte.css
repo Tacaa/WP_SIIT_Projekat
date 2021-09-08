@@ -6,7 +6,7 @@ body{
 	padding: 0;
 	box-sizing: border-box;
 	list-style: none;
-	font-family: fantasy, sans-serif;
+	font-family: serif;
 	font-size: 100%;
  	background: #84889c;
 }
@@ -37,7 +37,7 @@ body{
 
 .d1{
   margin-top: 10px;
-  font-family: fantasy, sans-serif;
+  font-family: serif;
   font-size: 20px;
   color: #fff;
 }

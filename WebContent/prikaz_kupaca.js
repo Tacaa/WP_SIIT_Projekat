@@ -4,21 +4,27 @@ function popunjavanjeTabele(lista) {
     
 	for (let kupac of lista) {
 		let red = $('<tr></tr>');
-		let tdKorIme = $('<td>' + kupac.korisnickoIme + '</td>');
+		let tdKorIme = $('<td>@' + kupac.korisnickoIme + '</td>');
 		let tdIme = $('<td>' + kupac.ime + '</td>');
 		let tdPrezime = $('<td>' + kupac.prezime + '</td>');
 		
 		let datum = kupac.datumRodjenja.split("-");
 		let tdRodjendan = $('<td>' + datum[2] + "." + datum[1] + "." + datum[0] + "."+ '</td>');
 		
-		let tdPol = $('<td>' + kupac.pol + '</td>');
+		let tdPol = $('<td>Muski</td>');
+		if (kupac.pol == "ZENSKI") tdPol = $('<td>Zenski</td>');
 		let tdBodovi = $('<td>' + Math.round(kupac.brojBodova * 100) / 100 + '</td>');
-		let tdTip = $('<td>' + kupac.tip.ime + '</td>');
-		let tdAktivnost = $('<td>' + kupac.aktivnost + '</td>');
+		let tdTip = $('<td>Obicni</td>');
+		if (kupac.tip.ime == "BRONZANI") tdTip = $('<td>Bronzani</td>');
+		else if (kupac.tip.ime == "SREBRNI") tdTip = $('<td>Srebrni</td>');
+		else if (kupac.tip.ime == "ZLATNI") tdTip = $('<td>Zlatni</td>');
+		let tdAktivnost = $('<td>Izbrisan</td>');
 		let tdIzvrisi = "<td></td>";
-		if (kupac.aktivnost == "AKTIVAN")  
+		if (kupac.aktivnost == "AKTIVAN") {
 			tdIzvrisi = '<td><form class="brisanje"><input type="submit" id="' + kupac.korisnickoIme + 
 				'+bris" value="Izbrisi" class="otkazi_dugmici"></form></td>';
+			tdAktivnost = $('<td>Aktivan</td>');
+		}
 		red.append(tdKorIme).append(tdIme).append(tdPrezime).append(tdRodjendan).append(tdPol)
 			.append(tdBodovi).append(tdTip).append(tdAktivnost).append(tdIzvrisi);
 		tabela.append(red);
@@ -38,7 +44,7 @@ $(document).ready(function() {
        type:"GET",
        contentType:"application/json",
        dataType:"json",
-       complete: function(data, uspelo) {
+       complete: function(data) {
 			console.log(data.responseText);
 			listaKupaca = JSON.parse(data.responseText);
            	popunjavanjeTabele(listaKupaca);
@@ -84,7 +90,7 @@ $(document).ready(function() {
 		       type:"GET",
 		       contentType:"application/json",
 		       dataType:"json",
-		       complete: function(data, uspelo) {
+		       complete: function() {
 					for (let k of listaKupaca) {
 						if (k.korisnickoIme == korIme) {
 							k.aktivnost = "IZBRISAN";
@@ -145,7 +151,7 @@ $(document).ready(function() {
 				tip: {ime: tip_kupca}}),
            contentType:"application/json",
            dataType:"json",
-           complete: function(data, uspelo) {
+           complete: function(data) {
 				console.log("-------------------------------");
 				console.log(data.responseText);
 				listaKupaca = JSON.parse(data.responseText);

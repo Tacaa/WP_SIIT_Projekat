@@ -26,7 +26,7 @@ $(document).ready(function(){
     else document.getElementById("polM").setAttribute("checked", true); 
 
     let korisnickoIme = $('#korisnicko_ime');
-    korisnickoIme.text(korisnik.korisnickoIme);     // jer je label
+    korisnickoIme.text("@" + korisnik.korisnickoIme);     // jer je label
 
     let lozinkaElem = $('input[name="lozinka"]');
     lozinkaElem.val(korisnik.lozinka);
@@ -80,14 +80,14 @@ $(document).ready(function(){
             return;
         }
 	
-	    if (vrsta == "korisnik") {
+	    if (vrsta == "kupac") {
 			$.ajax({
 	           url: "rest/kupci/izmeniKupca",
 	           type:"POST",
 	           data: JSON.stringify({korisnickoIme: korisnik.korisnickoIme, lozinka: lozinka, ime: ime, prezime: prezime, pol:pol, datumRodjenja:datumRodjenja, aktivnost:"AKTIVAN"}),
 	           contentType:"application/json",
 	           dataType:"json",
-	           complete: function(data, uspelo) {
+	           complete: function(data) {
 					console.log(data.responseText);
 					window.sessionStorage.setItem("trenutniKupac", data.responseText);
 	               $('#greska_unosa').text('Uspesno cuvanje izmena!!!! :)');
@@ -103,7 +103,7 @@ $(document).ready(function(){
 	           data: JSON.stringify({korisnickoIme: korisnik.korisnickoIme, lozinka: lozinka, ime: ime, prezime: prezime, pol:pol, datumRodjenja:datumRodjenja, aktivnost:"AKTIVAN"}),
 	           contentType:"application/json",
 	           dataType:"json",
-	           complete: function(data, uspelo) {
+	           complete: function(data) {
 					console.log(data.responseText);
 					window.sessionStorage.setItem("trenutniProdavac", data.responseText);
 	               $('#greska_unosa').text('Uspesno cuvanje izmena!!!! :)');
@@ -119,7 +119,7 @@ $(document).ready(function(){
 	           data: JSON.stringify({korisnickoIme: korisnik.korisnickoIme, lozinka: lozinka, ime: ime, prezime: prezime, pol:pol, datumRodjenja:datumRodjenja, aktivnost:"AKTIVAN"}),
 	           contentType:"application/json",
 	           dataType:"json",
-	           complete: function(data, uspelo) {
+	           complete: function(data) {
 					console.log(data.responseText);
 					window.sessionStorage.setItem("trenutniAdministrator", data.responseText);
 	               $('#greska_unosa').text('Uspesno cuvanje izmena!!!! :)');

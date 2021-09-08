@@ -4,20 +4,23 @@ function popunjavanjeTabele(lista) {
     
 	for (let prodavac of lista) {
 		let red = $('<tr></tr>');
-		let tdKorIme = $('<td>' + prodavac.korisnickoIme + '</td>');
+		let tdKorIme = $('<td>@' + prodavac.korisnickoIme + '</td>');
 		let tdIme = $('<td>' + prodavac.ime + '</td>');
 		let tdPrezime = $('<td>' + prodavac.prezime + '</td>');
 		
 		let datum = prodavac.datumRodjenja.split("-");
 		let tdRodjendan = $('<td>' + datum[2] + "." + datum[1] + "." + datum[0] + "."+ '</td>');
 		
-		let tdPol = $('<td>' + prodavac.pol + '</td>');
+		let tdPol = $('<td>Muski</td>');
+		if (prodavac.pol == "ZENSKI") tdPol = $('<td>Zenski</td>');
 		let tdManif = $('<td>' + prodavac.manifestacije.length + '</td>');
-		let tdAktivnost = $('<td>' + prodavac.aktivnost + '</td>');
+		let tdAktivnost = $('<td>Izbrisan</td>');
 		let tdIzvrisi = "<td></td>";
-		if (prodavac.aktivnost == "AKTIVAN")  
+		if (prodavac.aktivnost == "AKTIVAN") {
 			tdIzvrisi = '<td><form class="brisanje"><input type="submit" id="' + prodavac.korisnickoIme + 
 				'+bris" value="Izbrisi" class="otkazi_dugmici"></form></td>';
+			tdAktivnost = $('<td>Aktivan</td>');
+		}
 		red.append(tdKorIme).append(tdIme).append(tdPrezime).append(tdRodjendan).append(tdPol)
 			.append(tdManif).append(tdAktivnost).append(tdIzvrisi);
 		tabela.append(red);
@@ -37,7 +40,7 @@ $(document).ready(function() {
        type:"GET",
        contentType:"application/json",
        dataType:"json",
-       complete: function(data, uspelo) {
+       complete: function(data) {
 			console.log(data.responseText);
 			listaProdavaca = JSON.parse(data.responseText);
            	popunjavanjeTabele(listaProdavaca);
@@ -83,7 +86,7 @@ $(document).ready(function() {
 		       type:"GET",
 		       contentType:"application/json",
 		       dataType:"json",
-		       complete: function(data, uspelo) {
+		       complete: function() {
 					for (let p of listaProdavaca) {
 						if (p.korisnickoIme == korIme) {
 							p.aktivnost = "IZBRISAN";
@@ -148,7 +151,7 @@ $(document).ready(function() {
            data: JSON.stringify({ime: ime_prodavca, prezime: prez_prodavca, korisnickoIme: korIme_prodavca}),
            contentType:"application/json",
            dataType:"json",
-           complete: function(data, uspelo) {
+           complete: function(data) {
 				console.log("-------------------------------");
 				console.log(data.responseText);
 				listaProdavaca = JSON.parse(data.responseText);

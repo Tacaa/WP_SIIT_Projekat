@@ -55,7 +55,7 @@ $(document).ready(function(){
 	div3.setAttributeNode(klasa3);
 	
 	let labela3 = document.createElement("label");
-	let broj_mjesta = document.createTextNode("BROJ MJESTA: " + manifestacija.brojMesta);
+	let broj_mjesta = document.createTextNode("BROJ MESTA: " + manifestacija.brojMesta);
 	labela3.appendChild(broj_mjesta);
 	div3.appendChild(labela3);
 	
@@ -79,7 +79,11 @@ $(document).ready(function(){
 	div5.setAttributeNode(klasa5);
 	
 	let labela5 = document.createElement("label");
-	let status = document.createTextNode("STATUS: " + manifestacija.status);
+	let status = document.createTextNode("STATUS: Na cekanju");
+	if (manifestacija.status == "AKTIVNA") 
+		status = document.createTextNode("STATUS: Aktivna");
+	else if (manifestacija.status == "ODBIJENA ") 
+		status = document.createTextNode("STATUS: Odbijena");
 	labela5.appendChild(status);
 	div5.appendChild(labela5);
 	
@@ -107,7 +111,7 @@ $(document).ready(function(){
 	div7.setAttributeNode(klasa7);
 	
 	let labela7 = document.createElement("label");
-	let vrijeme1 = document.createTextNode("VRIJEME: " + vrijeme[0] + ":" + vrijeme[1]);
+	let vrijeme1 = document.createTextNode("VREME: " + vrijeme[0] + ":" + vrijeme[1]);
 	labela7.appendChild(vrijeme1);
 	div7.appendChild(labela7);
 	
@@ -157,7 +161,7 @@ $(document).ready(function(){
 	div11.setAttributeNode(klasa11);
 	
 	let labela11 = document.createElement("label");
-	let cijena = document.createTextNode("CIJENA: " + manifestacija.cena);
+	let cijena = document.createTextNode("CENA: " + manifestacija.cena);
 	labela11.appendChild(cijena);
 	div11.appendChild(labela11);
 	
@@ -169,7 +173,7 @@ $(document).ready(function(){
 	div12.setAttributeNode(klasa12);
 	
 	let labela12 = document.createElement("label");
-	let ocjena = document.createTextNode("OCJENA: " + manifestacija.ocena);
+	let ocjena = document.createTextNode("OCENA: " + manifestacija.ocena);
 	labela12.appendChild(ocjena);
 	div12.appendChild(labela12);
 	
@@ -184,8 +188,7 @@ $(document).ready(function(){
 	komentari.setAttribute("id", "komentari");
 	komentari.appendChild(document.createTextNode("KOMENTARI"));
 	if (manifestacija.vreme.split("T")[0] > danas || manifestacija.komentari.length == 0) {
-		komentari.setAttribute("class", "onemoguceni_dugmici");
-		komentari.setAttribute("disabled", "true");
+		komentari.style.display = "none";
 	}
 	div13.appendChild(komentari);
 	
@@ -202,8 +205,7 @@ $(document).ready(function(){
 		karte.setAttribute("id", "karte");
 		karte.appendChild(document.createTextNode("KARTE"));
 		if ( manifestacija.karte.length == 0) {
-			karte.setAttribute("class", "onemoguceni_dugmici");
-			karte.setAttribute("disabled", "true");
+			karte.style.display = "none";
 		}
 		div14.appendChild(karte);
 	}

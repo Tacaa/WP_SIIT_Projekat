@@ -5,7 +5,7 @@
 	padding: 0;
 	box-sizing: border-box;
 	list-style: none;
-	font-family: fantasy, sans-serif;
+	font-family: serif;
 	font-size: 100%;
 }
 
@@ -58,7 +58,7 @@ body{
 	text-align: center;
 }
 
-.svetli_dugmici, .onemoguceni_dugmici {
+.svetli_dugmici {
  	padding: 2px;
 	border: 0;
 	border-radius: 3px;

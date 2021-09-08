@@ -13,10 +13,13 @@ $(document).ready(function() {
 	
 	for (let karta of listaKarata) {
 		let red = $('<tr></tr>');
-		let tdkupac = $('<td>' + karta.kupac + '</td>');
+		let tdkupac = $('<td>@' + karta.kupac + '</td>');
 		let tdCena = $('<td>' + Math.round(karta.konacnaCena * 100) / 100 + '</td>');
-		let tdTip = $('<td>' + karta.tip + '</td>');
-		let tdStatus = $('<td>' + karta.status + '</td>');
+		let tdTip = $('<td>Regularna</td>');
+		if (karta.tip == "FAN_PIT") tdTip = $('<td>Fan pit</td>');
+		else if (karta.tip == "VIP") tdTip = $('<td>Vip</td>');
+		let tdStatus = $('<td>Rezervisana</td>');
+		if (karta.status == "OBUSTAVLJENA") tdStatus = $('<td>Obustavljena</td>');
 		
 		red.append(tdkupac).append(tdCena).append(tdStatus).append(tdTip);
 		tabela.append(red);

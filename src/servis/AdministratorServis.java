@@ -7,7 +7,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import dao.AdministratorDAO;
-import klase.Administrator;
 import klase.Korisnik;
 
 @Path("/administratori")

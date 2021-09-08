@@ -1,5 +1,5 @@
 function podesi_manifestaciju(tagA) { 
-	window.sessionStorage.setItem("manifestacija", tagA.id.split("+rk")[0])
+	window.sessionStorage.setItem("manifestacija", tagA.id.split("+rk")[0]);
 };
 
 function popuniSadrzaj(manifestacije) {

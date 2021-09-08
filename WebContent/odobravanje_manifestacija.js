@@ -152,7 +152,7 @@ $(document).ready(function(){
 		$.ajax({
 			url: "rest/manifestacije/odobri/" + parametar,
 			type:"GET",
-			complete: function(data, uspesno) {
+			complete: function(data) {
 				console.log(data.responseText);
 				document.getElementById("modal_odob").style.display = "none";
 				let novaLista = []; let ind = 0;
