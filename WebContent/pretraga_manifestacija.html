@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>PRETRAGA</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="pretraga_manifestacija.css">
+		<script src="jquery.min.js"></script>
+		<script src="pretraga_manifestacija.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		
+		<div class="centriran_div">
+			
+			<div class="div_za_registraciju">
+				<div class="div_za_naslov"> PRETRAGA MANIFESTACIJE </div>
+				<div class="div_za_objasnjenje"> Ne morate popunjavati sva polja, samo ona po kojim zelite vrsiti pretragu :)</div>
+				
+				<form class="forma" id="forma">
+					<div class="formin_div">
+					
+						<div class="div_input">
+							<label>NAZIV MANIFESTACIJE</label>
+							<input type="text" name="naziv">
+						</div>
+					
+					
+						<div class="div_ime_prezime">
+							<div class="div_input">
+								<label>OD DATUMA</label>
+								<input type="date" name="od_datuma" id="od_datuma">
+							</div>
+							<div class="div_input">
+								<label>DO DATUMA</label>
+								<input type="date" name="do_datuma" id="do_datuma">
+							</div>
+						</div>			
+						
+						
+						<div class="div_ime_prezime">
+							<div class="div_input">
+								<label>VREME POCETAK</label>
+								<input type="time" name="vrijeme_pocetak">
+							</div>
+							<div class="div_input">
+								<label>VREME KRAJ</label>
+								<input type="time" name="vrijeme_kraj">
+							</div>
+						</div>
+						
+						
+						<div class="div_input">
+							<label>ADRESA</label>
+							<input type="text" name="adresa">
+						</div>
+						
+						
+						
+						<div class="div_ime_prezime">
+							<div class="div_input">
+								<label>GRAD</label>
+								<input type="text" name="grad">
+							</div>
+							<div class="div_input">
+								<label>DRZAVA</label>
+								<input type="text" name="drzava">
+							</div>
+						</div>
+						
+						
+						
+						
+						
+						<div class="div_ime_prezime">
+							<div class="div_input">
+								<label>CENA OD</label>
+								<input type="number" name="od_cijena">
+							</div>
+							<div class="div_input">
+								<label>CENA DO</label>
+								<input type="number" name="do_cijena">
+							</div>
+						</div>
+	
+						
+						
+						<br>
+						
+						
+						<div class="div_input">
+							<label>SORTIRAJTE MANIFESTACIJU PO</label>
+							<ul>
+								<li>
+									<label class="labela_za_pol">
+										<input type="radio" name="sortiraj" value="sortiraj_po_nazivu" class="input_pol" checked>
+										<span>NAZIVU</span>
+									</label>
+								</li>
+								<li>
+									<label class="labela_za_pol">
+										<input type="radio" name="sortiraj" value="sortiraj_po_vremenu" class="input_pol">
+										<span>VREMENU</span>
+									</label>
+								</li>
+								<li>
+									<label class="labela_za_pol">
+										<input type="radio" name="sortiraj" value="lokaciji" class="input_pol">
+										<span>LOKACIJI</span>
+									</label>
+								</li>
+								<li>
+									<label class="labela_za_pol">
+										<input type="radio" name="sortiraj" value="cijeni" class="input_pol">
+										<span>CENI</span>
+									</label>
+								</li>
+								<li>
+									<label class="labela_za_pol">
+										<input type="radio" name="sortiraj" value="bez" class="input_pol">
+										<span>BEZ</span>
+									</label>
+								</li>
+							</ul>
+						</div>
+						
+						
+						
+						
+						<div class="div_input">
+							<label>DA LI ZELITE U RASTUCEM ILI OPADAJUCEM KRITERIJUMU</label>
+							<ul>
+								<li>
+									<label class="labela_za_pol">
+										<input type="radio" name="kriterijum" value="rastucem" class="input_pol" checked>
+										<span>RASTUCEM</span>
+									</label>
+								</li>
+								<li>
+									<label class="labela_za_pol">
+										<input type="radio" name="kriterijum" value="opadajucem" class="input_pol">
+										<span>OPADAJUCEM</span>
+									</label>
+								</li>
+							</ul>
+						</div>
+						
+						
+						
+						
+						<div class="div_input">
+							<label>FILTRIRAJTE PO TIPU MANIFESTACIJE</label>
+							<div class="div_za_filter">
+								<div class="mini_div_za_filter">
+									<input type="radio"   class="filter_input" name="filter" value="KONCERT" checked>
+									<span  class="filter_span">KONCERT</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+								  <input type="radio" class="filter_input" name="filter" value="FESTIVAL">
+								  <span  class="filter_span">FESTIVAL</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+								  <input type="radio" class="filter_input" name="filter" value="POZORISNA_PREDSTAVA">
+								  <span  class="filter_span">POZORISNA PREDSTAVA</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+									<input type="radio" class="filter_input" name="filter" value="BIOSKOPSKA_PROJEKCIJA">
+									<span  class="filter_span">BIOSKOPSKA PROJEKCIJA</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+								  <input type="radio" class="filter_input"  name="filter" value="SPORTSKA_NADMETANJA">
+								  <span  class="filter_span">SPORTSKA NADMETANJA</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+								  <input type="radio"  class="filter_input" name="filter" value="PLESNI_NASTUP">
+								  <span  class="filter_span">PLESNI NASTUP</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+									<input type="radio" class="filter_input" name="filter" value="STANDUP_NASTUP">
+									<span  class="filter_span">STANDUP NASTUP</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+								  <input type="radio" class="filter_input" name="filter" value="NASTUP_CIRKUSA">
+								  <span  class="filter_span">NASTUP CIRKUSA</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+								  <input type="radio" class="filter_input" name="filter" value="SAJAM">
+								  <span  class="filter_span">SAJAM</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+									<input type="radio" class="filter_input" name="filter" value="MUZEJSKO_VECE">
+									<span  class="filter_span">MUZEJSKO VECE</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+								  <input type="radio" class="filter_input" name="filter" value="KNJIZEVNO_VECE">
+								 <span  class="filter_span">KNJIZEVNO VECE</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+								  <input type="radio" class="filter_input" name="filter" value="DRUGA_KATEGORIJA">
+								  <span  class="filter_span">DRUGA KATEGORIJA</span>
+								</div>
+								
+								<div class="mini_div_za_filter">
+								  <input type="radio" class="filter_input" name="filter" value="bez">
+								  <span  class="filter_span">NE ZELIM FILTRIRANJE</span>
+								</div>
+							</div>
+						</div>
+						
+						
+						
+						
+						<div class="div_input">
+							<label>PRIKAZI NERASPRODATE MANIFESTACIJE</label>
+							<ul>
+								<li>
+									<label class="labela_za_pol">
+										<input type="radio" name="filter2" value="da" class="input_pol" checked>
+										<span>DA</span>
+									</label>
+								</li>
+								<li>
+									<label class="labela_za_pol">
+										<input type="radio" name="filter2" value="ne" class="input_pol">
+										<span>NE</span>
+									</label>
+								</li>
+							</ul>
+						</div>
+						
+						
+						<br>
+						
+						
+						<div class="div_input">
+							<input type="submit" value="PRETRAZITE" class="submit_dugme">
+						</div>
+
+					</div>
+				</form>
+				
+				
+				
+			</div>
+			
+		</div>
+	
+	
+	</body>
+</html>

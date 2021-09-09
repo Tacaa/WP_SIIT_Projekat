@@ -1,0 +1,182 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+		<link rel="stylesheet" type ="text/css" href="pregled_karata.css"/>
+		<script src="jquery.min.js"></script>
+		<script src="prikaz_prodavaca.js"></script>
+        <title>Svi prodavci</title>
+    </head>
+    <body>
+    	<p style="font-size:7px"></p>
+    	<table width="100%">
+    		<tr> 
+        		<td align="left"><button id="sortiranje" class="svetli_dugmici">Sortiranje</button></td>
+        		<td align="right"><button id="filter" class="svetli_dugmici">Filter</button></td>
+        	</tr>
+        </table>
+    	<p style="font-size:5px"></p>
+    	
+		<table id="tabela_prodavaca">
+			<!-- zaglavlje tabele -->
+			<thead>
+				<tr>
+					<td>Korisnicko ime</td>
+					<td>Ime</td>
+					<td>Prezime</td>
+					<td>Datum rodjenja</td>
+					<td>Pol</td>
+					<td>Broj manifestacija</td>
+					<td>Aktivnost</td>
+					<td>Izbrisi</td>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+
+	<!-- ****************************** forma za potvrdu ****************************** -->
+        <div id="modal_prodavaca" class="modal">
+	        <div class="modal-content">
+	            <span class="close">&times;</span>
+	            <form id="prodavacii" action="#" method="get">
+		            <table id="tabela_brisanje">
+		            	
+		            	<tr>
+		            		<td colspan='2'>Da li ste sigurni da zelite da izbrisete
+		            			<span id="izabrani_prodavac"></span>?</td>
+		            	</tr>
+		            	<tr>
+		            		<td>
+			            		<label class="labela_izvrisi">
+									<input type="radio" name="izbrisi" value="DA" class="izbrisi" checked>
+									<span>DA</span>
+								</label>
+		            		</td>
+		            		<td>
+			            		<label class="labela_izvrisi">
+									<input type="radio" name="izbrisi" value="NE" class="izbrisi">
+									<span>NE</span>
+								</label>
+		            		</td>
+		            	</tr>
+		            	
+		            	<tr align="center">
+		            		<td colspan="4"><p id="izbrisan_poruka"></p></td>
+		            	</tr>
+		            	
+		            	<tr align="center">
+		            		<td colspan="4"><input class="dugmici" type="submit" value="Potvrda"/></td>
+		            	</tr>
+		            	
+		            </table>
+	            </form>
+	        </div>
+        </div>
+         
+        <!-- ****************************** forma filter ****************************** -->
+        <div id="modal_filtera_prodavaca" class="modal">
+	        <div class="modal-content">
+	            <span class="close">&times;</span>
+	            <form id="filter_prodavaca" action="#" method="get">
+		            <table id="tabela_filter_prodavaca">
+		            	<tr>
+		            		<td colspan='4'>Ime</td>
+		            	</tr>
+		            	<tr>
+		            		<td colspan="4"><input type="text" id="ime_prodavca" size="80"/></td>
+		            	</tr>
+		            	
+		            	<tr>
+		            		<td colspan='4'>Prezime</td>
+		            	</tr>
+		            	<tr>
+		            		<td colspan="4"><input type="text" id="prez_prodavca"  size="80"/>
+		            	</tr>
+		            	
+		            	<tr>
+		            		<td colspan='4'>Korisnicko ime</td>
+		            	</tr>
+		            	<tr>
+		            		<td colspan='4'><input type="text" id="korIme_prodavca" size="80"/>
+		            	</tr>
+		            	
+		            	<tr align="center">
+		            		<td colspan="4"><p id="greska_filtera_prodavca"></p></td>
+		            	</tr>
+		            	
+		            	<tr align="center">
+		            		<td colspan="4"><input class="dugmici" type="submit" value="Pretrazi"/></td>
+		            	</tr>
+		            	
+		            </table>
+	            </form>
+	        </div>
+        </div>
+        
+        	<!-- ****************************** forma sortiranje ****************************** -->
+        <div id="modal_sort_prodavaca" class="modal">
+	        <div class="modal-content">
+	            <span class="close">&times;</span>
+	            <form id="sort_prodavaca" action="#" method="get">
+		            <table id="tabela_filter_prodavaca">
+		            	<tr>
+		            		<td colspan='4'>Vrsta sortiranja</td>
+		            	</tr>
+		            	<tr>
+		            		<td>
+			            		<label class="labela_vrsta_sorta">
+									<input type="radio" name="vrsta_sorta" value="true" class="vrsta_sorta" checked>
+									<span>RASTUCE</span>
+								</label>
+		            		</td>
+		            		<td>
+			            		<label class="labela_vrsta_sorta">
+									<input type="radio" name="vrsta_sorta" value="false" class="vrsta_sorta">
+									<span>OPADAJUCE</span>
+								</label>
+		            		</td>
+		            		<td></td>
+		            		<td></td>
+		            	</tr>
+		            	
+		            	<tr>
+		            		<td colspan='4'>Po cemu sortirati</td>
+		            	</tr>
+		            	<tr>
+		            	<tr>
+		            		<td>
+			            		<label class="labela_po_cemu_sort">
+									<input type="radio" name="sta_sortiramo" value="IME" class="sta_sortiramo" checked>
+									<span>IME</span>
+								</label>
+		            		</td>
+		            		<td>
+			            		<label class="labela_po_cemu_sort">
+									<input type="radio" name="sta_sortiramo" value="PREZIME" class="sta_sortiramo">
+									<span>PREZIME</span>
+								</label>
+		            		</td>
+		            		<td>
+			            		<label class="labela_po_cemu_sort">
+									<input type="radio" name="sta_sortiramo" value="KOR_IME" class="sta_sortiramo">
+									<span>KORISNICKO IME</span>
+								</label>
+		            		</td>
+		            		<td>
+			            		<label class="labela_po_cemu_sort">
+									<input type="radio" name="sta_sortiramo" value="BR_MAN" class="sta_sortiramo">
+									<span>BROJ MANIFESTACIJA</span>
+								</label>
+		            		</td>
+		            	</tr>
+		            	
+		            	<tr align="center">
+		            		<td colspan="4"><input class="dugmici" type="submit" value="Sortiraj"/></td>
+		            	</tr>
+		            	
+		            </table>
+	            </form>
+	        </div>
+        </div>
+        
+    </body>
+</html>

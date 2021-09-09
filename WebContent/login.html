@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>LOGIN</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="login.css">
+		<script src="jquery.min.js"></script>
+		<script src="login.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	
+	
+	<body>
+		
+		<div class="centriran_div">
+			
+			<div class="div_za_registraciju">
+				<div class="div_za_naslov"></div>
+				
+				<form class="forma" id="forma">
+					<div class="formin_div">
+					
+						<div class="div_ime_prezime">
+							<div class="div_input">
+								<label>IME</label>
+								<input type="text" name="ime">
+							</div>
+							<div class="div_input">
+								<label>PREZIME</label>
+								<input type="text" name="prezime">
+							</div>
+						</div>						
+
+						<div class="div_input">
+								<label>DATUM RODJENJA</label>
+								<input type="date" name="datum_rodjenja" id="datum_rodjenja" min="1940-01-01">
+						</div>
+
+						<div class="div_input">
+							<label>POL</label>
+							<ul>
+								<li>
+									<label class="labela_za_pol">
+										<input type="radio" name="pol" value="MUSKI" class="input_pol" checked>
+										<span>MUSKI</span>
+									</label>
+								</li>
+								<li>
+									<label class="labela_za_pol">
+										<input type="radio" name="pol" value="ZENSKI" class="input_pol">
+										<span>ZENSKI</span>
+									</label>
+								</li>
+							</ul>
+						</div>
+						
+						
+						<div class="div_input">
+							<label>KORISNICKO IME</label>
+							<input type="text" name="korisnicko_ime">
+						</div>
+						
+						<div class="div_input">
+							<label>LOZINKA</label>
+							<input type="password" name="lozinka">
+						</div>
+						
+						<div class="div_input">
+							<label>POTVRDA LOZINKE</label>
+							<input type="password" name="potrda_lozinke">
+						</div>
+						
+						<br>
+						<p id="greska_unosa" hidden="true"></p>
+						<br>
+						
+						
+						<div class="div_input">
+							<input type="submit" value="REGISTRUJTE SE" id="dugmic" class="submit_dugme">
+						</div>
+						
+						<a href="pocetna.html" class="dugme_za_nazad" id="nazaad">NAZAD</a>
+
+					</div>
+				</form>
+			</div>
+			
+		</div>
+		
+	</body>
+</html>

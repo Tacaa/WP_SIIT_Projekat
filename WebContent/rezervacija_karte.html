@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rezervacija</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="rezervacija_karte.css">
+		<script src="jquery.min.js"></script>
+		<script src="rezervacija_karte.js"></script>
+	</head>
+	<body>
+    	<div id="sadrzaj_rezervacija" class="sadrzaj"></div>
+    	
+    	
+        	<!-- ****************************** forma rezervacija ****************************** -->
+        <div id="modal_rezer" class="modal">
+	        <div class="modal-content">
+	            <span class="close">&times;</span>
+	            <form id="rezerv_karte" action="#" method="get">
+		            <table id="tabela_rezervacije">
+		            	<tr>
+		            		<td colspan='3'>Vrsta karte</td>
+		            	</tr>
+		            	<tr>
+		            		<td>
+			            		<label class="labela_vrsta_kartice">
+									<input type="radio" name="vrsta_kartice" value="REGULARNA" class="vrsta_kartice" checked>
+									<span>REGULARNA</span>
+								</label>
+		            		</td>
+		            		<td>
+			            		<label class="labela_vrsta_kartice">
+									<input type="radio" name="vrsta_kartice" value="FAN_PIT" class="vrsta_kartice">
+									<span>FAN PIT</span>
+								</label>
+		            		</td>
+		            		<td>
+			            		<label class="labela_vrsta_kartice">
+									<input type="radio" name="vrsta_kartice" value="VIP" class="vrsta_kartice">
+									<span>VIP</span>
+								</label>
+		            		</td>
+		            	</tr>
+		            	<tr>
+		            		<td colspan="3"><p id="uspesna_rezervacija"></p></td>
+		            	</tr>
+		            	<tr align="center">
+		            		<td colspan="3"><input class="dugmici" type="submit" value="Rezervisi"/></td>
+		            	</tr>
+		            	
+		            </table>
+	            </form>
+	        </div>
+        </div>
+	</body>
+</html>

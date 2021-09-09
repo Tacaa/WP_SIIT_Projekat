@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Profil</title>
+		<link rel="stylesheet" type ="text/css" href="profil_korisnika.css"/>
+		<script src="jquery.min.js"></script>
+		<script src="profil_korisnika.js"></script>
+	</head>
+	<body>
+		<div class="centriran_div">
+			
+			<div class="div_za_tabelu" align="center">
+				<table>
+					<tr>
+						<td>
+							<p id="informacije">
+								<span id="korisnicko_ime"></span><br />
+								<img src="user.png" alt="USER">
+								<br /> <br />
+								Ime i prezime:&ensp;<span id="ime_prezime"></span><br />
+								Pol:&ensp;<span id="pol"></span><br />
+								Datum rodjenja:&ensp;<span id="datum_rodjenja"></span><br /><br />
+								Ukupno bodova:&ensp;<span id="bodovi"></span><br />
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<form id="izmena_podataka" method="get" action="/izmena_podataka.html">
+								<input class="dugmici" type="submit" value="Izmena licnih podataka"/>
+							</form>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<form id="pregled_karata" method="get"  action="#">
+								<input class="dugmici" type="submit" value="Pregled svih karata"/>
+							</form>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<form id="rezervacija" method="get"  action="#">
+								<input class="dugmici" type="submit" value="Rezervacija novih karata"/>
+							</form>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<form id="komentarisanje" method="get"  action="#">
+								<input class="dugmici" type="submit" value="Ostavi komentar"/>
+							</form>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<form id="odjava" action="#" method="get">
+								<input class="dugmici" type="submit" value="Odjavi se"/>
+							</form>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>
