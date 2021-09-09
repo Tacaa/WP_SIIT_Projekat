@@ -20,7 +20,8 @@ function popunjavanjeTabele(lista) {
 		else if (kupac.tip.ime == "ZLATNI") tdTip = $('<td>Zlatni</td>');
 		let tdAktivnost = $('<td>Izbrisan</td>');
 		let tdIzvrisi = "<td></td>";
-		if (kupac.aktivnost == "AKTIVAN") {
+		if (kupac.aktivnost == "BLOKIRAN") tdAktivnost = $('<td>Blokiran</td>');
+		else if (kupac.aktivnost == "AKTIVAN") {
 			tdIzvrisi = '<td><form class="brisanje"><input type="submit" id="' + kupac.korisnickoIme + 
 				'+bris" value="Izbrisi" class="otkazi_dugmici"></form></td>';
 			tdAktivnost = $('<td>Aktivan</td>');
