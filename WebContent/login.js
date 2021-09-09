@@ -18,8 +18,12 @@
 	document.getElementById("datum_rodjenja").setAttribute("max", danas);
 	 
  	if (window.sessionStorage.getItem("trenutniAdministrator") == null) 
-		$(".div_za_naslov")[0].append(document.createTextNode("REGISTRACIJA"));
-	else $(".div_za_naslov")[0].append(document.createTextNode("REGISTRACIJA KUPCA"));
+		$(".div_za_naslov")[0].append(document.createTextNode("REGISTRACIJA KUPCA"));
+	else {
+		$(".div_za_naslov")[0].append(document.createTextNode("REGISTRACIJA PRODAVCA"));
+		document.getElementById("dugmic").setAttribute("value", "REGISTRUJ");	
+		document.getElementById("nazaad").style.display = "none";
+	}
   
  	//KLIK NA DUGME "REGISTRUJTE SE"
  	$('form#forma').submit(function(event){
@@ -89,23 +93,14 @@
 				contentType:"application/json",
 				dataType:"json",
 				complete: function(data, uspelo) {
-					if (uspelo == "success") {
-						console.log(data.responseText);
-						$('#greska_unosa').text('Uspesno registrovanje prodavca!!!! :)')
-						$('#greska_unosa').css("color", "#fbc2c0");
-						$("#greska_unosa").show().delay(1500).fadeOut(0, function(){
-							trenutniProdavac = JSON.parse(data.responseText);
-							window.sessionStorage.setItem("trenutniProdavac", JSON.stringify(trenutniProdavac));
-							window.location.href = "profil_prodavca.html";});
-						
-					}
-					else {
-						$('#greska_unosa').text('Korisnicko ime je vec zauzeto :( Probajte da unesete neko drugo :)');
-						$('#greska_unosa').css("color", "#fbc2c0");
-						$("#greska_unosa").show().delay(4000).fadeOut();
-					}
-				}				
-			})
+					if (uspelo == "success") $('#greska_unosa').text('Uspesno registrovanje prodavca!!!! :)');
+					else $('#greska_unosa').text('Korisnicko ime je vec zauzeto :( Probajte da unesete neko drugo :)');
+
+					$('#greska_unosa').css("color", "#fbc2c0");
+					$("#greska_unosa").show().delay(4000).fadeOut();
+				}
+
+			});
 		}
  		
  	});

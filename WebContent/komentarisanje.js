@@ -1,5 +1,5 @@
 function podesi_manifestaciju(tagA) { 
-	window.sessionStorage.setItem("manifestacija", tagA.id.split("+kom")[0])
+	window.sessionStorage.setItem("manifestacija", tagA.id.split("+kom")[0]);
 };
 
 function popuniSadrzaj(manifestacije) {
@@ -108,10 +108,10 @@ function popuniSadrzaj(manifestacije) {
 			
 			// ***********************************************************************
 			var modal = document.getElementById("modal_kom");
-		    var rezervisiDugme = document.getElementById(manifestacija.naziv + "+" + manifestacija.vreme + "+kom");
+		    var rezervisi_dugme = document.getElementById(manifestacija.naziv + "+" + manifestacija.vreme + "+kom");
 			var x_rezervisi = document.getElementsByClassName("close")[0];
 		
-		    rezervisiDugme.onclick = function(event) {
+		    rezervisi_dugme.onclick = function(event) {
 		    	modal.style.display = "block";		// prikazujem formu za komentar
 				window.sessionStorage.setItem("komentarZa", event.currentTarget.id.split("+kom")[0]);
 		    }
@@ -166,7 +166,9 @@ $(document).ready(function(){
 				if (uspelo == "success") {
 					$("#uspeo_komentar").text("Uspesno je napravljen zahtev za komentar! :D");
 					$("#uspeo_komentar").css("color", "#545871");
-	            	$("#uspeo_komentar").show().delay(4000).fadeOut();
+	            	$("#uspeo_komentar").show().delay(4000).fadeOut(0, function() {
+						document.getElementById("modal_kom").style.display = "none";
+					});
 				}
 				else {
 					$("#uspeo_komentar").text("Nesto je poslo po zlu :(");

@@ -1,5 +1,5 @@
 function podesi_manifestaciju(tagA) { 
-	window.sessionStorage.setItem("manifestacija", tagA.id.split("+ppm")[0])
+	window.sessionStorage.setItem("manifestacija", tagA.id.split("+ppm")[0]);
 };
 
 function popuniSadrzaj(manifestacije) {
@@ -49,14 +49,14 @@ function popuniSadrzaj(manifestacije) {
 			let datum = datumVrijeme[0].split('-');
 			let vrijeme = datumVrijeme[1].split(':');
 			let datumZaUpis = document.createTextNode("DATUM: " + datum[2] + "." + datum[1] + "." + datum[0]);
-			let vrijemeZaUpis =  document.createTextNode("VRIJEME: " + vrijeme[0] + ":" + vrijeme[1]);
+			let vrijemeZaUpis =  document.createTextNode("VREME: " + vrijeme[0] + ":" + vrijeme[1]);
 			let mjestoZaUpis = document.createTextNode("GRAD: " + manifestacija.lokacija.grad);
 			let drzavaZaUpis = document.createTextNode("DRZAVA: " +manifestacija.lokacija.drzava);
 			
 			let adresaZaUpis = document.createTextNode(manifestacija.lokacija.adresa);
 			let tipManif = document.createTextNode("TIP: " + manifestacija.tip)
-			let cijena = document.createTextNode("CIJENA: " + manifestacija.cena);
-			let ocjena = document.createTextNode("OCJENA: " + manifestacija.ocena)
+			let cijena = document.createTextNode("CENA: " + manifestacija.cena);
+			let ocjena = document.createTextNode("OCENA: " + manifestacija.ocena)
 			
 			//dodali smo tekst u div
 			let divZaTekstIme = document.createElement("div");

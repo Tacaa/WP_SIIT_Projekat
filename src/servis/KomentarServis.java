@@ -8,7 +8,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import dao.KartaDAO;
 import dao.KomentarDAO;
 import dao.ManifestacijaDAO;
 import klase.Komentar;
@@ -53,7 +52,7 @@ public class KomentarServis {
 			if (k.getOcena() != Double.parseDouble(splitovano[2])) continue;
 			if (splitovano[3].equals("DA")) k.setStatus(StatusKomentara.PRIHVACEN);
 			else k.setStatus(StatusKomentara.ODBIJEN);
-			KartaDAO.sacuvajKarte();
+			KomentarDAO.sacuvajKomentare();
 			return k.toString();
 		}
 		return null;

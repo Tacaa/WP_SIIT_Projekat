@@ -16,7 +16,7 @@ function popunjavanjeTabele(lista) {
 		let tdAdresa = $('<td>' + karta.manifestacija.lokacija.drzava + ", " + 
 			karta.manifestacija.lokacija.grad + ", " +
 			karta.manifestacija.lokacija.ulicaBroj + '</td>');
-		let tdkupac = $('<td>' + karta.kupac + '</td>');
+		let tdkupac = $('<td>@' + karta.kupac + '</td>');
 		
 		let vreme = karta.manifestacija.vreme.split("T");
 		let datum = vreme[0].split("-");
@@ -25,10 +25,13 @@ function popunjavanjeTabele(lista) {
 		let tdVreme = $('<td>' + datum[2] + "." + datum[1] + "." + datum[0] + "."
 			 + "&ensp;" + splitSati[0] + ":" + splitSati[1] + '</td>');
 		let tdCena = $('<td>' + Math.round(karta.konacnaCena * 100) / 100 + '</td>');
-		let tdStatus = $('<td>' + karta.status + '</td>');
-		let tdTip = $('<td>' + karta.tip + '</td>');
+		let tdStatus = $('<td>Rezervisana</td>');
+		if (karta.status == "OBUSTAVLJENA") tdStatus = $('<td>Obustavljena</td>');
+		let tdTip =  $('<td>Regularna</td>');
+		if (karta.tip == "FAN_PIT") tdTip = $('<td>Fan pit</td>');
+		else if (karta.tip == "VIP") tdTip = $('<td>Vip</td>');
 		let tdOtkazi = "<td></td>";
-		if (danas <= vreme[0] && karta.status == "REZERVISANA")  
+		if (danas <= vreme[0] && karta.status == "REZERVISANA") 
 			tdOtkazi = '<td><form class="otkazivanje"><input type="submit" id="' + karta.id + 
 				'" value="Otkazi" class="otkazi_dugmici"></form></td>';
 		red.append(tdManifestacija).append(tdAdresa).append(tdkupac).append(tdVreme).append(tdCena)
@@ -116,7 +119,7 @@ $(document).ready(function() {
 				datumMin: fil_datumMin, datumMax: fil_datumMax, tip: fil_tip, status: fil_status}),
            contentType:"application/json",
            dataType:"json",
-           complete: function(data, uspelo) {
+           complete: function(data) {
 				console.log(data.responseText);
 				listaKarata = JSON.parse(data.responseText);
                	popunjavanjeTabele(listaKarata);
@@ -208,26 +211,18 @@ $(document).ready(function() {
 	$("form.otkazivanje").submit(function(event) {
 		let elem = event.currentTarget.innerHTML;
 		let splitId = elem.split('id="');
-		let splitvalue = splitId[1].split('" type=');		// splitvalue[0] == id
+		let splitvalue = splitId[1].split('" value=');		// splitvalue[0] == id
 		event.preventDefault();
 		
 		$.ajax({
            url: "rest/karte/otkaziKartu/" + splitvalue[0],
            type:"GET",
 		   dataType:"json",
-           complete: function(data, uspelo) {
+           complete: function(data) {
 				window.sessionStorage.setItem("trenutniKupac", data.responseText)
 				for (let k of listaKarata) {
 					if (k.id == splitvalue[0]) k.status = "OBUSTAVLJENA";
 				}
-				$.ajax({
-						url: "rest/login_out/trenutniKupac/"+ kupac.korisnickoIme,
-						type:"GET",
-						dataType:"json",
-						complete: function(kupac) {
-							window.sessionStorage.setItem("trenutniKupac", JSON.stringify(kupac.responseJSON));
-						}
-					});
 				popunjavanjeTabele(listaKarata);
 			}
 		});            

@@ -108,10 +108,10 @@ function popuniSadrzaj(manifestacije) {
 		
 		// ***********************************************************************
 		var modal = document.getElementById("modal_odob");
-	    var odobriDugme = document.getElementById(manifestacija.naziv + "+" + manifestacija.vreme + "+odobri");
+	    var odobri_dugme = document.getElementById(manifestacija.naziv + "+" + manifestacija.vreme + "+odobri");
 		var x_rezervisi = document.getElementsByClassName("close")[0];
 	
-	    odobriDugme.onclick = function(event) {
+	    odobri_dugme.onclick = function(event) {
 	    	modal.style.display = "block";		// prikazujem formu za rezervaciju
 			window.sessionStorage.setItem("rezervisiZa", event.currentTarget.id.split("+odobri")[0]);
 	    }
@@ -152,7 +152,7 @@ $(document).ready(function(){
 		$.ajax({
 			url: "rest/manifestacije/odobri/" + parametar,
 			type:"GET",
-			complete: function(data, uspesno) {
+			complete: function(data) {
 				console.log(data.responseText);
 				document.getElementById("modal_odob").style.display = "none";
 				let novaLista = []; let ind = 0;

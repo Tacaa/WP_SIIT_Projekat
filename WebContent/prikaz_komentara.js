@@ -2,14 +2,17 @@ function popuniTabelu(komentari, tabela, modal) {
 	tabela.children().remove();
 	for (let komi of komentari) {
 			let red = $('<tr></tr>');
-			let tdKorIme = $('<td>' + komi.kupac + '</td>');
+			let tdKorIme = $('<td>@' + komi.kupac + '</td>');
 			let tdText = $('<td>' + komi.tekst + '</td>');
 			let tdOcena = $('<td>' + komi.ocena + '</td>');
-			let tdStatus= $('<td>' + komi.status + '</td>');
+			let tdStatus= $('<td>Prihvacen</td>');
 			let tdDugme = $('<td></td>');
 			let id = komi.kupac + "+" + komi.tekst + "+" + komi.ocena;
-			if (komi.status == "NA_CEKANJU")
+			if (komi.status == "ODBIJEN") tdStatus= $('<td>Odbijen</td>');
+			else if (komi.status == "NA_CEKANJU") {
 				tdDugme = $('<td><button id="' + id + '+odobri" class="dugmici">Odobri</button></td>');
+				tdStatus= $('<td>Na cekanju</td>');
+			}
 			red.append(tdKorIme).append(tdText).append(tdOcena).append(tdStatus).append(tdDugme);
 			tabela.append(red);
 			
@@ -41,7 +44,7 @@ $(document).ready(function() {
 		}
 		for (let kom of lista) {
 			let red = $('<tr></tr>');
-			let tdKorIme = $('<td>' + kom.kupac + '</td>');
+			let tdKorIme = $('<td>@' + kom.kupac + '</td>');
 			let tdText = $('<td>' + kom.tekst + '</td>');
 			let tdOcena = $('<td>' + kom.ocena + '</td>');
 			red.append(tdKorIme).append(tdText).append(tdOcena);
@@ -51,7 +54,7 @@ $(document).ready(function() {
 	else {
 		let zaglavlja = $("table#tabela_komentara thead tr");
 		let zagStatus = $('<td>Status</td>');
-		let zagDugme = $('<td></td>');
+		let zagDugme = $('<td>Odobri</td>');
 		zaglavlja.append(zagStatus).append(zagDugme);
 		
 		var modal = document.getElementById("modal_odob");
@@ -76,12 +79,13 @@ $(document).ready(function() {
 			$.ajax({
 				url: "rest/komentari/odobri/" + parametar,
 				type:"GET",
-				complete: function(data, uspesno) {
+				complete: function(data) {
 					console.log(data.responseText);
 					document.getElementById("modal_odob").style.display = "none";
 					let ind = 0;
 					for (let k of manifestacija.komentari) {
-						if (korisnikTextOCena == (k.kupac + "+" + k.tekst + "+" + k.ocena)) {
+						if (korisnikTextOCena == (k.kupac + "+" + k.tekst + "+" + k.ocena) 
+								&& k.status == "NA_CEKANJU") {
 							if (odobri == "DA") manifestacija.komentari[ind].status = "PRIHVACEN";
 							else manifestacija.komentari[ind].status= "ODBIJEN";
 							break;

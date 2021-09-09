@@ -98,7 +98,7 @@ public class KartaServis {
 		Karta karta = new Karta(id, manifestacija, kupac, StatusKarte.REZERVISANA, tip);
 		KartaDAO.karte.add(karta);
 		KartaDAO.sacuvajKarte();
-		return karta.toString();
+		return karta.getKupac().toString();
 	}
 
 }

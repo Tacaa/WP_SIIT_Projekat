@@ -1,5 +1,5 @@
 function podesi_manifestaciju(tagA) { 
-	window.sessionStorage.setItem("manifestacija", tagA.id.split("+rk")[0])
+	window.sessionStorage.setItem("manifestacija", tagA.id.split("+rk")[0]);
 };
 
 function popuniSadrzaj(manifestacije) {
@@ -108,10 +108,10 @@ function popuniSadrzaj(manifestacije) {
 			
 			// ***********************************************************************
 			var modal = document.getElementById("modal_rezer");
-		    var rezervisiDugme = document.getElementById(manifestacija.naziv + "+" + manifestacija.vreme + "+rez");
+		    var rezervisi_dugme = document.getElementById(manifestacija.naziv + "+" + manifestacija.vreme + "+rez");
 			var x_rezervisi = document.getElementsByClassName("close")[0];
 		
-		    rezervisiDugme.onclick = function(event) {
+		    rezervisi_dugme.onclick = function(event) {
 		    	modal.style.display = "block";		// prikazujem formu za rezervaciju
 				window.sessionStorage.setItem("rezervisiZa", event.currentTarget.id.split("+rez")[0]);
 		    }
@@ -160,17 +160,8 @@ $(document).ready(function(){
 					$("#uspesna_rezervacija").text("Uspesno ste rezervisali kartu! :D");
 					$("#uspesna_rezervacija").css("color", "#545871");
 	            	$("#uspesna_rezervacija").show().delay(4000).fadeOut();
-					let kupac = JSON.parse(window.sessionStorage.getItem("trenutniKupac"));
-					let karta = JSON.parse(data.responseText);
-					kupac.sveKarte[kupac.sveKarte.length] = karta;
-					$.ajax({
-						url: "rest/login_out/trenutniKupac/"+ kupac.korisnickoIme,
-						type:"GET",
-						dataType:"json",
-						complete: function(kupac) {
-							window.sessionStorage.setItem("trenutniKupac", JSON.stringify(kupac.responseJSON));
-						}
-					});
+					
+					window.sessionStorage.setItem("trenutniKupac", data.responseText);
 				}
 				else {
 					$("#uspesna_rezervacija").text("Rezervacija nije uspela :( nesto je poslo po zlu");
