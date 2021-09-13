@@ -37,7 +37,9 @@ public class ProdavacServis {
 				noviKorisnik.getPol(), noviKorisnik.getDatumRodjenja(), AktivnostKorisnika.AKTIVAN, 
 				new ArrayList<>());
 		ProdavacDAO.ucitajProdavce();
-		return ProdavacDAO.dodajProdavca(noviProdavac).toString();
+		Prodavac prodavac = ProdavacDAO.dodajProdavca(noviProdavac);
+		if (prodavac != null) LogovanjeServis.ulogovaniProdavac = prodavac;
+		return prodavac.toString();
 		
 	}
 	

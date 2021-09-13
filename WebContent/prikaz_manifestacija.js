@@ -98,7 +98,7 @@ $(document).ready(function(){
 	let korisnik = JSON.parse(window.sessionStorage.getItem("trenutniAdministrator"));
     if (korisnik == null) {window.location.href = "logovanje.html";}
 	$.ajax({
-		url: "rest/manifestacije/aktivne",
+		url: "rest/manifestacije/sveAktivne",
 		type:"GET",
 		dataType:"json",
 		complete: function(data) {

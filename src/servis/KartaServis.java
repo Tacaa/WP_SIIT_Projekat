@@ -90,6 +90,9 @@ public class KartaServis {
 			ManifestacijaDAO.nadjiPoNazivuVremenu(splitovaniParametri[0], splitovaniParametri[1]);
 		if (manifestacija == null) return null;		// ne bi trebalo da se desi 
 		
+		if (manifestacija.getBrojMesta() - manifestacija.getBrojRezervisanihMesta() == 0) 
+			return "NEMA_KARATA";
+		
 		TipKarte tip = TipKarte.REGULARNA;
 		if (tipKarte.equals("VIP")) tip = TipKarte.VIP;
 		else if (tipKarte.equals("FAN_PIT")) tip = TipKarte.FAN_PIT;

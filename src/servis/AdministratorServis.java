@@ -7,6 +7,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import dao.AdministratorDAO;
+import klase.Administrator;
 import klase.Korisnik;
 
 @Path("/administratori")
@@ -16,8 +17,10 @@ public class AdministratorServis {
 	@Path("/izmeniAdministratora")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String izmeniAdministratora(Korisnik admin){
+	public String izmeniAdministratora(Korisnik noviAdmin){
 		AdministratorDAO.ucitajAdministratore();
-		return AdministratorDAO.izmeniAdmina(admin).toString();
+		Administrator admin = AdministratorDAO.izmeniAdmina(noviAdmin);
+		if (admin != null) LogovanjeServis.ulogovaniAdmin = admin;
+		return admin.toString();
 	}
 }

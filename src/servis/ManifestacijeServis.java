@@ -247,6 +247,17 @@ public class ManifestacijeServis {
 	}
 	
 	@GET
+	@Path("/sveAktivne")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String sveManifestacije() {
+		ManifestacijaDAO.ucitajManifestacije();
+		ArrayList<Manifestacija> povratnaLista = new ArrayList<>();
+		for (Manifestacija m :  ManifestacijaDAO.manifestacije) 
+			if (m.getStatus() == StatusManifestacije.AKTIVNA) povratnaLista.add(m);
+		return povratnaLista.toString();
+	}
+	
+	@GET
 	@Path("/zaKomentarisanje")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String sveZaKomentarisanje() {

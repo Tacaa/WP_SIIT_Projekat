@@ -28,7 +28,9 @@ public class KupacServis {
 				noviKorisnik.getPrezime(), noviKorisnik.getPol(), noviKorisnik.getDatumRodjenja(), 
 				AktivnostKorisnika.AKTIVAN, 0, new ArrayList<Karta>(), KupacDAO.obicni);
 		KupacDAO.ucitajKupce();
-		return KupacDAO.dodajKupca(noviKupac).toString();
+		Kupac kupac = KupacDAO.dodajKupca(noviKupac);
+		if (kupac != null) LogovanjeServis.ulogovaniKupac = noviKupac;
+		return kupac.toString();
 		
 	}
 	

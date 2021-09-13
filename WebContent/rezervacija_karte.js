@@ -157,11 +157,16 @@ $(document).ready(function(){
 			data: parametri,
 			complete: function(data, uspesno) {
 				if (uspesno == "success") {
-					$("#uspesna_rezervacija").text("Uspesno ste rezervisali kartu! :D");
+					if (data.responseText == "NEMA_KARATA") 
+						$("#uspesna_rezervacija").text("Nema karata na stanju! :( Probajte neku drugu");
+					else {
+						$("#uspesna_rezervacija").text("Uspesno ste rezervisali kartu! :D");
+						window.sessionStorage.setItem("trenutniKupac", data.responseText);
+					}
+						$("#uspesna_rezervacija").text("Nema karata na stanju! :( Probajte neku drugu");
 					$("#uspesna_rezervacija").css("color", "#545871");
 	            	$("#uspesna_rezervacija").show().delay(4000).fadeOut();
 					
-					window.sessionStorage.setItem("trenutniKupac", data.responseText);
 				}
 				else {
 					$("#uspesna_rezervacija").text("Rezervacija nije uspela :( nesto je poslo po zlu");
